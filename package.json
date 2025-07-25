@@ -1,0 +1,41 @@
+{
+  "name": "metrics-js-ts",
+  "version": "0.1.0",
+  "description": "A library designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code files, generates Abstract Syntax Trees (ASTs), and applies different metrics to analyze the code structure.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --roots test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielzazzali/metrics-js-ts.git"
+  },
+  "keywords": [
+    "modular",
+    "metrics",
+    "code-analysis",
+    "JavaScript",
+    "TypeScript",
+    "AST",
+    "modularity",
+    "code-quality",
+    "maintenance",
+    "framework"
+  ],
+  "author": "Daniel Zazzali <dazazzali@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/danielzazzali/metrics-js-ts/issues"
+  },
+  "homepage": "https://github.com/danielzazzali/metrics-js-ts#readme",
+  "dependencies": {
+    "@babel/parser": "^7.25.6",
+    "@babel/traverse": "^7.25.6",
+    "jest": "^30.0.4"
+  },
+  "devDependencies": {
+    "@babel/generator": "^7.26.5",
+    "@babel/types": "^7.27.3",
+    "@jest/globals": "^30.0.4"
+  }
+}
