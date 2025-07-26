@@ -2,16 +2,15 @@ import path from "path";
 import { calculateMetrics } from '../../src/index.js';
 import {fileURLToPath} from "url";
 import {describe, it, beforeAll, expect} from "@jest/globals";
-import { inspect } from "util"
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe('Functions Coupling Metric', function () {
-    const codePath = path.resolve(__dirname, '../src-examples/function-coupling');
-    const jsFile = path.resolve(__dirname, '../src-examples/function-coupling/JS/functions-coupled.js');
-    const tsFile = path.resolve(__dirname, '../src-examples/function-coupling/TS/functions-coupled.ts');
+    const codePath = path.resolve(__dirname, '../test-src/function-coupling/example1');
+    const jsFile = path.resolve(__dirname, '../test-src/function-coupling/example1/JS/functions-coupled.js');
+    const tsFile = path.resolve(__dirname, '../test-src/function-coupling/example1/TS/functions-coupled.ts');
     let metricsResults;
 
     beforeAll(async function() {

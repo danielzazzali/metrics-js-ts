@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe('Functions Coupling Metric', function() {
-    const codePath = path.resolve(__dirname, '../src-examples/function-coupling');
+    const codePath = path.resolve(__dirname, '../test-src/function-coupling');
     let metricsResults;
 
     beforeAll(async function() {

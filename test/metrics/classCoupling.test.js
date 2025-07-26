@@ -7,9 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe('Class Coupling Metric', function () {
-    const codePath = path.resolve(__dirname, '../src-examples/class-coupling');
-    const jsFile = path.resolve(__dirname, '../src-examples/class-coupling/JS/classes-coupled.js');
-    const tsFile = path.resolve(__dirname, '../src-examples/class-coupling/TS/classes-coupled.ts');
+    const codePath = path.resolve(__dirname, '../test-src/class-coupling');
+    const jsFile = path.resolve(__dirname, '../test-src/class-coupling/JS/classes-coupled.js');
+    const tsFile = path.resolve(__dirname, '../test-src/class-coupling/TS/classes-coupled.ts');
     let metricsResults;
 
     beforeAll(async function() {
