@@ -1,11 +1,13 @@
 class Garage {
     private car: { start(): void };
+
     constructor() {
         this.car = new Car();
         this.car.start();
     }
 
-    static report() {}
+    static report() {
+    }
 }
 
 const Car = class {

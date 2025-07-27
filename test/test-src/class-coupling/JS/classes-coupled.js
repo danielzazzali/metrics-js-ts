@@ -1,16 +1,16 @@
 class Garage {
-    constructor() {
-        this.car = new Car();
-        this.car.start();
-    }
+  constructor () {
+    this.car = new Car()
+    this.car.start()
+  }
 
-    static report() {}
+  static report () {}
 }
 
 class Car {
-    constructor() {}
+  constructor () {}
 
-    start() {
-        Garage.report()
-    }
+  start () {
+    Garage.report()
+  }
 }

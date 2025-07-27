@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --roots test"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --roots test",
+    "test2": "jest --experimental-vm-modules"
   },
   "repository": {
     "type": "git",
@@ -30,12 +31,10 @@
   "homepage": "https://github.com/danielzazzali/metrics-js-ts#readme",
   "dependencies": {
     "@babel/parser": "^7.25.6",
-    "@babel/traverse": "^7.25.6",
-    "jest": "^30.0.4"
+    "@babel/traverse": "^7.25.6"
   },
   "devDependencies": {
-    "@babel/generator": "^7.26.5",
-    "@babel/types": "^7.27.3",
-    "@jest/globals": "^30.0.4"
+    "@jest/globals": "^30.0.5",
+    "jest": "^30.0.5"
   }
 }

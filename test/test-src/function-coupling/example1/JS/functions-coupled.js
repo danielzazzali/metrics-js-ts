@@ -1,14 +1,14 @@
 // 1. Function Declaration
-function functionA() {
-    functionB();
+function functionA () {
+  functionB()
 }
 
 // 2. Function Expression
 const functionB = function () {
-    functionC();
-};
+  functionC()
+}
 
 // 3. Arrow Function Expression
 const functionC = () => {
-    functionA();
-};
+  functionA()
+}

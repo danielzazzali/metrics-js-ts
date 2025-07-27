@@ -20,7 +20,7 @@
  * const leaf = makeNode({ state: { id: 5, name: 'Alice' } });
  */
 const makeNode = (value, left = null, right = null, rank = 1) =>
-    ({ value, left, right, rank });
+  ({ value, left, right, rank })
 
 /**
  * Retrieve the rank (null‑path length) of a heap.
@@ -32,7 +32,7 @@ const makeNode = (value, left = null, right = null, rank = 1) =>
  * rank(null);    // ⇒ 0
  * rank(makeNode({ state: { id:1 } })); // ⇒ 1
  */
-const rank = (h) => (h === null ? 0 : h.rank);
+const rank = (h) => (h === null ? 0 : h.rank)
 
 /**
  * Merge (meld) two leftist heaps into one.
@@ -51,25 +51,25 @@ const rank = (h) => (h === null ? 0 : h.rank);
  * console.log(findMin(merged).state.id); // ⇒ 2
  */
 const merge = (h1, h2) => {
-    if (h1 === null) return h2;
-    if (h2 === null) return h1;
+  if (h1 === null) return h2
+  if (h2 === null) return h1
 
-    // Ensure the smaller root by comparing `state.id` properties
-    if (h1.value.state.id > h2.value.state.id) return merge(h2, h1);
+  // Ensure the smaller root by comparing `state.id` properties
+  if (h1.value.state.id > h2.value.state.id) return merge(h2, h1)
 
-    // Recursively merge h2 into h1’s right subtree
-    const mergedRight = merge(h1.right, h2);
+  // Recursively merge h2 into h1’s right subtree
+  const mergedRight = merge(h1.right, h2)
 
-    // Enforce leftist property: rank(left) ≥ rank(right)
-    let left = h1.left, right = mergedRight;
-    if (rank(left) < rank(right)) [left, right] = [right, left];
+  // Enforce leftist property: rank(left) ≥ rank(right)
+  let left = h1.left, right = mergedRight
+  if (rank(left) < rank(right)) [left, right] = [right, left]
 
-    // Return new root with updated rank
-    return makeNode(h1.value, left, right, 1 + rank(right));
-};
+  // Return new root with updated rank
+  return makeNode(h1.value, left, right, 1 + rank(right))
+}
 
 /** @type {null} */
-const empty = null;
+const empty = null
 
 /**
  * Insert a new element into the heap.
@@ -84,7 +84,7 @@ const empty = null;
  * const h = insert({ state: { id: 3 } }, empty);
  * console.log(findMin(h).state.id); // ⇒ 3
  */
-const insert = (x, h) => merge(makeNode(x), h);
+const insert = (x, h) => merge(makeNode(x), h)
 
 /**
  * Retrieve the minimum element (by `state.id`) without modifying the heap.
@@ -97,7 +97,7 @@ const insert = (x, h) => merge(makeNode(x), h);
  * @example
  * findMin(null); // ⇒ null
  */
-const findMin = (h) => (h === null ? null : h.value);
+const findMin = (h) => (h === null ? null : h.value)
 
 /**
  * Remove the minimum element and return the resulting heap.
@@ -112,7 +112,7 @@ const findMin = (h) => (h === null ? null : h.value);
  * h = deleteMin(h);
  * console.log(findMin(h).state.id); // ⇒ 4
  */
-const deleteMin = (h) => (h === null ? null : merge(h.left, h.right));
+const deleteMin = (h) => (h === null ? null : merge(h.left, h.right))
 
 /**
  * Check if the heap is empty.
@@ -123,6 +123,6 @@ const deleteMin = (h) => (h === null ? null : merge(h.left, h.right));
  * @example
  * isEmpty(empty); // ⇒ true
  */
-const isEmpty = (h) => h === null;
+const isEmpty = (h) => h === null
 
-export { makeNode, rank, merge, insert, findMin, deleteMin, isEmpty, empty };
+export { makeNode, rank, merge, insert, findMin, deleteMin, isEmpty, empty }

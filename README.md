@@ -1,6 +1,8 @@
 # Metrics JS TS
 
-This library is designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code files, generates Abstract Syntax Trees (ASTs), and applies different modular metrics to analyze code structure, maintainability, and quality.
+This library is designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code
+files, generates Abstract Syntax Trees (ASTs), and applies different modular metrics to analyze code structure,
+maintainability, and quality.
 
 ## Installation
 
@@ -33,13 +35,16 @@ console.log(results);
 * `useDefaultMetrics` (boolean): Whether to use the default metrics.
 
 ## Metrics
+
 The library includes several built-in metrics:
 
 * Classes Per File: Counts the number of classes in each file.
 * Methods Per File: Counts the number of methods in each file.
 * Import/Export Coupling: Counts the number of files that a file imports and the number of files that import a file.
-* Fan In Fan Out Per Function: Counts the number of functions that a function calls (Fan Out) and the number of other functions that call this first function (Fan In).
-* Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of classes that call a class method (Fan In).
+* Fan In Fan Out Per Function: Counts the number of functions that a function calls (Fan Out) and the number of other
+  functions that call this first function (Fan In).
+* Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of
+  classes that call a class method (Fan In).
 
 ## Adding Custom Metrics
 
@@ -53,28 +58,29 @@ Example:
 
 ```js
 const state = {
-    metricName: "Custom Metric",
-    description: "Description of the custom metric.",
-    result: {},
-    id: 'custom-metric-unique-id',
-    dependencies: ['result-a', 'result-b'],
-    status: false
-    // Define state properties here
-};
+  metricName: 'Custom Metric',
+  description: 'Description of the custom metric.',
+  result: {},
+  id: 'custom-metric-unique-id',
+  dependencies: ['result-a', 'result-b'],
+  status: false,
+  // Define state properties here
+}
 
-const visitors = [{
+const visitors =
+  {
     // Define visitors here
     // Program(path) {}
     // ClassDeclaration(path) {}
-}];
+  }
 
-function postProcessing(state) {
-    // Perform post-processing here
-    if (state.currentFile) delete state.currentFile;
-    if (state.dependencies) delete state.dependencies;
+function postProcessing (state) {
+  // Perform post-processing here
+  if (state.currentFile) delete state.currentFile
+  if (state.dependencies) delete state.dependencies
 
-    state.status = true;
+  state.status = true
 }
 
-export { state, visitors, postProcessing };
+export { state, visitors, postProcessing }
 ```

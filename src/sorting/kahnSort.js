@@ -1,4 +1,10 @@
-import {deleteMin, empty, findMin, insert, isEmpty} from "../data-structures/leftistMinHeap.js";
+import {
+  deleteMin,
+  empty,
+  findMin,
+  insert,
+  isEmpty,
+} from '../data-structures/leftistMinHeap.js'
 
 /**
  * Performs a lexicographically-ordered topological sort (Kahn's algorithm) on a set of metric objects.
@@ -25,82 +31,82 @@ import {deleteMin, empty, findMin, insert, isEmpty} from "../data-structures/lef
  *   console.error('Cycle detected: cannot produce topological order.');
  * }
  */
-function kahnSort(metrics) {
-    /**
-     * Adjacency list mapping each metric ID to the list of dependent IDs.
-     * @type {Record<string, Array<string|number>>}
-     */
-    const adj = {};
+function kahnSort (metrics) {
+  /**
+   * Adjacency list mapping each metric ID to the list of dependent IDs.
+   * @type {Record<string, Array<string|number>>}
+   */
+  const adj = {}
 
-    /**
-     * Map of metric ID to its current indegree (number of unmet prerequisites).
-     * @type {Record<string, number>}
-     */
-    const indegree = {};
+  /**
+   * Map of metric ID to its current indegree (number of unmet prerequisites).
+   * @type {Record<string, number>}
+   */
+  const indegree = {}
 
-    /**
-     * Quick lookup from metric ID to the metric object.
-     * @type {Record<string, Object>}
-     */
-    const metricMap = {};
+  /**
+   * Quick lookup from metric ID to the metric object.
+   * @type {Record<string, Object>}
+   */
+  const metricMap = {}
 
-    // Initialize structures for each metric
-    for (const m of metrics) {
-        const id = m.state.id;
-        if (metricMap[id] !== undefined) {
-            throw new Error(`Duplicate metric ID detected: ${id}`);
-        }
-        metricMap[id] = m;
-        indegree[id] = 0;
-        adj[id] = [];
+  // Initialize structures for each metric
+  for (const m of metrics) {
+    const id = m.state.id
+    if (metricMap[id] !== undefined) {
+      throw new Error(`Duplicate metric ID detected: ${id}`)
     }
+    metricMap[id] = m
+    indegree[id] = 0
+    adj[id] = []
+  }
 
-    // Build graph edges (prerequisite → dependent)
-    for (const m of metrics) {
-        const id = m.state.id;
-        for (const prereq of m.state.dependencies ?? []) {
-            // Ensure prereq entry exists (handles external or missing metrics)
-            if (!(prereq in adj)) {
-                indegree[prereq] = 0;
-                adj[prereq] = [];
-            }
-            adj[prereq].push(id);
-            indegree[id] += 1;
-        }
+  // Build graph edges (prerequisite → dependent)
+  for (const m of metrics) {
+    const id = m.state.id
+    for (const prereq of m.state.dependencies ?? []) {
+      // Ensure prereq entry exists (handles external or missing metrics)
+      if (!(prereq in adj)) {
+        indegree[prereq] = 0
+        adj[prereq] = []
+      }
+      adj[prereq].push(id)
+      indegree[id] += 1
     }
+  }
 
-    // Initialize a min-heap of metrics with zero indegree
-    let heap = empty;
-    for (const id of Object.keys(indegree)) {
-        if (indegree[id] === 0) {
-            heap = insert(metricMap[id], heap);
-        }
+  // Initialize a min-heap of metrics with zero indegree
+  let heap = empty
+  for (const id of Object.keys(indegree)) {
+    if (indegree[id] === 0) {
+      heap = insert(metricMap[id], heap)
     }
+  }
 
-    /**
-     * Resulting list of metrics in topologically sorted order.
-     * @type {Array<Object>}
-     */
-    const order = [];
+  /**
+   * Resulting list of metrics in topologically sorted order.
+   * @type {Array<Object>}
+   */
+  const order = []
 
-    // Process until no more metrics are available
-    while (!isEmpty(heap)) {
-        // Extract the next metric with the smallest state.id
-        const m = findMin(heap);
-        heap = deleteMin(heap);
-        order.push(m);
+  // Process until no more metrics are available
+  while (!isEmpty(heap)) {
+    // Extract the next metric with the smallest state.id
+    const m = findMin(heap)
+    heap = deleteMin(heap)
+    order.push(m)
 
-        // Decrease indegree of each dependent and add to heap if it becomes zero
-        for (const depId of adj[m.state.id]) {
-            indegree[depId] -= 1;
-            if (indegree[depId] === 0) {
-                heap = insert(metricMap[depId], heap);
-            }
-        }
+    // Decrease indegree of each dependent and add to heap if it becomes zero
+    for (const depId of adj[m.state.id]) {
+      indegree[depId] -= 1
+      if (indegree[depId] === 0) {
+        heap = insert(metricMap[depId], heap)
+      }
     }
+  }
 
-    // If we sorted all metrics, return the order; otherwise, a cycle exists
-    return order.length === metrics.length ? order : null;
+  // If we sorted all metrics, return the order; otherwise, a cycle exists
+  return order.length === metrics.length ? order : null
 }
 
-export { kahnSort };
+export { kahnSort }
