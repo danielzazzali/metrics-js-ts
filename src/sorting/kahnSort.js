@@ -3,7 +3,7 @@ import {
   empty,
   findMin,
   insert,
-  isEmpty,
+  isEmpty
 } from '../data-structures/leftistMinHeap.js'
 
 /**

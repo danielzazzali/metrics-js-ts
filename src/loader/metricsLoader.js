@@ -2,7 +2,7 @@ import { getFiles } from '../files/fileReader.js'
 import {
   MESSAGES,
   METRICS_PATH,
-  REGEX_METRICS_ID,
+  REGEX_METRICS_ID
 } from '../constants/constants.js'
 import path from 'path'
 import { logger } from '../logger/logger.js'

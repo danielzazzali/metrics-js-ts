@@ -7,7 +7,7 @@ const state = {
   result: {},
   id: 'file-coupling',
   dependencies: ['files'],
-  status: false,
+  status: false
 }
 
 const visitors = {
@@ -31,9 +31,9 @@ const visitors = {
   CallExpression (path) {
     const node = path.node
 
-    if (node.callee.name === 'require' && node['arguments'].length === 1 &&
-      node['arguments'][0].type === 'StringLiteral') {
-      const importSource = node['arguments'][0].value
+    if (node.callee.name === 'require' && node.arguments.length === 1 &&
+      node.arguments[0].type === 'StringLiteral') {
+      const importSource = node.arguments[0].value
       const absoluteImport = resolveImportPath(state.currentFile, importSource)
 
       if (!absoluteImport) return
@@ -50,7 +50,7 @@ const visitors = {
     if (!absoluteImport) return
 
     state.result[state.currentFile].push(absoluteImport)
-  },
+  }
 }
 
 function resolveImportPath (importingFile, importSource) {
@@ -96,7 +96,7 @@ function postProcessing (state) {
   for (const filePath of Object.keys(raw)) {
     processed[filePath] = {
       fanOut: raw[filePath],
-      fanIn: [],
+      fanIn: []
     }
   }
 

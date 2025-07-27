@@ -4,7 +4,7 @@ import {
   BABEL_PARSER_OPTIONS,
   FILE_ENCODING,
   KEYS_TO_REMOVE,
-  MESSAGES,
+  MESSAGES
 } from '../constants/constants.js'
 import { logger } from '../logger/logger.js'
 

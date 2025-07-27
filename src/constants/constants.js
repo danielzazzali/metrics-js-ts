@@ -13,8 +13,8 @@ export const BABEL_PARSER_OPTIONS = {
   sourceType: 'unambiguous',
   plugins: [
     'typescript',
-    'jsx',
-  ],
+    'jsx'
+  ]
 }
 
 export const METRICS_PATH = 'metrics'
@@ -30,11 +30,11 @@ export const MESSAGES = {
     ERROR_TRAVERSING_AST: 'Error traversing AST:',
     ERROR_INVALID_METRIC_ID: 'Invalid state.id',
     ID_MUST_MATCH_REGEX: 'Must match',
-    METRIC_HAS_NO_ID: 'Metric has no id',
+    METRIC_HAS_NO_ID: 'Metric has no id'
   },
   INFO: {
-    SKIPPING_FILE: 'Skipping file...',
-  },
+    SKIPPING_FILE: 'Skipping file...'
+  }
 }
 
 export const REGEX_METRICS_ID = /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/

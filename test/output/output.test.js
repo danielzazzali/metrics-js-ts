@@ -23,7 +23,7 @@ describe('Functions Coupling Metric', function () {
   })
 
   it('Should contain metric files with status true', function () {
-    expect(metricsResults['files']).toHaveProperty('status', true)
+    expect(metricsResults.files).toHaveProperty('status', true)
   })
 
   it('Should contain metric functions-per-file with status true', function () {

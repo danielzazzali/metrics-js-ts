@@ -61,7 +61,7 @@ const merge = (h1, h2) => {
   const mergedRight = merge(h1.right, h2)
 
   // Enforce leftist property: rank(left) ≥ rank(right)
-  let left = h1.left, right = mergedRight
+  let left = h1.left; let right = mergedRight
   if (rank(left) < rank(right)) [left, right] = [right, left]
 
   // Return new root with updated rank

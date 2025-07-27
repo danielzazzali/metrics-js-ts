@@ -39,25 +39,25 @@ describe('Functions Coupling Metric', function () {
     'Metric is defined, has correct name, description and status and contains result',
     () => {
       expect(metricsResults).toHaveProperty('function-coupling')
-      expect(metricsResults['function-coupling']).
-      toHaveProperty('name', 'Functions Coupling')
-      expect(metricsResults['function-coupling']['description']).toBeDefined()
-      expect(metricsResults['function-coupling']['description']).
-      toContain('Analyzes each function to identify Fan-Out and Fan-In')
-      expect(metricsResults['function-coupling']['result']).toBeDefined()
-      expect(metricsResults['function-coupling']['status']).toBeTruthy()
+      expect(metricsResults['function-coupling'])
+        .toHaveProperty('name', 'Functions Coupling')
+      expect(metricsResults['function-coupling'].description).toBeDefined()
+      expect(metricsResults['function-coupling'].description)
+        .toContain('Analyzes each function to identify Fan-Out and Fan-In')
+      expect(metricsResults['function-coupling'].result).toBeDefined()
+      expect(metricsResults['function-coupling'].status).toBeTruthy()
     })
 
   it('Metric result contains JS src testing file', () => {
-    expect(metricsResults['function-coupling']['result'][jsFile]).toBeDefined()
+    expect(metricsResults['function-coupling'].result[jsFile]).toBeDefined()
   })
 
   it('Metric result contains TS src testing file', () => {
-    expect(metricsResults['function-coupling']['result'][tsFile]).toBeDefined()
+    expect(metricsResults['function-coupling'].result[tsFile]).toBeDefined()
   })
 
   it('Should compute the correct metric structure for JS file', function () {
-    expect(metricsResults['function-coupling']['result'][jsFile]).toEqual({
+    expect(metricsResults['function-coupling'].result[jsFile]).toEqual({
       functionA: {
         type: 'FunctionDeclaration',
         id: { type: 'Identifier', name: 'functionA' },
@@ -72,12 +72,12 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionB' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-out': { functionB: 1 },
-        'fan-in': { functionC: 1 },
+        'fan-in': { functionC: 1 }
       },
       functionB: {
         type: 'FunctionExpression',
@@ -93,12 +93,12 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionC' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-in': { functionA: 1 },
-        'fan-out': { functionC: 1 },
+        'fan-out': { functionC: 1 }
       },
       functionC: {
         type: 'ArrowFunctionExpression',
@@ -114,18 +114,18 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionA' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-in': { functionB: 1 },
-        'fan-out': { functionA: 1 },
-      },
+        'fan-out': { functionA: 1 }
+      }
     })
   })
 
   it('should compute the correct metric structure for TS file', function () {
-    expect(metricsResults['function-coupling']['result'][tsFile]).toEqual({
+    expect(metricsResults['function-coupling'].result[tsFile]).toEqual({
       functionA: {
         type: 'FunctionDeclaration',
         id: { type: 'Identifier', name: 'functionA' },
@@ -134,7 +134,7 @@ describe('Functions Coupling Metric', function () {
         params: [],
         returnType: {
           type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' },
+          typeAnnotation: { type: 'TSVoidKeyword' }
         },
         body: {
           type: 'BlockStatement',
@@ -144,12 +144,12 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionB' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-out': { functionB: 1 },
-        'fan-in': { functionC: 1 },
+        'fan-in': { functionC: 1 }
       },
       functionB: {
         type: 'FunctionExpression',
@@ -159,7 +159,7 @@ describe('Functions Coupling Metric', function () {
         params: [],
         returnType: {
           type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' },
+          typeAnnotation: { type: 'TSVoidKeyword' }
         },
         body: {
           type: 'BlockStatement',
@@ -169,18 +169,18 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionC' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-in': { functionA: 1 },
-        'fan-out': { functionC: 1 },
+        'fan-out': { functionC: 1 }
       },
       functionC: {
         type: 'ArrowFunctionExpression',
         returnType: {
           type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' },
+          typeAnnotation: { type: 'TSVoidKeyword' }
         },
         id: null,
         generator: false,
@@ -194,13 +194,13 @@ describe('Functions Coupling Metric', function () {
               expression: {
                 type: 'CallExpression',
                 callee: { type: 'Identifier', name: 'functionA' },
-                arguments: [],
-              },
-            }],
+                arguments: []
+              }
+            }]
         },
         'fan-in': { functionB: 1 },
-        'fan-out': { functionA: 1 },
-      },
+        'fan-out': { functionA: 1 }
+      }
     })
   })
 })

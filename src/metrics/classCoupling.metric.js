@@ -4,7 +4,7 @@ const state = {
   result: {},
   id: 'class-coupling',
   dependencies: ['classes-per-file', 'instance-mapper'],
-  status: false,
+  status: false
 }
 
 const visitors = {
@@ -51,7 +51,7 @@ const visitors = {
               */
               let callerMethod = innerPath.node.key.name
               const calleeClass = deepPath.node.callee.name
-              let calleeMethod = '_constructor'
+              const calleeMethod = '_constructor'
 
               let count = false
               let calleeMethodIndex = 0
@@ -301,9 +301,9 @@ const visitors = {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
               }
-            },
+            }
           })
-        },
+        }
       })
     }
 
@@ -328,7 +328,7 @@ const visitors = {
               */
               let callerMethod = innerPath.node.key.name
               const calleeClass = deepPath.node.callee.name
-              let calleeMethod = '_constructor'
+              const calleeMethod = '_constructor'
 
               let count = false
               let calleeMethodIndex = 0
@@ -578,9 +578,9 @@ const visitors = {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
               }
-            },
+            }
           })
-        },
+        }
       })
     }
   },
@@ -596,7 +596,6 @@ const visitors = {
       parentPath.node.id &&
       parentPath.node.id.name
     ) {
-
       /* Ignore:
          (() => { <Class_expression_here> })();
       */
@@ -626,7 +625,7 @@ const visitors = {
               */
               let callerMethod = innerPath.node.key.name
               const calleeClass = deepPath.node.callee.name
-              let calleeMethod = '_constructor'
+              const calleeMethod = '_constructor'
 
               let count = false
               let calleeMethodIndex = 0
@@ -876,9 +875,9 @@ const visitors = {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
               }
-            },
+            }
           })
-        },
+        }
       })
 
       return
@@ -904,7 +903,7 @@ const visitors = {
               */
               let callerMethod = innerPath.node.key.name
               const calleeClass = deepPath.node.callee.name
-              let calleeMethod = '_constructor'
+              const calleeMethod = '_constructor'
 
               let count = false
               let calleeMethodIndex = 0
@@ -1154,9 +1153,9 @@ const visitors = {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
               }
-            },
+            }
           })
-        },
+        }
       })
     }
 
@@ -1181,7 +1180,7 @@ const visitors = {
               */
               let callerMethod = innerPath.node.key.name
               const calleeClass = deepPath.node.callee.name
-              let calleeMethod = '_constructor'
+              const calleeMethod = '_constructor'
 
               let count = false
               let calleeMethodIndex = 0
@@ -1431,12 +1430,12 @@ const visitors = {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
               }
-            },
+            }
           })
-        },
+        }
       })
     }
-  },
+  }
 }
 
 function postProcessing (state) {

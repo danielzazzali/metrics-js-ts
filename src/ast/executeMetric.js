@@ -44,7 +44,7 @@ async function executeMetrics (metricObjects, ASTs) {
     resultMap[metric.state.id] = metric.state.result
   }
 
-  let result = {}
+  const result = {}
 
   for (const metric of sortedMetrics) {
     if (metric.state.ignore) {

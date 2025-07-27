@@ -4,7 +4,7 @@ const state = {
   result: {},
   id: 'function-coupling',
   dependencies: ['functions-per-file'],
-  status: false,
+  status: false
 }
 
 const visitors = {
@@ -65,7 +65,7 @@ const visitors = {
         }
 
         state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
-      },
+      }
     })
   },
 
@@ -120,7 +120,7 @@ const visitors = {
         }
 
         state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
-      },
+      }
     })
   },
 
@@ -175,9 +175,9 @@ const visitors = {
         }
 
         state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
-      },
+      }
     })
-  },
+  }
 }
 
 // Clean up state before finishing

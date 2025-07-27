@@ -5,14 +5,14 @@ const state = {
   id: 'instance-mapper',
   dependencies: ['files'],
   ignore: true,
-  status: false,
+  status: false
 }
 
 const visitors = {
   // Entry point for each parsed file, load dependency
   Program (path) {
     state.currentFile = path.node.filePath
-    state.result[state.currentFile] = state.dependencies['files'][state.currentFile]
+    state.result[state.currentFile] = state.dependencies.files[state.currentFile]
   },
 
   ClassDeclaration (path) {
@@ -62,7 +62,7 @@ const visitors = {
               ) {
                 state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
               }
-            },
+            }
           })
         },
         ClassProperty (innerPath) {
@@ -87,10 +87,10 @@ const visitors = {
                 ) {
                   state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
                 }
-              },
+              }
             })
           }
-        },
+        }
       })
 
       return
@@ -128,7 +128,7 @@ const visitors = {
               ) {
                 state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
               }
-            },
+            }
           })
         },
         ClassProperty (innerPath) {
@@ -153,10 +153,10 @@ const visitors = {
                 ) {
                   state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
                 }
-              },
+              }
             })
           }
-        },
+        }
       })
     }
   },
@@ -172,7 +172,6 @@ const visitors = {
       parentPath.node.id &&
       parentPath.node.id.name
     ) {
-
       /* Ignore:
          (() => { <Class_expression_here> })();
       */
@@ -212,7 +211,7 @@ const visitors = {
               ) {
                 state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
               }
-            },
+            }
           })
         },
         ClassProperty (innerPath) {
@@ -237,10 +236,10 @@ const visitors = {
                 ) {
                   state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
                 }
-              },
+              }
             })
           }
-        },
+        }
       })
 
       return
@@ -276,7 +275,7 @@ const visitors = {
               ) {
                 state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
               }
-            },
+            }
           })
         },
         ClassProperty (innerPath) {
@@ -301,10 +300,10 @@ const visitors = {
                 ) {
                   state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
                 }
-              },
+              }
             })
           }
-        },
+        }
       })
 
       return
@@ -341,7 +340,7 @@ const visitors = {
               ) {
                 state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
               }
-            },
+            }
           })
         },
         ClassProperty (innerPath) {
@@ -366,13 +365,13 @@ const visitors = {
                 ) {
                   state.result[state.currentFile][className][deepPath.parentPath.node.id.name] = deepPath.node.callee.name
                 }
-              },
+              }
             })
           }
-        },
+        }
       })
     }
-  },
+  }
 }
 
 function postProcessing (state) {

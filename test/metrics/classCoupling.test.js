@@ -38,21 +38,21 @@ describe('Class Coupling Metric', function () {
     'Metric is defined, has correct name, description and status and contains result',
     () => {
       expect(metricsResults).toHaveProperty('class-coupling')
-      expect(metricsResults['class-coupling']).
-      toHaveProperty('name', 'Class Coupling')
-      expect(metricsResults['class-coupling']['description']).toBeDefined()
-      expect(metricsResults['class-coupling']['description']).
-      toContain('Analyzes each class to identify Fan-Out and Fan-In')
-      expect(metricsResults['class-coupling']['result']).toBeDefined()
-      expect(metricsResults['class-coupling']['status']).toBeTruthy()
+      expect(metricsResults['class-coupling'])
+        .toHaveProperty('name', 'Class Coupling')
+      expect(metricsResults['class-coupling'].description).toBeDefined()
+      expect(metricsResults['class-coupling'].description)
+        .toContain('Analyzes each class to identify Fan-Out and Fan-In')
+      expect(metricsResults['class-coupling'].result).toBeDefined()
+      expect(metricsResults['class-coupling'].status).toBeTruthy()
     })
 
   it('Metric result contains JS src testing file', () => {
-    expect(metricsResults['class-coupling']['result'][jsFile]).toBeDefined()
+    expect(metricsResults['class-coupling'].result[jsFile]).toBeDefined()
   })
 
   it('Metric result contains TS src testing file', () => {
-    expect(metricsResults['class-coupling']['result'][tsFile]).toBeDefined()
+    expect(metricsResults['class-coupling'].result[tsFile]).toBeDefined()
   })
 
   it('Should compute the correct metric structure for JS file', function () {
@@ -60,7 +60,6 @@ describe('Class Coupling Metric', function () {
   })
 
   it('should compute the correct metric structure for TS file', function () {
-
-    expect(metricsResults['class-coupling']['result'][tsFile]).toBeDefined()
+    expect(metricsResults['class-coupling'].result[tsFile]).toBeDefined()
   })
 })

@@ -8,7 +8,7 @@ import {
   isEmpty,
   makeNode,
   merge,
-  rank,
+  rank
 } from '../../src/data-structures/leftistMinHeap.js'
 
 describe('Leftist Heap Implementation', () => {

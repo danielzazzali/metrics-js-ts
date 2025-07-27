@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename)
 async function calculateMetrics ({
   codePath,
   customMetricsPath,
-  useDefaultMetrics = true,
+  useDefaultMetrics = true
 } = {}) {
   if (!useDefaultMetrics && !customMetricsPath) {
     throw new Error(MESSAGES.ERRORS.ERROR_NO_METRICS)

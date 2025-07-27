@@ -7,29 +7,29 @@ const basePlugin = {
   description: 'Test plugin A',
   result: {},
   id: 'plugin-A',
-  dependencies: [],
+  dependencies: []
 }
 const dependentPlugin = {
   name: 'Plugin B',
   description: 'Test plugin B depends on A',
   result: {},
   id: 'plugin-B',
-  dependencies: ['plugin-A'],
+  dependencies: ['plugin-A']
 }
 const pluginC = {
   name: 'Plugin C',
   description: 'Test plugin C depends on A and B',
   result: {},
   id: 'plugin-C',
-  dependencies: ['plugin-A', 'plugin-B'],
+  dependencies: ['plugin-A', 'plugin-B']
 }
 
 // Wrap plugin state into the expected metric object
 const makeMetric = stateObj => ({
   state: {
     id: stateObj.id,
-    dependencies: stateObj.dependencies,
-  },
+    dependencies: stateObj.dependencies
+  }
 })
 
 describe('kahnSort with plugin-like metrics', () => {
@@ -56,8 +56,8 @@ describe('kahnSort with plugin-like metrics', () => {
       makeMetric(basePlugin)]
     const sorted = kahnSort(metrics)
     expect(sorted).not.toBeNull()
-    expect(sorted.map(m => m.state.id)).
-    toEqual(['plugin-A', 'plugin-B', 'plugin-C'])
+    expect(sorted.map(m => m.state.id))
+      .toEqual(['plugin-A', 'plugin-B', 'plugin-C'])
   })
 
   it('returns null if there is a cycle among plugins', () => {
@@ -65,7 +65,7 @@ describe('kahnSort with plugin-like metrics', () => {
     const cycleB = {
       ...dependentPlugin,
       id: 'cycle-B',
-      dependencies: ['cycle-A'],
+      dependencies: ['cycle-A']
     }
     const cycleC = { ...pluginC, id: 'cycle-C', dependencies: ['cycle-B'] }
     const metrics = [

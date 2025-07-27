@@ -4,7 +4,7 @@ const state = {
   result: {},
   id: 'functions-per-file',
   dependencies: ['files'],
-  status: false,
+  status: false
 }
 
 const visitors = {
@@ -82,7 +82,7 @@ const visitors = {
     }
 
     state.result[state.currentFile][functionName] = path.node
-  },
+  }
 }
 
 // Clean up state before finishing

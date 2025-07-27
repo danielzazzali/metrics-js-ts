@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --roots test",
-    "test2": "jest --experimental-vm-modules"
+    "format": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,13 @@
   },
   "devDependencies": {
     "@jest/globals": "^30.0.5",
-    "jest": "^30.0.5"
+    "jest": "^30.0.5",
+    "standard": "^17.1.2"
+  },
+  "standard": {
+    "ignore": [
+      "test/test-src",
+      "coverage"
+    ]
   }
 }

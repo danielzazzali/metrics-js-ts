@@ -4,14 +4,14 @@ const state = {
   result: {},
   id: 'classes-per-file',
   dependencies: ['files'],
-  status: false,
+  status: false
 }
 
 const visitors = {
   // Entry point for each parsed file, load dependency
   Program (path) {
     state.currentFile = path.node.filePath
-    state.result[state.currentFile] = state.dependencies['files'][state.currentFile]
+    state.result[state.currentFile] = state.dependencies.files[state.currentFile]
   },
 
   ClassDeclaration (path) {
@@ -51,7 +51,7 @@ const visitors = {
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
-        },
+        }
       })
 
       return
@@ -79,7 +79,7 @@ const visitors = {
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
-        },
+        }
       })
     }
   },
@@ -95,7 +95,6 @@ const visitors = {
       parentPath.node.id &&
       parentPath.node.id.name
     ) {
-
       /* Ignore:
          (() => { <Class_expression_here> })();
       */
@@ -125,7 +124,7 @@ const visitors = {
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
-        },
+        }
       })
 
       return
@@ -151,7 +150,7 @@ const visitors = {
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
-        },
+        }
       })
 
       return
@@ -178,10 +177,10 @@ const visitors = {
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
-        },
+        }
       })
     }
-  },
+  }
 }
 
 function postProcessing (state) {

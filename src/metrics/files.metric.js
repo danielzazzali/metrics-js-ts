@@ -3,7 +3,7 @@ const state = {
   description: 'Scans the codePath and records each source file by its path, initializing an empty array as a placeholder for future per-file data.',
   result: {},
   id: 'files',
-  status: false,
+  status: false
 }
 
 const visitors = {
@@ -18,7 +18,7 @@ const visitors = {
         state.result[state.currentFile] = {}
       }
     }
-  },
+  }
 }
 
 // Clean up state before finishing

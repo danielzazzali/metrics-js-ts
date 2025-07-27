@@ -1,8 +1,8 @@
 import path from 'path'
 import fs from 'fs/promises'
 import {
-    LIBRARY_NAME,
-    NODE_MODULES_DIRECTORY,
+  LIBRARY_NAME,
+  NODE_MODULES_DIRECTORY
 } from '../constants/constants.js'
 import { getIgnored, isSupported } from './ignoreAndSupport.js'
 
@@ -25,7 +25,7 @@ async function readDirectory (directory, ignoreFiles) {
     } else if (isSupported(absolutePath)) {
       arrayOfFiles.push({
         filePath: absolutePath,
-        fileName: file.name,
+        fileName: file.name
       })
     }
   }))
