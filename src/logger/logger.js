@@ -1,5 +1,6 @@
 class ErrorLogger {
   constructor () {
+    this.fileErrors = []
     this.parseErrors = []
     this.metricErrors = []
     this.traverseErrors = []
@@ -10,6 +11,10 @@ class ErrorLogger {
       ErrorLogger.instance = new ErrorLogger()
     }
     return ErrorLogger.instance
+  }
+
+  logFileError (msg) {
+    this.fileErrors.push(msg)
   }
 
   logParseError (msg) {
@@ -24,6 +29,10 @@ class ErrorLogger {
     this.traverseErrors.push(msg)
   }
 
+  getFileErrors () {
+    return [...this.fileErrors]
+  }
+
   getParseErrors () {
     return [...this.parseErrors]
   }
@@ -35,21 +44,7 @@ class ErrorLogger {
   getTraverseErrors () {
     return [...this.traverseErrors]
   }
-
-  flush () {
-    if (this.parseErrors.length) {
-      console.error('=== File Parsing Errors ===')
-      this.parseErrors.forEach((e, i) => console.error(`${i + 1}. ${e}`))
-    }
-    if (this.metricErrors.length) {
-      console.error('\n=== Metric Loading Errors ===')
-      this.metricErrors.forEach((e, i) => console.error(`${i + 1}. ${e}`))
-    }
-    if (this.traverseErrors.length) {
-      console.error('\n=== AST Traversal Errors ===')
-      this.traverseErrors.forEach((e, i) => console.error(`${i + 1}. ${e}`))
-    }
-  }
 }
 
+/** @type {ErrorLogger} */
 export const logger = ErrorLogger.getInstance()
