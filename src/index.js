@@ -1,6 +1,6 @@
 import { getFiles } from './files/fileReader.js'
 import { constructASTs } from './ast/astProcessor.js'
-import { executeMetrics } from './ast/executeMetric.js'
+import { executeMetrics } from './ast/executeMetrics.js'
 import { MESSAGES } from './constants/constants.js'
 import { loadMetricFiles, loadMetricObjects } from './loader/metricsLoader.js'
 import { fileURLToPath } from 'url'
