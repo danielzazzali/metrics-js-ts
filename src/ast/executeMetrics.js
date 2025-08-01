@@ -4,11 +4,11 @@ import { kahnSort } from '../sorting/kahnSort.js'
 import { logger } from '../logger/logger.js'
 
 /**
- * Step 1: Sort metric objects and initialize result map
+ * Sort metric objects and initialize result map
  * @param {Array} metricObjects
  * @returns {{ sortedMetrics: Array, resultMap: Object }}
  */
-function sortAndInit(metricObjects) {
+function sortAndInit (metricObjects) {
   const sortedMetrics = kahnSort(metricObjects)
   const resultMap = {}
   return { sortedMetrics, resultMap }
@@ -19,20 +19,14 @@ function sortAndInit(metricObjects) {
  * @param {Object} metric
  * @param {Object} resultMap
  */
-function resolveDependencies(metric, resultMap) {
+function resolveDependencies (metric, resultMap) {
   const deps = Array.isArray(metric.state.dependencies)
     ? metric.state.dependencies
     : []
   metric.state.dependencies = {}
 
   for (const depId of deps) {
-    if (resultMap[depId]) {
-      metric.state.dependencies[depId] = structuredClone(resultMap[depId])
-    } else {
-      logger.logMetricError(
-        `Dependency "${depId}" not found for metric ${metric.state.id}`
-      )
-    }
+    metric.state.dependencies[depId] = structuredClone(resultMap[depId])
   }
 }
 
@@ -41,10 +35,8 @@ function resolveDependencies(metric, resultMap) {
  * @param {Object} metric
  * @param {Array} ASTs
  */
-function traverseASTs(metric, ASTs) {
-  const visitorsArray = Array.isArray(metric.visitors)
-    ? metric.visitors
-    : [metric.visitors]
+function traverseASTs (metric, ASTs) {
+  const visitorsArray = [metric.visitors]
 
   for (const visitors of visitorsArray) {
     for (const ast of ASTs) {
@@ -64,7 +56,7 @@ function traverseASTs(metric, ASTs) {
  * @param {Object} metric
  * @param {Object} resultMap
  */
-function postProcessAndStore(metric, resultMap) {
+function postProcessAndStore (metric, resultMap) {
   if (metric.postProcessing) {
     metric.postProcessing(metric.state)
   }
@@ -72,12 +64,12 @@ function postProcessAndStore(metric, resultMap) {
 }
 
 /**
- * Build the final output object
+ * Build the final index object
  * @param {Array} sortedMetrics
  * @param {Object} resultMap
  * @returns {Object}
  */
-function buildFinalResult(sortedMetrics, resultMap) {
+function buildFinalResult (sortedMetrics, resultMap) {
   const output = {}
 
   for (const metric of sortedMetrics) {
@@ -88,9 +80,9 @@ function buildFinalResult(sortedMetrics, resultMap) {
   }
 
   // Append logger errors
-  output['file-errors']     = logger.getFileErrors()
-  output['parse-errors']    = logger.getParseErrors()
-  output['metric-errors']   = logger.getMetricErrors()
+  output['file-errors'] = logger.getFileErrors()
+  output['parse-errors'] = logger.getParseErrors()
+  output['metric-errors'] = logger.getMetricErrors()
   output['traverse-errors'] = logger.getTraverseErrors()
 
   return output
@@ -104,7 +96,7 @@ function buildFinalResult(sortedMetrics, resultMap) {
  * @param {Array} ASTs          - List of parsed ASTs to traverse
  * @returns {Promise<Object>}   - Final result map including errors
  */
-async function executeMetrics(metricObjects, ASTs) {
+async function executeMetrics (metricObjects, ASTs) {
   const { sortedMetrics, resultMap } = sortAndInit(metricObjects)
 
   for (const metric of sortedMetrics) {

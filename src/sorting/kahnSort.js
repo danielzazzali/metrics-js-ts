@@ -1,10 +1,5 @@
-import {
-  deleteMin,
-  empty,
-  findMin,
-  insert,
-  isEmpty
-} from '../data-structures/leftistMinHeap.js'
+import { deleteMin, empty, findMin, insert, isEmpty } from '../data-structures/leftistMinHeap.js'
+import { logger } from '../logger/logger.js'
 
 /**
  * Performs a lexicographically-ordered topological sort (Kahn's algorithm) on a set of metric objects.
@@ -59,6 +54,17 @@ function kahnSort (metrics) {
     metricMap[id] = m
     indegree[id] = 0
     adj[id] = []
+  }
+
+  for (const m of metrics) {
+    for (const dep of m.state.dependencies ?? []) {
+      if (!(dep in metricMap)) {
+        logger.logMetricError(
+          `Dependency ${dep} not found for metric ${m.state.id}, deleting from dependencies.`
+        )
+        m.state.dependencies = m.state.dependencies.filter(d => d !== dep)
+      }
+    }
   }
 
   // Build graph edges (prerequisite → dependent)

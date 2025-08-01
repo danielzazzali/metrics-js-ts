@@ -23,7 +23,7 @@ const config = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
-  // The directory where Jest should output its coverage files
+  // The directory where Jest should index its coverage files
   coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
@@ -32,15 +32,15 @@ const config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'babel'
+  coverageProvider: 'babel',
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    'json',
+    'text',
+    'lcov',
+    'clover'
+  ]
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,

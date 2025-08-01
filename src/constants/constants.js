@@ -34,7 +34,8 @@ export const MESSAGES = {
     ERROR_INVALID_METRIC_ID: 'Invalid state.id',
     ID_MUST_MATCH_REGEX: 'Must match',
     METRIC_HAS_NO_ID: 'Metric has no id',
-    ERROR_PARSING_FILE: 'Error parsing file'
+    ERROR_PARSING_FILE: 'Error parsing file',
+    ERROR_CODEPATH_NOT_ABSOLUTE: 'codePath must be an absolute path'
   },
   INFO: {
     SKIPPING_FILE: 'Skipping file...'

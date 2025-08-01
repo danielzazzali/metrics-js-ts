@@ -18,13 +18,11 @@ async function calculateMetrics ({
     throw new Error(MESSAGES.ERRORS.ERROR_NO_METRICS)
   }
 
-  const projectRoot = path.resolve(__dirname, '..')
+  if (!path.isAbsolute(codePath)) {
+    throw new Error(`${MESSAGES.ERRORS.ERROR_CODEPATH_NOT_ABSOLUTE}. Received: "${codePath}"`)
+  }
 
-  const absoluteCodePath = path.isAbsolute(codePath)
-    ? codePath
-    : path.resolve(projectRoot, codePath)
-
-  const codeFiles = await getFiles(absoluteCodePath)
+  const codeFiles = await getFiles(codePath)
   const ASTs = await constructASTs(codeFiles)
 
   const metricFiles = await loadMetricFiles(useDefaultMetrics,

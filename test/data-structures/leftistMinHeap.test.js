@@ -11,7 +11,7 @@ import {
   rank
 } from '../../src/data-structures/leftistMinHeap.js'
 
-describe('Leftist Heap Implementation', () => {
+describe('leftistMinHeap.js', () => {
   describe('makeNode', () => {
     it('creates a leaf node with correct properties', () => {
       const value = { state: { id: 5, name: 'Alice' } }
@@ -67,6 +67,12 @@ describe('Leftist Heap Implementation', () => {
       const value = { state: { id: 42 } }
       const node = makeNode(value)
       expect(findMin(node)).toBe(value)
+    })
+  })
+
+  describe('deleteMin', () => {
+    it('returns null when called on null heap', () => {
+      expect(deleteMin(null)).toBeNull()
     })
   })
 
