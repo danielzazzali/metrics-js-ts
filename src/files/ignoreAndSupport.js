@@ -17,8 +17,8 @@ async function getIgnored (rootPath) {
     if (await fs.access(ignorePath).then(() => true).catch(() => false)) {
       const data = await fs.readFile(ignorePath, FILE_ENCODING)
       ignoreFiles = data.split(LINE_BREAK)
-        .map(line => path.resolve(rootPath, line.trim()))
-        .filter(Boolean)
+      .map(line => path.resolve(rootPath, line.trim()))
+      .filter(Boolean)
     }
   } catch (error) {
     console.error(`${MESSAGES.ERRORS.ERROR_READING_IGNORE_FILE} ${ignorePath}:`,

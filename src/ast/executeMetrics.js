@@ -80,11 +80,12 @@ function buildFinalResult (sortedMetrics, resultMap) {
   }
 
   // Append logger errors
-  output['file-errors'] = logger.getFileErrors()
-  output['parse-errors'] = logger.getParseErrors()
-  output['metric-errors'] = logger.getMetricErrors()
-  output['traverse-errors'] = logger.getTraverseErrors()
-
+  output.errors = {
+    file: logger.getFileErrors(),
+    parse: logger.getParseErrors(),
+    metric: logger.getMetricErrors(),
+    traverse: logger.getTraverseErrors()
+  }
   return output
 }
 

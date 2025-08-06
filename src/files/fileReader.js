@@ -1,9 +1,6 @@
 import path from 'path'
 import fs from 'fs/promises'
-import {
-  LIBRARY_NAME,
-  NODE_MODULES_DIRECTORY
-} from '../constants/constants.js'
+import { NODE_MODULES_DIRECTORY } from '../constants/constants.js'
 import { getIgnored, isSupported } from './ignoreAndSupport.js'
 
 async function readDirectory (directory, ignoreFiles) {
@@ -13,9 +10,9 @@ async function readDirectory (directory, ignoreFiles) {
   await Promise.all(files.map(async (file) => {
     const absolutePath = path.resolve(directory, file.name)
 
-    if ((absolutePath.includes(NODE_MODULES_DIRECTORY) &&
-        !absolutePath.includes(LIBRARY_NAME)) ||
+    if (absolutePath.includes(NODE_MODULES_DIRECTORY) ||
       ignoreFiles.includes(absolutePath)) {
+      console.log(ignoreFiles)
       return
     }
 
