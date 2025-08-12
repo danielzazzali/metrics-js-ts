@@ -1,28 +1,23 @@
 import path from 'path'
 import fs from 'fs/promises'
-import {
-  FILE_ENCODING,
-  IGNORE_FILES_FILENAME,
-  JS_EXTENSION,
-  LINE_BREAK,
-  MESSAGES,
-  TS_EXTENSION
-} from '../constants/constants.js'
+import { FILE_ENCODING, JS_EXTENSION, LINE_BREAK, MESSAGES, TS_EXTENSION } from '../constants/constants.js'
+import { logger } from '../logger/logger.js'
 
-async function getIgnored (rootPath) {
-  const ignorePath = path.join(rootPath, IGNORE_FILES_FILENAME)
+async function getIgnored (ignoreMetricsFilePath) {
   let ignoreFiles = []
 
+  if (!ignoreMetricsFilePath) return ignoreFiles
+
   try {
-    if (await fs.access(ignorePath).then(() => true).catch(() => false)) {
-      const data = await fs.readFile(ignorePath, FILE_ENCODING)
-      ignoreFiles = data.split(LINE_BREAK)
-      .map(line => path.resolve(rootPath, line.trim()))
+    const metricsIgnoreDirectory = path.dirname(ignoreMetricsFilePath)
+
+    const data = await fs.readFile(ignoreMetricsFilePath, FILE_ENCODING)
+    ignoreFiles = data.split(LINE_BREAK)
+      .map(line => line.trim())
       .filter(Boolean)
-    }
+      .map(line => path.resolve(metricsIgnoreDirectory, line))
   } catch (error) {
-    console.error(`${MESSAGES.ERRORS.ERROR_READING_IGNORE_FILE} ${ignorePath}:`,
-      error)
+    logger.logFileError(`${MESSAGES.ERRORS.ERROR_READING_IGNORE_FILE} ${ignoreMetricsFilePath}: ${error.message}`)
   }
 
   return ignoreFiles

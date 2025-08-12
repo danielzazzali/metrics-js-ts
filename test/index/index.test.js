@@ -74,7 +74,7 @@ describe('index.js', function () {
           codePath: relativePath
         })
       ).rejects.toThrow(
-        `${MESSAGES.ERRORS.ERROR_CODEPATH_NOT_ABSOLUTE}. Received: "${relativePath}"`
+        `${MESSAGES.ERRORS.ERROR_CODE_PATH_NOT_ABSOLUTE} "${relativePath}"`
       )
     })
   })

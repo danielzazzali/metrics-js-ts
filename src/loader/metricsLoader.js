@@ -7,7 +7,7 @@ import {
 import path from 'path'
 import { logger } from '../logger/logger.js'
 
-export async function loadMetricFiles (
+async function loadMetricFiles (
   useDefaultMetrics, customMetricsPath, __dirname) {
   let metricFiles = []
 
@@ -59,4 +59,4 @@ async function loadMetricObjects (metricFiles) {
   return metricsObjects
 }
 
-export { loadMetricObjects }
+export { loadMetricObjects, loadMetricFiles }

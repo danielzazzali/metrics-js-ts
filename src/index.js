@@ -12,17 +12,18 @@ const __dirname = path.dirname(__filename)
 async function calculateMetrics ({
   codePath,
   customMetricsPath,
-  useDefaultMetrics = true
+  useDefaultMetrics = true,
+  ignoreMetricsFilePath = null
 } = {}) {
   if (!useDefaultMetrics && !customMetricsPath) {
     throw new Error(MESSAGES.ERRORS.ERROR_NO_METRICS)
   }
 
   if (!path.isAbsolute(codePath)) {
-    throw new Error(`${MESSAGES.ERRORS.ERROR_CODEPATH_NOT_ABSOLUTE}. Received: "${codePath}"`)
+    throw new Error(`${MESSAGES.ERRORS.ERROR_CODE_PATH_NOT_ABSOLUTE} "${codePath}"`)
   }
 
-  const codeFiles = await getFiles(codePath)
+  const codeFiles = await getFiles(codePath, ignoreMetricsFilePath)
   const ASTs = await constructASTs(codeFiles)
 
   const metricFiles = await loadMetricFiles(useDefaultMetrics,

@@ -25,7 +25,7 @@ export const METRICS_PATH = 'metrics'
 export const MESSAGES = {
   ERRORS: {
     ERROR_ON_FILE: 'Error on file',
-    ERROR_READING_IGNORE_FILE: 'Error reading .ignore file at',
+    ERROR_READING_IGNORE_FILE: 'Error reading .metricsignore file at',
     ERROR_NO_METRICS: 'No metrics provided and useDefaultMetrics is set to false',
     MISSING_EXPORTS: 'Skipping metric file because it lacks the required exports { state, visitors }',
     PROCESSING_ERROR: 'Error processing metric file',
@@ -35,7 +35,7 @@ export const MESSAGES = {
     ID_MUST_MATCH_REGEX: 'Must match',
     METRIC_HAS_NO_ID: 'Metric has no id',
     ERROR_PARSING_FILE: 'Error parsing file',
-    ERROR_CODEPATH_NOT_ABSOLUTE: 'codePath must be an absolute path'
+    ERROR_CODE_PATH_NOT_ABSOLUTE: 'codePath must be an absolute path. Received: '
   },
   INFO: {
     SKIPPING_FILE: 'Skipping file...'

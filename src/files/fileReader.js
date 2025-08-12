@@ -12,7 +12,6 @@ async function readDirectory (directory, ignoreFiles) {
 
     if (absolutePath.includes(NODE_MODULES_DIRECTORY) ||
       ignoreFiles.includes(absolutePath)) {
-      console.log(ignoreFiles)
       return
     }
 
@@ -30,8 +29,8 @@ async function readDirectory (directory, ignoreFiles) {
   return arrayOfFiles
 }
 
-async function getFiles (path) {
-  const ignoreFiles = await getIgnored(path)
+async function getFiles (path, ignoreMetricsFilePath) {
+  const ignoreFiles = await getIgnored(ignoreMetricsFilePath)
   return await readDirectory(path, ignoreFiles)
 }
 

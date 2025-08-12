@@ -17,8 +17,8 @@ describe('fileReader.js', function () {
     })
 
     it('codePath is defined', () => {
-      expect(metricsResults['files']).toBeDefined()
-      expect(metricsResults['files'][ignoreDirPath]).toBeUndefined()
+      expect(metricsResults.files).toBeDefined()
+      expect(metricsResults.files[ignoreDirPath]).toBeUndefined()
     })
   })
 })
