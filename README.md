@@ -1,8 +1,10 @@
-# Metrics JS TS
+# Metrics-JS-TS
 
 This library is designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code
 files, generates Abstract Syntax Trees (ASTs), and applies different modular metrics to analyze code structure,
 maintainability, and quality.
+
+---
 
 ## Installation
 
@@ -11,28 +13,56 @@ To install the library, run:
 ```sh
 npm install metrics-js-ts
 ```
+---
 
 ## Usage
 
 To use the library, import the `calculateMetrics` function and call it with the appropriate parameters:
 
 ```js
-import { calculateMetrics } from 'metrics-js-ts';
+import { calculateMetrics } from 'metrics-js-ts'
 
 const results = await calculateMetrics({
-    codePath: './path/to/code', // Required
-    customMetricsPath: './path/to/custom/metrics', // Optional 
-    useDefaultMetrics: true // or false to disable metrics provided by metrics-js-ts (Optional - Default: true)
-});
+  codePath: './path/to/code',               // Required: string. Directory or file to analyze.
+  customMetricsPath: './path/to/custom/metrics', // Optional: string. Load additional metrics from this folder.
+  useDefaultMetrics: true,                  // Optional: boolean. Load bundled/default metrics. Default: true.
+  metricsIgnoreFilePath: 'path/to/.metricsignore' // Optional: string. Path to a .metricsignore file to skip files/directories.
+})
 
-console.log(results);
+console.log(results)
 ```
 
 ### Parameters
 
-* `codePath` (string): The path to the code directory to analyze.
-* `customMetricsPath` (string): The path to the custom metrics directory.
-* `useDefaultMetrics` (boolean): Whether to use the default metrics.
+- **`codePath`** *(string, required)*  
+  Path to the source code to analyze.
+  - Should be a directory.
+  - The analyzer will scan it recursively.
+
+- **`customMetricsPath`** *(string, optional)*  
+  Path to a directory containing user-defined metric modules.
+  - Modules in this folder are loaded in addition to (or instead of) the built-in metrics.
+  - Each custom module must export the expected metric structure (`state`, `visitors`, optional `postProcessing`).
+  - If `customMetricsPath` is omitted **and** `useDefaultMetrics` is `false`, the loader will throw an error (since no metrics are available).
+
+- **`useDefaultMetrics`** *(boolean, optional, default: `true`)*  
+  Determines whether the built-in metrics provided by `metrics-js-ts` should be loaded.
+  - Set to `true` to include them (default).
+  - Set to `false` if you want to run only custom metrics.
+
+- **`metricsIgnoreFilePath`** *(string, optional)*  
+  Path to a `.metricsignore` file used to **exclude files and directories from analysis**.
+  - The file should contain one entry per line.
+  - Entries are evaluated **relative to `codePath`**.
+
+### Behavior Summary
+
+- `useDefaultMetrics: true` + no `customMetricsPath` → runs only built-in metrics.
+- `useDefaultMetrics: true` + `customMetricsPath` → runs both built-in and custom metrics.
+- `useDefaultMetrics: false` + `customMetricsPath` → runs only custom metrics.
+- `useDefaultMetrics: false` + no `customMetricsPath` → **throws an error** (no metrics to load).
+
+--- 
 
 ## Metrics
 
@@ -45,6 +75,8 @@ The library includes several built-in metrics:
   functions that call this first function (Fan In).
 * Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of
   classes that call a class method (Fan In).
+
+--- 
 
 ## Adding Custom Metrics
 
@@ -63,15 +95,15 @@ const state = {
   result: {},
   id: 'custom-metric-unique-id',
   dependencies: ['result-a', 'result-b'],
-  status: false,
+  status: false
   // Define state properties here
 }
 
 const visitors =
   {
     // Define visitors here
-    // Program(path) {}
-    // ClassDeclaration(path) {}
+    // Program(path) { doSomething(path.node) }
+    // ClassDeclaration(path) { doSomethingElse(path.node) }
   }
 
 function postProcessing (state) {

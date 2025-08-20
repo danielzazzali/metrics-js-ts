@@ -13,7 +13,7 @@ async function calculateMetrics ({
   codePath,
   customMetricsPath,
   useDefaultMetrics = true,
-  ignoreMetricsFilePath = null
+  metricsIgnoreFilePath = null
 } = {}) {
   if (!useDefaultMetrics && !customMetricsPath) {
     throw new Error(MESSAGES.ERRORS.ERROR_NO_METRICS)
@@ -23,7 +23,7 @@ async function calculateMetrics ({
     throw new Error(`${MESSAGES.ERRORS.ERROR_CODE_PATH_NOT_ABSOLUTE} "${codePath}"`)
   }
 
-  const codeFiles = await getFiles(codePath, ignoreMetricsFilePath)
+  const codeFiles = await getFiles(codePath, metricsIgnoreFilePath)
   const ASTs = await constructASTs(codeFiles)
 
   const metricFiles = await loadMetricFiles(useDefaultMetrics,
