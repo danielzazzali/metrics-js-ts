@@ -23,7 +23,7 @@ To use the library, import the `calculateMetrics` function and call it with the 
 import { calculateMetrics } from 'metrics-js-ts'
 
 const results = await calculateMetrics({
-  codePath: './path/to/code',               // Required: string. Directory or file to analyze.
+  codePath: './path/to/code',               // Required: string. Directory (Repository) to analyze.
   customMetricsPath: './path/to/custom/metrics', // Optional: string. Load additional metrics from this folder.
   useDefaultMetrics: true,                  // Optional: boolean. Load bundled/default metrics. Default: true.
   metricsIgnoreFilePath: 'path/to/.metricsignore' // Optional: string. Path to a .metricsignore file to skip files/directories.
