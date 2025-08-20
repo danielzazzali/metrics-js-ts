@@ -1,15 +1,16 @@
 import { getFiles } from '../files/fileReader.js'
-import {
-  MESSAGES,
-  METRICS_PATH,
-  REGEX_METRICS_ID
-} from '../constants/constants.js'
+import { MESSAGES, METRICS_PATH, REGEX_METRICS_ID } from '../constants/constants.js'
 import path from 'path'
 import { logger } from '../logger/logger.js'
 
 async function loadMetricFiles (
   useDefaultMetrics, customMetricsPath, __dirname) {
   let metricFiles = []
+
+  if (!useDefaultMetrics && !customMetricsPath) {
+    throw new Error(
+      `${MESSAGES.ERRORS.NO_METRICS_TO_LOAD}: useDefaultMetrics:${useDefaultMetrics}, customMetricsPath:${customMetricsPath}`)
+  }
 
   if (useDefaultMetrics) {
     metricFiles = await getFiles(path.join(__dirname, METRICS_PATH))
@@ -52,7 +53,7 @@ async function loadMetricObjects (metricFiles) {
       const metric = await importMetric(file)
       metricsObjects.push(metric)
     } catch (error) {
-      logger.logMetricError(error.message)
+      logger.logMetricError(`${MESSAGES.ERRORS.ERROR_IMPORTING_METRIC_FILE} ${file.filePath} ${error.message}`)
     }
   }
 

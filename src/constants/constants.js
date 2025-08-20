@@ -33,9 +33,11 @@ export const MESSAGES = {
     ERROR_TRAVERSING_AST: 'Error traversing AST:',
     ERROR_INVALID_METRIC_ID: 'Invalid state.id',
     ID_MUST_MATCH_REGEX: 'Must match',
-    METRIC_HAS_NO_ID: 'Metric has no id',
+    METRIC_HAS_NO_ID: 'Metric has no id, state:',
     ERROR_PARSING_FILE: 'Error parsing file',
-    ERROR_CODE_PATH_NOT_ABSOLUTE: 'codePath must be an absolute path. Received: '
+    ERROR_CODE_PATH_NOT_ABSOLUTE: 'codePath must be an absolute path. Received: ',
+    ERROR_IMPORTING_METRIC_FILE: 'Error importing metric',
+    NO_METRICS_TO_LOAD: 'No metrics to load provided'
   },
   INFO: {
     SKIPPING_FILE: 'Skipping file...'
