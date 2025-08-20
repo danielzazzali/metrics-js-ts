@@ -71,11 +71,6 @@ function kahnSort (metrics) {
   for (const m of metrics) {
     const id = m.state.id
     for (const prereq of m.state.dependencies ?? []) {
-      // Ensure prereq entry exists (handles external or missing metrics)
-      if (!(prereq in adj)) {
-        indegree[prereq] = 0
-        adj[prereq] = []
-      }
       adj[prereq].push(id)
       indegree[id] += 1
     }
