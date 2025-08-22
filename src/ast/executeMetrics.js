@@ -103,6 +103,7 @@ async function executeMetrics (metricObjects, ASTs) {
   for (const metric of sortedMetrics) {
     resolveDependencies(metric, resultMap)
     traverseASTs(metric, ASTs)
+    resultMap[metric.state.id] = metric.state.result
   }
 
   for (const metric of sortedMetrics) {

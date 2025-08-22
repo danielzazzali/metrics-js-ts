@@ -3,7 +3,7 @@ import fs from 'fs'
 
 const state = {
   name: 'File Coupling',
-  description: '',
+  description: 'Measures file-level coupling by computing each file’s fan-in (dependent files) and fan-out (dependencies)',
   result: {},
   id: 'file-coupling',
   dependencies: ['files'],
@@ -31,8 +31,11 @@ const visitors = {
   CallExpression (path) {
     const node = path.node
 
-    if (node.callee.name === 'require' && node.arguments.length === 1 &&
-      node.arguments[0].type === 'StringLiteral') {
+    if (
+      node.callee.name === 'require' &&
+      node.arguments.length === 1 &&
+      node.arguments[0].type === 'StringLiteral'
+    ) {
       const importSource = node.arguments[0].value
       const absoluteImport = resolveImportPath(state.currentFile, importSource)
 
@@ -58,7 +61,7 @@ function resolveImportPath (importingFile, importSource) {
     return null
   }
 
-  const EXTENSIONS = ['.js', '.ts', '.jsx', '.tsx', '.json']
+  const EXTENSIONS = ['.js', '.cjs', '.ts', '.jsx', '.tsx', '.json']
 
   const basePath = path.resolve(path.dirname(importingFile), importSource)
 
@@ -70,17 +73,13 @@ function resolveImportPath (importingFile, importSource) {
   // 2. Try with extensions
   for (const ext of EXTENSIONS) {
     const fullPath = basePath + ext
-    if (fs.existsSync(fullPath)) {
-      return fullPath
-    }
+    if (fs.existsSync(fullPath)) return fullPath
   }
 
   // 3. Try index files in directory
   for (const ext of EXTENSIONS) {
     const indexPath = path.join(basePath, 'index' + ext)
-    if (fs.existsSync(indexPath)) {
-      return indexPath
-    }
+    if (fs.existsSync(indexPath)) return indexPath
   }
 
   // Not found
@@ -89,28 +88,22 @@ function resolveImportPath (importingFile, importSource) {
 
 // Clean up and compute fanIn/fanOut before finishing
 function postProcessing (state) {
-  let raw = state.result
-  const processed = {}
+  const raw = state.result
 
-  if (!raw || typeof raw !== 'object') {
-    raw = {}
-  }
+  const processed = {}
 
   // Initialize fanOut and empty fanIn for every file found
   for (const filePath of Object.keys(raw)) {
-    processed[filePath] = {
-      fanOut: raw[filePath],
-      fanIn: []
-    }
-  }
+    const fanOut = raw[filePath]
+    const fanIn = []
 
-  // Invert relationships to compute fanIn
-  for (const [filePath, imports] of Object.entries(raw)) {
-    for (const importedPath of imports) {
-      if (!processed[importedPath]) {
-        processed[importedPath] = { fanOut: [], fanIn: [] }
-      }
-      processed[importedPath].fanIn.push(filePath)
+    for (const importSource of raw[filePath]) {
+      fanIn.push(importSource)
+    }
+
+    processed[filePath] = {
+      fanOut: fanOut,
+      fanIn: fanIn
     }
   }
 

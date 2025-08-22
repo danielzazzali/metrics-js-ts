@@ -69,9 +69,9 @@ console.log(results)
 The library includes several built-in metrics:
 
 * Files on Repository: Collects and records all source files in the repository by their path
+* File Coupling: Measures file-level coupling by computing each file’s fan-in (dependent files) and fan-out (dependencies)
 * Classes Per File: Counts the number of classes in each file.
 * Methods Per File: Counts the number of methods in each file.
-* Import/Export Coupling: Counts the number of files that a file imports and the number of files that import a file.
 * Fan In Fan Out Per Function: Counts the number of functions that a function calls (Fan Out) and the number of other
   functions that call this first function (Fan In).
 * Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of

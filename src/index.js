@@ -32,14 +32,13 @@ async function calculateMetrics ({
 
   return await executeMetrics(metricObjects, ASTs)
 }
-//
-// const codePath = "/home/daniel/Workspace/metrics-js-ts/test/test-src/files"
+// const codePath = "/home/daniel/Workspace/metrics-js-ts/test/test-src/file-coupling"
 //
 // const metricsResults = await calculateMetrics({ codePath })
 //
-// const result = metricsResults.files
+// const result = metricsResults["file-coupling"]
 //
-// console.log(result)
+// console.log(JSON.stringify(result, null, 2))
 
 
 
