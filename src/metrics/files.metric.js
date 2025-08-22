@@ -1,6 +1,6 @@
 const state = {
   name: 'Files on Repository',
-  description: 'Scans the codePath and records each source file by its path, initializing an empty array as a placeholder for future per-file data.',
+  description: 'Collects and records all source files in the repository by their path.',
   result: {},
   id: 'files',
   status: false
@@ -13,18 +13,16 @@ const visitors = {
   */
   Program (path) {
     state.currentFile = path.node.filePath
-    if (state.currentFile) {
-      if (!state.result[state.currentFile]) {
-        state.result[state.currentFile] = {}
-      }
-    }
+    state.result[state.currentFile] = {}
   }
 }
 
 // Clean up state before finishing
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+
+  const keys = Object.keys(state.result);
+  state.result = keys.filter(k => !/^\d+$/.test(k));
 
   state.status = true
 }

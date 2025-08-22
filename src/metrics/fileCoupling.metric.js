@@ -89,8 +89,12 @@ function resolveImportPath (importingFile, importSource) {
 
 // Clean up and compute fanIn/fanOut before finishing
 function postProcessing (state) {
-  const raw = state.result
+  let raw = state.result
   const processed = {}
+
+  if (!raw || typeof raw !== 'object') {
+    raw = {}
+  }
 
   // Initialize fanOut and empty fanIn for every file found
   for (const filePath of Object.keys(raw)) {

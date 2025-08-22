@@ -68,6 +68,7 @@ console.log(results)
 
 The library includes several built-in metrics:
 
+* Files on Repository: Collects and records all source files in the repository by their path
 * Classes Per File: Counts the number of classes in each file.
 * Methods Per File: Counts the number of methods in each file.
 * Import/Export Coupling: Counts the number of files that a file imports and the number of files that import a file.

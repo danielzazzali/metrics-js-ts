@@ -20,9 +20,9 @@ function sortAndInit (metricObjects) {
  * @param {Object} resultMap
  */
 function resolveDependencies (metric, resultMap) {
-  const deps = Array.isArray(metric.state.dependencies)
-    ? metric.state.dependencies
-    : []
+  if (!metric.state.dependencies) return
+
+  const deps = metric.state.dependencies
   metric.state.dependencies = {}
 
   for (const depId of deps) {
@@ -103,6 +103,9 @@ async function executeMetrics (metricObjects, ASTs) {
   for (const metric of sortedMetrics) {
     resolveDependencies(metric, resultMap)
     traverseASTs(metric, ASTs)
+  }
+
+  for (const metric of sortedMetrics) {
     postProcessAndStore(metric, resultMap)
   }
 

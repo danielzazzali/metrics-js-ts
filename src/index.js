@@ -32,5 +32,15 @@ async function calculateMetrics ({
 
   return await executeMetrics(metricObjects, ASTs)
 }
+//
+// const codePath = "/home/daniel/Workspace/metrics-js-ts/test/test-src/files"
+//
+// const metricsResults = await calculateMetrics({ codePath })
+//
+// const result = metricsResults.files
+//
+// console.log(result)
+
+
 
 export { calculateMetrics }
