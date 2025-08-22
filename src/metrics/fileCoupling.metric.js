@@ -3,7 +3,7 @@ import fs from 'fs'
 
 const state = {
   name: 'File Coupling',
-  description: 'Analyzes each source file to identify and record all relative file dependencies by resolving import statements, require calls, and TypeScript import equals declarations to their absolute file paths, enabling the measurement of file coupling and module interdependencies.',
+  description: '',
   result: {},
   id: 'file-coupling',
   dependencies: ['files'],

@@ -6,7 +6,7 @@ import { describe, expect, it } from '@jest/globals'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-describe('Functions Coupling Metric', function () {
+describe('Files On Repository metric', function () {
   const codePath = path.resolve(__dirname, '../test-src/files/')
 
   it('metricsResults is defined', async () => {
@@ -14,7 +14,7 @@ describe('Functions Coupling Metric', function () {
     expect(metricsResults).toBeDefined()
   })
 
-  it('Metric is defined, has correct name, description and status and contains result', async () => {
+  it('Files on Repository metric is defined, has correct name, description and status and contains result', async () => {
     const metricsResults = await calculateMetrics({ codePath })
 
     expect(metricsResults).toHaveProperty('files')
@@ -25,7 +25,7 @@ describe('Functions Coupling Metric', function () {
     expect(metricsResults['files'].status).toBeTruthy()
   })
 
-  it('Metric result contains src testing files', async () => {
+  it('Files on Repository result contains expected length', async () => {
     const metricsResults = await calculateMetrics({ codePath })
 
     const result = metricsResults.files.result
@@ -33,7 +33,7 @@ describe('Functions Coupling Metric', function () {
     expect(result.length).toBe(4)
   })
 
-  it('Metric result contains src testing files', async () => {
+  it('Files on Repository result contains expected paths', async () => {
     const metricsResults = await calculateMetrics({ codePath })
 
     const result = metricsResults.files.result

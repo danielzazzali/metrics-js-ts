@@ -1,6 +1,13 @@
 import path from 'path'
 import fs from 'fs/promises'
-import { FILE_ENCODING, JS_EXTENSION, LINE_BREAK, MESSAGES, TS_EXTENSION } from '../constants/constants.js'
+import {
+  CJS_EXTENSION,
+  FILE_ENCODING,
+  JS_EXTENSION,
+  LINE_BREAK,
+  MESSAGES,
+  TS_EXTENSION
+} from '../constants/constants.js'
 import { logger } from '../logger/logger.js'
 
 async function getIgnored (ignoreMetricsFilePath) {
@@ -13,9 +20,9 @@ async function getIgnored (ignoreMetricsFilePath) {
 
     const data = await fs.readFile(ignoreMetricsFilePath, FILE_ENCODING)
     ignoreFiles = data.split(LINE_BREAK)
-      .map(line => line.trim())
-      .filter(Boolean)
-      .map(line => path.resolve(metricsIgnoreDirectory, line))
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => path.resolve(metricsIgnoreDirectory, line))
   } catch (error) {
     logger.logFileError(`${MESSAGES.ERRORS.ERROR_READING_IGNORE_FILE} ${ignoreMetricsFilePath}: ${error.message}`)
   }
@@ -25,7 +32,7 @@ async function getIgnored (ignoreMetricsFilePath) {
 
 function isSupported (absolute) {
   const ext = path.extname(absolute).toLowerCase()
-  return [JS_EXTENSION, TS_EXTENSION].includes(ext)
+  return [JS_EXTENSION, CJS_EXTENSION, TS_EXTENSION].includes(ext)
 }
 
 export { getIgnored, isSupported }

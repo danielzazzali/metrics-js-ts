@@ -5,6 +5,7 @@ export const NODE_MODULES_DIRECTORY = 'node_modules'
 export const FILE_ENCODING = 'utf-8'
 
 export const JS_EXTENSION = '.js'
+export const CJS_EXTENSION = '.cjs'
 export const TS_EXTENSION = '.ts'
 
 export const LINE_BREAK = '\n'
