@@ -32,14 +32,14 @@ const visitors = {
     const node = path.node
 
     // Ignore error if it's highlighted, arguments property is a valid Array from the AST node
-    const { arguments } = node
+    const args = node.arguments
 
     if (
       node.callee.name === 'require' &&
-      arguments.length === 1 &&
-      arguments[0].type === 'StringLiteral'
+      args.length === 1 &&
+      args[0].type === 'StringLiteral'
     ) {
-      const importSource = arguments[0].value
+      const importSource = args[0].value
       const absoluteImport = resolveImportPath(state.currentFile, importSource)
 
       if (!absoluteImport) return
