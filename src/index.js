@@ -32,6 +32,7 @@ async function calculateMetrics ({
 
   return await executeMetrics(metricObjects, ASTs)
 }
+
 // const codePath = "/home/daniel/Workspace/metrics-js-ts/test/test-src/file-coupling"
 //
 // const metricsResults = await calculateMetrics({ codePath })

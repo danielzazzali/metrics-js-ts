@@ -1,22 +1,25 @@
 import path from 'path'
 import { calculateMetrics } from '../../src/index.js'
 import { fileURLToPath } from 'url'
-import { describe, expect, it } from '@jest/globals'
+import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-describe('Files On Repository metric', function () {
+describe('Files On Repository Metric', function () {
   const codePath = path.resolve(__dirname, '../test-src/files/')
+  let metricsResults
 
-  it('metricsResults is defined', async () => {
-    const metricsResults = await calculateMetrics({ codePath })
+  beforeEach(async () => {
+    jest.resetModules()
+    metricsResults = await calculateMetrics({ codePath })
+  })
+
+  it('metricsResults is defined', () => {
     expect(metricsResults).toBeDefined()
   })
 
   it('Files on Repository metric is defined, has correct name, description and status and contains result', async () => {
-    const metricsResults = await calculateMetrics({ codePath })
-
     expect(metricsResults).toHaveProperty('files')
     expect(metricsResults['files']).toHaveProperty('name', 'Files on Repository')
     expect(metricsResults['files'].description).toBeDefined()
@@ -25,33 +28,28 @@ describe('Files On Repository metric', function () {
     expect(metricsResults['files'].status).toBeTruthy()
   })
 
-  it('Files on Repository result contains expected length', async () => {
-    const metricsResults = await calculateMetrics({ codePath })
+  it('Files on Repository result contains expected length', () => {
+    expect(metricsResults['files'].result).toBeDefined()
+    expect(metricsResults['files'].status).toBeTruthy()
 
     const result = metricsResults.files.result
 
     expect(result.length).toBe(4)
   })
 
-  it('Files on Repository result contains expected paths', async () => {
-    const metricsResults = await calculateMetrics({ codePath })
+  it('Files on Repository result contains expected paths', () => {
+    expect(metricsResults['files'].result).toBeDefined()
+    expect(metricsResults['files'].status).toBeTruthy()
 
     const result = metricsResults.files.result
 
-    const relativePaths = result.map(file =>
-        '/' + path.relative(
-          path.resolve(__dirname, '../test-src/'),
-          file
-        )
-    )
-
     const expectedPaths = [
-      '/files/TS/fileA.ts',
-      '/files/TS/subdir/fileB.ts',
-      '/files/JS/fileA.js',
-      '/files/JS/subdir/fileB.js'
+      `${codePath}/JS/fileA.js`,
+      `${codePath}/JS/subdir/fileB.js`,
+      `${codePath}/TS/fileA.ts`,
+      `${codePath}/TS/subdir/fileB.ts`
     ]
 
-    expect(relativePaths.sort()).toEqual(expectedPaths.sort())
+    expect(result.sort()).toEqual(expectedPaths.sort())
   })
 })

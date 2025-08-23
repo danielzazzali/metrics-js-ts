@@ -57,18 +57,14 @@ const visitors = {
 }
 
 function resolveImportPath (importingFile, importSource) {
-  if (!importSource.startsWith('.') && !path.isAbsolute(importSource)) {
-    return null
-  }
+  if (!importSource.startsWith('.') && !path.isAbsolute(importSource)) return null
 
   const EXTENSIONS = ['.js', '.cjs', '.ts', '.jsx', '.tsx', '.json']
 
   const basePath = path.resolve(path.dirname(importingFile), importSource)
 
   // 1. Exact path
-  if (fs.existsSync(basePath) && fs.lstatSync(basePath).isFile()) {
-    return basePath
-  }
+  if (fs.existsSync(basePath) && fs.lstatSync(basePath).isFile()) return basePath
 
   // 2. Try with extensions
   for (const ext of EXTENSIONS) {
