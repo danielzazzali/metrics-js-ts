@@ -31,12 +31,15 @@ const visitors = {
   CallExpression (path) {
     const node = path.node
 
+    // Ignore error if it's highlighted, arguments property is a valid Array from the AST node
+    const { arguments } = node
+
     if (
       node.callee.name === 'require' &&
-      node.arguments.length === 1 &&
-      node.arguments[0].type === 'StringLiteral'
+      arguments.length === 1 &&
+      arguments[0].type === 'StringLiteral'
     ) {
-      const importSource = node.arguments[0].value
+      const importSource = arguments[0].value
       const absoluteImport = resolveImportPath(state.currentFile, importSource)
 
       if (!absoluteImport) return
