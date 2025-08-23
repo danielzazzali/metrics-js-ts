@@ -1,6 +1,6 @@
 const state = {
   name: 'Functions Per File',
-  description: 'Collects all function declarations, function expressions, and arrow functions in each file, grouping them by file path based on the “files” dependency.',
+  description: 'Counts and records all named functions in each source file, mapping function names to their AST nodes so you can compute functions-per-file and perform function-level analysis.',
   result: {},
   id: 'functions-per-file',
   dependencies: ['files'],

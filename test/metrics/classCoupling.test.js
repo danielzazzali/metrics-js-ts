@@ -1,7 +1,7 @@
 import path from 'path'
 import { calculateMetrics } from '../../src/index.js'
 import { fileURLToPath } from 'url'
-import { describe, expect, it } from '@jest/globals'
+import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -10,6 +10,10 @@ describe('Class Coupling Metric', function () {
   const codePath = path.resolve(__dirname, '../test-src/class-coupling')
   const jsFile = path.resolve(__dirname, '../test-src/class-coupling/JS/classes-coupled.js')
   const tsFile = path.resolve(__dirname, '../test-src/class-coupling/TS/classes-coupled.ts')
+
+  beforeEach(() => {
+    jest.resetModules()
+  })
 
   it('codePath is defined', () => {
     expect(codePath).toBeDefined()

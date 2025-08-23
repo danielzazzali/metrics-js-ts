@@ -19,6 +19,9 @@ describe('executeMetrics.js', () => {
       Program (path, state) {
         state.result[path.node.filePath] = {}
       }
+    },
+    postProcessing (state) {
+      delete state.dependencies
     }
   }
 
@@ -42,7 +45,7 @@ describe('executeMetrics.js', () => {
     })
 
     afterAll(() => {
-      jest.restoreAllMocks()
+      jest.resetModules()
     })
 
     it('should process metrics without dependencies and return state results', async () => {
@@ -50,7 +53,7 @@ describe('executeMetrics.js', () => {
 
       expect(result).toHaveProperty('register-file')
       expect(result['register-file'].result).toEqual({ '/metrics-js-ts/test/ast/temp_valid.js': {} })
-      expect(result['register-file'].dependencies).toEqual({})
+      expect(result['register-file'].dependencies).toBeUndefined()
     })
 
     it('should process metrics with dependencies logging dependencies not found and return state results', async () => {
@@ -58,7 +61,8 @@ describe('executeMetrics.js', () => {
 
       expect(result).toHaveProperty('register-file')
       expect(result['register-file'].result).toEqual({ '/metrics-js-ts/test/ast/temp_valid.js': {} })
-      expect(result['register-file'].dependencies).toEqual({})
+
+      expect(result['register-file'].dependencies).toBeUndefined()
       expect(logMetricErrorSpy).toHaveBeenCalledWith(
         `Dependency doesnt-exists not found for metric ${registerFileMetricWithNonexistentDependencies.state.id}, deleting from dependencies.`
       )
