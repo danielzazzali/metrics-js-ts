@@ -35,23 +35,23 @@ console.log(results)
 ### Parameters
 
 - `codePath` *(string, required)*  
-  Path to the source code to analyze.
+  - Path to the source code to analyze.
   - Should be a directory.
   - The analyzer will scan it recursively.
 
 - `customMetricsPath` *(string, optional)*  
-  Path to a directory containing user-defined metric modules.
+  - Path to a directory containing user-defined metric modules.
   - Modules in this folder are loaded in addition to (or instead of) the built-in metrics.
   - Each custom module must export the expected metric structure (`state`, `visitors`, optional `postProcessing`).
   - If `customMetricsPath` is omitted and `useDefaultMetrics` is `false`, the loader will throw an error (since no metrics are available).
 
 - `useDefaultMetrics` *(boolean, optional, default: `true`)*  
-  Determines whether the built-in metrics provided by `metrics-js-ts` should be loaded.
+  - Determines whether the built-in metrics provided by `metrics-js-ts` should be loaded.
   - Set to `true` to include them (default).
   - Set to `false` if you want to run only custom metrics.
 
 - `metricsIgnoreFilePath` *(string, optional)*  
-  Path to a `.metricsignore` file used to exclude files and directories from analysis.
+  - Path to a `.metricsignore` file used to exclude files and directories from analysis.
   - The file should contain one entry per line.
   - Entries are evaluated relative to `codePath`.
 
