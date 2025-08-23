@@ -34,33 +34,33 @@ console.log(results)
 
 ### Parameters
 
-- **`codePath`** *(string, required)*  
+- `codePath` *(string, required)*  
   Path to the source code to analyze.
   - Should be a directory.
   - The analyzer will scan it recursively.
 
-- **`customMetricsPath`** *(string, optional)*  
+- `customMetricsPath` *(string, optional)*  
   Path to a directory containing user-defined metric modules.
   - Modules in this folder are loaded in addition to (or instead of) the built-in metrics.
   - Each custom module must export the expected metric structure (`state`, `visitors`, optional `postProcessing`).
-  - If `customMetricsPath` is omitted **and** `useDefaultMetrics` is `false`, the loader will throw an error (since no metrics are available).
+  - If `customMetricsPath` is omitted and `useDefaultMetrics` is `false`, the loader will throw an error (since no metrics are available).
 
-- **`useDefaultMetrics`** *(boolean, optional, default: `true`)*  
+- `useDefaultMetrics` *(boolean, optional, default: `true`)*  
   Determines whether the built-in metrics provided by `metrics-js-ts` should be loaded.
   - Set to `true` to include them (default).
   - Set to `false` if you want to run only custom metrics.
 
-- **`metricsIgnoreFilePath`** *(string, optional)*  
-  Path to a `.metricsignore` file used to **exclude files and directories from analysis**.
+- `metricsIgnoreFilePath` *(string, optional)*  
+  Path to a `.metricsignore` file used to exclude files and directories from analysis.
   - The file should contain one entry per line.
-  - Entries are evaluated **relative to `codePath`**.
+  - Entries are evaluated relative to `codePath`.
 
 ### Behavior Summary
 
 - `useDefaultMetrics: true` + no `customMetricsPath` → runs only built-in metrics.
 - `useDefaultMetrics: true` + `customMetricsPath` → runs both built-in and custom metrics.
 - `useDefaultMetrics: false` + `customMetricsPath` → runs only custom metrics.
-- `useDefaultMetrics: false` + no `customMetricsPath` → **throws an error** (no metrics to load).
+- `useDefaultMetrics: false` + no `customMetricsPath` → throws an error (no metrics to load).
 
 --- 
 
@@ -79,7 +79,7 @@ The library includes several built-in metrics:
 
 --- 
 
-## Adding Custom Metrics
+## Creating Custom Metrics
 
 To add custom metrics, create a new module in the custom metrics directory and export the following:
 
