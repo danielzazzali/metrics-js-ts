@@ -182,8 +182,8 @@ const visitors = {
 
 // Clean up state before finishing
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+  delete state.dependencies
 
   state.status = true
 }
