@@ -1,23 +1,32 @@
 // Valid FunctionDeclaration
 function foo () {
+  add(1, 2)
   return 'foo'
 }
 
 // Valid FunctionExpression
 const bar = function () {
+  foo()
   return 'bar'
 }
 
 // Valid FunctionExpression
 const qux = function quxNamed () {
+  bar()
   return 'qux'
 }
 
 // Valid FunctionExpression
-const baz = function () {}
+const baz = function () {
+  qux()
+  return 'baz'
+}
 
 // Valid ArrowFunctionExpression
-const add = (a, b) => a + b
+const add = (a, b) => {
+  baz()
+  return a + b
+}
 
 // Invalid FunctionDeclaration (no name)
 export default function () {

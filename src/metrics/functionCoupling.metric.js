@@ -19,21 +19,18 @@ const visitors = {
      async function bar() {}
   */
   FunctionDeclaration (path) {
-    let callerFunction = ''
+    if (!path.node.id || !path.node.id.name) return
 
-    if (path.node.id && path.node.id.name) {
-      callerFunction = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
-      callerFunction = path.parentPath.node.id.name
-    } else {
-      return
-    }
+    const callerFunction = path.node.id.name
 
     path.traverse({
       CallExpression (innerPath) {
         if (!innerPath.node.callee || !innerPath.node.callee.name) {
           return
+        }
+
+        for (const filePath of state.dependencies['functions-per-file']) {
+          console.log(filePath)
         }
 
         const calleeFunction = innerPath.node.callee.name
@@ -76,14 +73,9 @@ const visitors = {
   FunctionExpression (path) {
     let callerFunction = ''
 
-    if (path.node.id && path.node.id.name) {
-      callerFunction = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
+    if (path.parentPath.node.type === 'VariableDeclarator' && path.parentPath.node.id.name) {
       callerFunction = path.parentPath.node.id.name
-    } else {
-      return
-    }
+    } else return
 
     path.traverse({
       CallExpression (innerPath) {
@@ -129,16 +121,9 @@ const visitors = {
      items.map(item => item.value)
   */
   ArrowFunctionExpression (path) {
-    let callerFunction = ''
+    if (!path.parentPath.node.id || !path.parentPath.node.id.name) return
 
-    if (path.node.id && path.node.id.name) {
-      callerFunction = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
-      callerFunction = path.parentPath.node.id.name
-    } else {
-      return
-    }
+    const callerFunction = path.parentPath.node.id.name
 
     path.traverse({
       CallExpression (innerPath) {

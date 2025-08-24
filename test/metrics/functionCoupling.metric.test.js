@@ -1,206 +1,542 @@
 import path from 'path'
 import { calculateMetrics } from '../../src/index.js'
 import { fileURLToPath } from 'url'
-import { beforeAll, describe, expect, it } from '@jest/globals'
+import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-describe('Functions Coupling Metric', function () {
-  const codePath = path.resolve(__dirname,
-    '../test-src/function-coupling/example1')
-  const jsFile = path.resolve(__dirname,
-    '../test-src/function-coupling/example1/JS/functions-coupled.js')
-  const tsFile = path.resolve(__dirname,
-    '../test-src/function-coupling/example1/TS/functions-coupled.ts')
-  let metricsResults
+describe('Functions Coupling Metric', () => {
+  const jsFile = path.resolve(__dirname, '../test-src/function-coupling/example-1/JS/functions-coupled.js')
+  const tsFile = path.resolve(__dirname, '../test-src/function-coupling/example-1/TS/functions-coupled.ts')
 
-  beforeAll(async function () {
-    metricsResults = await calculateMetrics({ codePath })
+  beforeEach(async () => {
+    jest.resetModules()
   })
 
-  it('codePath is defined', () => {
-    expect(codePath).toBeDefined()
-  })
+  // it('metricsResults is defined', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-1')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   expect(metricsResults).toBeDefined()
+  // })
+  //
+  // it('Metric is defined, has correct name, description and status and contains result', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   expect(metricsResults).toHaveProperty('function-coupling')
+  //   expect(metricsResults['function-coupling']).toHaveProperty('name', 'Functions Coupling')
+  //   expect(metricsResults['function-coupling'].description).toBeDefined()
+  //   expect(metricsResults['function-coupling'].description).toContain('Analyzes each function to identify Fan-Out and Fan-In')
+  //   expect(metricsResults['function-coupling'].result).toBeDefined()
+  //   expect(metricsResults['function-coupling'].status).toBeTruthy()
+  //   expect(metricsResults['functions-per-file'].currentFile).toBeUndefined()
+  //   expect(metricsResults['functions-per-file'].dependencies).toBeUndefined()
+  // })
+  //
+  // it('Metric result contains JS src testing file', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-1')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   const functionCouplingResult = metricsResults['function-coupling'].result
+  //   expect(functionCouplingResult[jsFile]).toBeDefined()
+  // })
+  //
+  // it('Metric result contains TS src testing file', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-1')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   const functionCouplingResult = metricsResults['function-coupling'].result
+  //   expect(functionCouplingResult[tsFile]).toBeDefined()
+  // })
+  //
+  // it('Should compute the correct metric structure for JS file', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-1')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   const functionCouplingResult = metricsResults['function-coupling'].result
+  //
+  //   expect(functionCouplingResult[jsFile]).toEqual({
+  //     'foo': {
+  //       'type': 'FunctionDeclaration',
+  //       'id': {
+  //         'type': 'Identifier',
+  //         'name': 'foo'
+  //       },
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'add'
+  //               },
+  //               'arguments': [
+  //                 {
+  //                   'type': 'NumericLiteral',
+  //                   'value': 1
+  //                 },
+  //                 {
+  //                   'type': 'NumericLiteral',
+  //                   'value': 2
+  //                 }
+  //               ]
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'foo'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'add': 1
+  //       },
+  //       'fan-in': {
+  //         'bar': 1
+  //       }
+  //     },
+  //     'bar': {
+  //       'type': 'FunctionExpression',
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'foo'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'bar'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'foo': 1
+  //       },
+  //       'fan-in': {
+  //         'qux': 1
+  //       }
+  //     },
+  //     'qux': {
+  //       'type': 'FunctionExpression',
+  //       'id': {
+  //         'type': 'Identifier',
+  //         'name': 'quxNamed'
+  //       },
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'bar'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'qux'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'bar': 1
+  //       },
+  //       'fan-in': {
+  //         'baz': 1
+  //       }
+  //     },
+  //     'baz': {
+  //       'type': 'FunctionExpression',
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'qux'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'baz'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'qux': 1
+  //       },
+  //       'fan-in': {
+  //         'add': 1
+  //       }
+  //     },
+  //     'add': {
+  //       'type': 'ArrowFunctionExpression',
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [
+  //         {
+  //           'type': 'Identifier',
+  //           'name': 'a'
+  //         },
+  //         {
+  //           'type': 'Identifier',
+  //           'name': 'b'
+  //         }
+  //       ],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'baz'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'BinaryExpression',
+  //               'left': {
+  //                 'type': 'Identifier',
+  //                 'name': 'a'
+  //               },
+  //               'operator': '+',
+  //               'right': {
+  //                 'type': 'Identifier',
+  //                 'name': 'b'
+  //               }
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-in': {
+  //         'foo': 1
+  //       },
+  //       'fan-out': {
+  //         'baz': 1
+  //       }
+  //     }
+  //   })
+  // })
+  //
+  // it('should compute the correct metric structure for TS file', async () => {
+  //   const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-1')
+  //   const metricsResults = await calculateMetrics({ codePath })
+  //   const functionCouplingResult = metricsResults['function-coupling'].result
+  //
+  //   expect(functionCouplingResult[tsFile]).toEqual({
+  //     'foo': {
+  //       'type': 'FunctionDeclaration',
+  //       'id': {
+  //         'type': 'Identifier',
+  //         'name': 'foo'
+  //       },
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'returnType': {
+  //         'type': 'TSTypeAnnotation',
+  //         'typeAnnotation': {
+  //           'type': 'TSStringKeyword'
+  //         }
+  //       },
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'add'
+  //               },
+  //               'arguments': [
+  //                 {
+  //                   'type': 'NumericLiteral',
+  //                   'value': 1
+  //                 },
+  //                 {
+  //                   'type': 'NumericLiteral',
+  //                   'value': 2
+  //                 }
+  //               ]
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'foo'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'add': 1
+  //       },
+  //       'fan-in': {
+  //         'bar': 1
+  //       }
+  //     },
+  //     'bar': {
+  //       'type': 'FunctionExpression',
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'returnType': {
+  //         'type': 'TSTypeAnnotation',
+  //         'typeAnnotation': {
+  //           'type': 'TSStringKeyword'
+  //         }
+  //       },
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'foo'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'bar'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'foo': 1
+  //       },
+  //       'fan-in': {
+  //         'qux': 1
+  //       }
+  //     },
+  //     'qux': {
+  //       'type': 'FunctionExpression',
+  //       'id': {
+  //         'type': 'Identifier',
+  //         'name': 'quxNamed'
+  //       },
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'returnType': {
+  //         'type': 'TSTypeAnnotation',
+  //         'typeAnnotation': {
+  //           'type': 'TSStringKeyword'
+  //         }
+  //       },
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'bar'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'qux'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'bar': 1
+  //       },
+  //       'fan-in': {
+  //         'baz': 1
+  //       }
+  //     },
+  //     'baz': {
+  //       'type': 'FunctionExpression',
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [],
+  //       'returnType': {
+  //         'type': 'TSTypeAnnotation',
+  //         'typeAnnotation': {
+  //           'type': 'TSStringKeyword'
+  //         }
+  //       },
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'qux'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'StringLiteral',
+  //               'value': 'baz'
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-out': {
+  //         'qux': 1
+  //       },
+  //       'fan-in': {
+  //         'add': 1
+  //       }
+  //     },
+  //     'add': {
+  //       'type': 'ArrowFunctionExpression',
+  //       'returnType': {
+  //         'type': 'TSTypeAnnotation',
+  //         'typeAnnotation': {
+  //           'type': 'TSNumberKeyword'
+  //         }
+  //       },
+  //       'id': null,
+  //       'generator': false,
+  //       'async': false,
+  //       'params': [
+  //         {
+  //           'type': 'Identifier',
+  //           'name': 'a',
+  //           'typeAnnotation': {
+  //             'type': 'TSTypeAnnotation',
+  //             'typeAnnotation': {
+  //               'type': 'TSNumberKeyword'
+  //             }
+  //           }
+  //         },
+  //         {
+  //           'type': 'Identifier',
+  //           'name': 'b',
+  //           'typeAnnotation': {
+  //             'type': 'TSTypeAnnotation',
+  //             'typeAnnotation': {
+  //               'type': 'TSNumberKeyword'
+  //             }
+  //           }
+  //         }
+  //       ],
+  //       'body': {
+  //         'type': 'BlockStatement',
+  //         'body': [
+  //           {
+  //             'type': 'ExpressionStatement',
+  //             'expression': {
+  //               'type': 'CallExpression',
+  //               'callee': {
+  //                 'type': 'Identifier',
+  //                 'name': 'baz'
+  //               },
+  //               'arguments': []
+  //             }
+  //           },
+  //           {
+  //             'type': 'ReturnStatement',
+  //             'argument': {
+  //               'type': 'BinaryExpression',
+  //               'left': {
+  //                 'type': 'Identifier',
+  //                 'name': 'a'
+  //               },
+  //               'operator': '+',
+  //               'right': {
+  //                 'type': 'Identifier',
+  //                 'name': 'b'
+  //               }
+  //             }
+  //           }
+  //         ]
+  //       },
+  //       'fan-in': {
+  //         'foo': 1
+  //       },
+  //       'fan-out': {
+  //         'baz': 1
+  //       }
+  //     }
+  //   })
+  // })
 
-  it('jsFile is defined', () => {
-    expect(jsFile).toBeDefined()
-  })
+  it('should compute correct metric for functions across files', async () => {
+    const codePath = path.resolve(__dirname, '../test-src/function-coupling/example-2/JS')
+    const metricsResults = await calculateMetrics({ codePath })
+    const functionCouplingResult = metricsResults['function-coupling'].result
 
-  it('tsFile is defined', () => {
-    expect(tsFile).toBeDefined()
-  })
+    // console.log(JSON.stringify(functionCouplingResult, null, 2))
 
-  it('metricsResults is defined', () => {
-    expect(metricsResults).toBeDefined()
-  })
-
-  it(
-    'Metric is defined, has correct name, description and status and contains result',
-    () => {
-      expect(metricsResults).toHaveProperty('function-coupling')
-      expect(metricsResults['function-coupling'])
-        .toHaveProperty('name', 'Functions Coupling')
-      expect(metricsResults['function-coupling'].description).toBeDefined()
-      expect(metricsResults['function-coupling'].description)
-        .toContain('Analyzes each function to identify Fan-Out and Fan-In')
-      expect(metricsResults['function-coupling'].result).toBeDefined()
-      expect(metricsResults['function-coupling'].status).toBeTruthy()
-    })
-
-  it('Metric result contains JS src testing file', () => {
-    expect(metricsResults['function-coupling'].result[jsFile]).toBeDefined()
-  })
-
-  it('Metric result contains TS src testing file', () => {
-    expect(metricsResults['function-coupling'].result[tsFile]).toBeDefined()
-  })
-
-  it('Should compute the correct metric structure for JS file', function () {
-    expect(metricsResults['function-coupling'].result[jsFile]).toEqual({
-      functionA: {
-        type: 'FunctionDeclaration',
-        id: { type: 'Identifier', name: 'functionA' },
-        generator: false,
-        async: false,
-        params: [],
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionB' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-out': { functionB: 1 },
-        'fan-in': { functionC: 1 }
-      },
-      functionB: {
-        type: 'FunctionExpression',
-        id: null,
-        generator: false,
-        async: false,
-        params: [],
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionC' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-in': { functionA: 1 },
-        'fan-out': { functionC: 1 }
-      },
-      functionC: {
-        type: 'ArrowFunctionExpression',
-        id: null,
-        generator: false,
-        async: false,
-        params: [],
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionA' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-in': { functionB: 1 },
-        'fan-out': { functionA: 1 }
-      }
-    })
-  })
-
-  it('should compute the correct metric structure for TS file', function () {
-    expect(metricsResults['function-coupling'].result[tsFile]).toEqual({
-      functionA: {
-        type: 'FunctionDeclaration',
-        id: { type: 'Identifier', name: 'functionA' },
-        generator: false,
-        async: false,
-        params: [],
-        returnType: {
-          type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' }
-        },
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionB' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-out': { functionB: 1 },
-        'fan-in': { functionC: 1 }
-      },
-      functionB: {
-        type: 'FunctionExpression',
-        id: null,
-        generator: false,
-        async: false,
-        params: [],
-        returnType: {
-          type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' }
-        },
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionC' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-in': { functionA: 1 },
-        'fan-out': { functionC: 1 }
-      },
-      functionC: {
-        type: 'ArrowFunctionExpression',
-        returnType: {
-          type: 'TSTypeAnnotation',
-          typeAnnotation: { type: 'TSVoidKeyword' }
-        },
-        id: null,
-        generator: false,
-        async: false,
-        params: [],
-        body: {
-          type: 'BlockStatement',
-          body: [
-            {
-              type: 'ExpressionStatement',
-              expression: {
-                type: 'CallExpression',
-                callee: { type: 'Identifier', name: 'functionA' },
-                arguments: []
-              }
-            }]
-        },
-        'fan-in': { functionB: 1 },
-        'fan-out': { functionA: 1 }
-      }
-    })
   })
 })

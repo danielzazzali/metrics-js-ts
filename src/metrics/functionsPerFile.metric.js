@@ -34,13 +34,9 @@ const visitors = {
   FunctionExpression (path) {
     let functionName = ''
 
-    if (path.node.id && path.node.id.name) {
-      functionName = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' && path.parentPath.node.id.name) {
+    if (path.parentPath.node.type === 'VariableDeclarator' && path.parentPath.node.id.name) {
       functionName = path.parentPath.node.id.name
-    } else {
-      return
-    }
+    } else return
 
     state.result[state.currentFile][functionName] = path.node
   },
