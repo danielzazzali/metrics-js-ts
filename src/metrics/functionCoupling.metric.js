@@ -1,6 +1,8 @@
+import { extname as getExt } from 'path'
+
 const state = {
   name: 'Functions Coupling',
-  description: 'Analyzes each function to identify Fan-Out and Fan-In',
+  description: 'Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions',
   result: {},
   id: 'function-coupling',
   dependencies: ['functions-per-file'],
@@ -25,18 +27,20 @@ const visitors = {
 
     path.traverse({
       CallExpression (innerPath) {
-        if (!innerPath.node.callee || !innerPath.node.callee.name) {
+        if (!innerPath.node.callee.name) {
           return
         }
 
-        for (const filePath of state.dependencies['functions-per-file']) {
-          console.log(filePath)
-        }
-
         const calleeFunction = innerPath.node.callee.name
+        let calleeFilePath = ''
 
-        if (!state.result[state.currentFile][callerFunction]) {
-          state.result[state.currentFile][callerFunction] = {}
+        for (const filePath in state.dependencies['functions-per-file']) {
+          const functions = state.dependencies['functions-per-file'][filePath]
+          for (const functionName in functions) {
+            if (calleeFunction === functionName && (getExt(filePath) === getExt(state.currentFile))) {
+              calleeFilePath = filePath
+            }
+          }
         }
 
         if (!state.result[state.currentFile][callerFunction]['fan-out']) {
@@ -49,19 +53,15 @@ const visitors = {
 
         state.result[state.currentFile][callerFunction]['fan-out'][calleeFunction]++
 
-        if (!state.result[state.currentFile][calleeFunction]) {
-          state.result[state.currentFile][calleeFunction] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in']) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'] = {}
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in']) {
-          state.result[state.currentFile][calleeFunction]['fan-in'] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction] = 0
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]) {
-          state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction] = 0
-        }
-
-        state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
+        state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]++
       }
     })
   },
@@ -79,14 +79,20 @@ const visitors = {
 
     path.traverse({
       CallExpression (innerPath) {
-        if (!innerPath.node.callee || !innerPath.node.callee.name) {
+        if (!innerPath.node.callee.name) {
           return
         }
 
         const calleeFunction = innerPath.node.callee.name
+        let calleeFilePath = ''
 
-        if (!state.result[state.currentFile][callerFunction]) {
-          state.result[state.currentFile][callerFunction] = {}
+        for (const filePath in state.dependencies['functions-per-file']) {
+          const functions = state.dependencies['functions-per-file'][filePath]
+          for (const functionName in functions) {
+            if (calleeFunction === functionName && (getExt(filePath) === getExt(state.currentFile))) {
+              calleeFilePath = filePath
+            }
+          }
         }
 
         if (!state.result[state.currentFile][callerFunction]['fan-out']) {
@@ -99,19 +105,15 @@ const visitors = {
 
         state.result[state.currentFile][callerFunction]['fan-out'][calleeFunction]++
 
-        if (!state.result[state.currentFile][calleeFunction]) {
-          state.result[state.currentFile][calleeFunction] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in']) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'] = {}
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in']) {
-          state.result[state.currentFile][calleeFunction]['fan-in'] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction] = 0
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]) {
-          state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction] = 0
-        }
-
-        state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
+        state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]++
       }
     })
   },
@@ -127,14 +129,20 @@ const visitors = {
 
     path.traverse({
       CallExpression (innerPath) {
-        if (!innerPath.node.callee || !innerPath.node.callee.name) {
+        if (!innerPath.node.callee.name) {
           return
         }
 
         const calleeFunction = innerPath.node.callee.name
+        let calleeFilePath = ''
 
-        if (!state.result[state.currentFile][callerFunction]) {
-          state.result[state.currentFile][callerFunction] = {}
+        for (const filePath in state.dependencies['functions-per-file']) {
+          const functions = state.dependencies['functions-per-file'][filePath]
+          for (const functionName in functions) {
+            if (calleeFunction === functionName && (getExt(filePath) === getExt(state.currentFile))) {
+              calleeFilePath = filePath
+            }
+          }
         }
 
         if (!state.result[state.currentFile][callerFunction]['fan-out']) {
@@ -147,19 +155,15 @@ const visitors = {
 
         state.result[state.currentFile][callerFunction]['fan-out'][calleeFunction]++
 
-        if (!state.result[state.currentFile][calleeFunction]) {
-          state.result[state.currentFile][calleeFunction] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in']) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'] = {}
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in']) {
-          state.result[state.currentFile][calleeFunction]['fan-in'] = {}
+        if (!state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]) {
+          state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction] = 0
         }
 
-        if (!state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]) {
-          state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction] = 0
-        }
-
-        state.result[state.currentFile][calleeFunction]['fan-in'][callerFunction]++
+        state.result[calleeFilePath][calleeFunction]['fan-in'][callerFunction]++
       }
     })
   }
