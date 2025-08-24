@@ -1,6 +1,6 @@
 const state = {
   name: 'Functions Per File',
-  description: 'Counts and records all named functions in each source file, mapping function names to their AST nodes so you can compute functions-per-file and perform function-level analysis.',
+  description: 'Records all named functions in each source file, mapping function names to their AST node',
   result: {},
   id: 'functions-per-file',
   dependencies: ['files'],
@@ -20,20 +20,9 @@ const visitors = {
      async function bar() {}
   */
   FunctionDeclaration (path) {
-    let functionName = ''
+    if (!path.node.id || !path.node.id.name) return
 
-    if (path.node.id && path.node.id.name) {
-      functionName = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
-      functionName = path.parentPath.node.id.name
-    } else {
-      return
-    }
-
-    if (!state.result[state.currentFile][functionName]) {
-      state.result[state.currentFile][functionName] = {}
-    }
+    const functionName = path.node.id.name
 
     state.result[state.currentFile][functionName] = path.node
   },
@@ -47,15 +36,10 @@ const visitors = {
 
     if (path.node.id && path.node.id.name) {
       functionName = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
+    } else if (path.parentPath.node.type === 'VariableDeclarator' && path.parentPath.node.id.name) {
       functionName = path.parentPath.node.id.name
     } else {
       return
-    }
-
-    if (!state.result[state.currentFile][functionName]) {
-      state.result[state.currentFile][functionName] = {}
     }
 
     state.result[state.currentFile][functionName] = path.node
@@ -66,20 +50,9 @@ const visitors = {
      items.map(item => item.value)
   */
   ArrowFunctionExpression (path) {
-    let functionName = ''
+    if (!path.parentPath.node.id || !path.parentPath.node.id.name) return
 
-    if (path.node.id && path.node.id.name) {
-      functionName = path.node.id.name
-    } else if (path.parentPath.node.type === 'VariableDeclarator' &&
-      path.parentPath.node.id.name) {
-      functionName = path.parentPath.node.id.name
-    } else {
-      return
-    }
-
-    if (!state.result[state.currentFile][functionName]) {
-      state.result[state.currentFile][functionName] = {}
-    }
+    const functionName = path.parentPath.node.id.name
 
     state.result[state.currentFile][functionName] = path.node
   }
@@ -87,8 +60,8 @@ const visitors = {
 
 // Clean up state before finishing
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+  delete state.dependencies
 
   state.status = true
 }
