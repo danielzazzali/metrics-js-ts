@@ -1,7 +1,7 @@
 import { extname as getExt } from 'path'
 
 const state = {
-  name: 'Functions Coupling',
+  name: 'Function Coupling',
   description: 'Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions',
   result: {},
   id: 'function-coupling',

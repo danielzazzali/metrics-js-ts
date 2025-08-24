@@ -24,7 +24,7 @@ describe('Functions Coupling Metric', () => {
     const codePath = path.resolve(__dirname, '../test-src/function-coupling/')
     const metricsResults = await calculateMetrics({ codePath })
     expect(metricsResults).toHaveProperty('function-coupling')
-    expect(metricsResults['function-coupling']).toHaveProperty('name', 'Functions Coupling')
+    expect(metricsResults['function-coupling']).toHaveProperty('name', 'Function Coupling')
     expect(metricsResults['function-coupling'].description).toBeDefined()
     expect(metricsResults['function-coupling'].description).toContain('Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions')
     expect(metricsResults['function-coupling'].result).toBeDefined()
