@@ -72,7 +72,7 @@ The library includes several built-in metrics:
 * File Coupling: Measures file-level coupling by computing each file’s fan-in (dependent files) and fan-out (dependencies)
 * Functions Per File: Records all named functions in each source file, mapping function names to their AST node
 * Function Coupling: Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions
-* Classes Per File: Counts the number of classes in each file.
+* Classes Per File: Analyzes each source file to identify and record all top-level classes defined.
 * Methods Per File: Counts the number of methods in each file.
 * Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of
   classes that call a class method (Fan In).

@@ -30,7 +30,7 @@ const visitors = {
       parentPath.node.type === 'Program'
     ) {
       /* Ignore:
-         class SuperCalculator extends class {}
+         class SuperCalculator extends class{} {}
       */
       if (node.superClass &&
         node.superClass.type === 'ClassExpression'
@@ -184,8 +184,8 @@ const visitors = {
 }
 
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+  delete state.dependencies
 
   state.status = true
 }
