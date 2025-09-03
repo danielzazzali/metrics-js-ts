@@ -13,7 +13,7 @@ async function calculateMetrics ({
   codePath,
   customMetricsPath,
   useDefaultMetrics = true,
-  metricsIgnoreFilePath = null
+  metricsIgnoreFilePath
 } = {}) {
   if (!useDefaultMetrics && !customMetricsPath) {
     throw new Error(MESSAGES.ERRORS.ERROR_NO_METRICS)
@@ -40,6 +40,5 @@ async function calculateMetrics ({
 // const result = metricsResults["function-coupling"].result
 //
 // console.log(JSON.stringify(result, null, 2))
-
 
 export { calculateMetrics }

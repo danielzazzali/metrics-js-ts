@@ -30,10 +30,10 @@ describe('Class Coupling Metric', function () {
 
     expect(metricsResults).toHaveProperty('class-coupling')
     expect(metricsResults['class-coupling'])
-    .toHaveProperty('name', 'Class Coupling')
+      .toHaveProperty('name', 'Class Coupling')
     expect(metricsResults['class-coupling'].description).toBeDefined()
     expect(metricsResults['class-coupling'].description)
-    .toContain('Analyzes each class to identify Fan-Out and Fan-In')
+      .toContain('Analyzes each class to identify Fan-Out and Fan-In')
     expect(metricsResults['class-coupling'].result).toBeDefined()
     expect(metricsResults['class-coupling'].status).toBeTruthy()
   })

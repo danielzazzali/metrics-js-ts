@@ -101,8 +101,8 @@ function postProcessing (state) {
     }
 
     processed[filePath] = {
-      fanOut: fanOut,
-      fanIn: fanIn
+      fanOut,
+      fanIn
     }
   }
 

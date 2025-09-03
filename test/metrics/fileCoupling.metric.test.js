@@ -32,47 +32,47 @@ describe('File Coupling Metric', function () {
     const codePath = path.resolve(__dirname, '../test-src/file-coupling/example-1')
     const metricsResults = await calculateMetrics({ codePath })
     expect(metricsResults).toHaveProperty('file-coupling')
-    expect(metricsResults['file-coupling']['status']).toBeTruthy()
+    expect(metricsResults['file-coupling'].status).toBeTruthy()
 
-    const fileCouplingResult = metricsResults['file-coupling']['result']
+    const fileCouplingResult = metricsResults['file-coupling'].result
 
     expect(fileCouplingResult).toStrictEqual(
       {
         [`${codePath}/JS/fileA.js`]: {
-          'fanOut': [
+          fanOut: [
             `${codePath}/JS/subdir/subsubdir/fileC.js`,
             `${codePath}/JS/subdir/fileB.cjs`
           ],
-          'fanIn': [
+          fanIn: [
             `${codePath}/JS/subdir/subsubdir/fileC.js`,
             `${codePath}/JS/subdir/fileB.cjs`
           ]
         },
         [`${codePath}/JS/subdir/fileB.cjs`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         },
         [`${codePath}/JS/subdir/subsubdir/fileC.js`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         },
         [`${codePath}/TS/fileA.ts`]: {
-          'fanOut': [
+          fanOut: [
             `${codePath}/TS/subdir/subsubdir/fileC.ts`,
             `${codePath}/TS/subdir/fileB.ts`
           ],
-          'fanIn': [
+          fanIn: [
             `${codePath}/TS/subdir/subsubdir/fileC.ts`,
             `${codePath}/TS/subdir/fileB.ts`
           ]
         },
         [`${codePath}/TS/subdir/fileB.ts`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         },
         [`${codePath}/TS/subdir/subsubdir/fileC.ts`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         }
       }
     )
@@ -82,23 +82,23 @@ describe('File Coupling Metric', function () {
     const codePath = path.resolve(__dirname, '../test-src/file-coupling/example-2')
     const metricsResults = await calculateMetrics({ codePath })
     expect(metricsResults).toHaveProperty('file-coupling')
-    expect(metricsResults['file-coupling']['status']).toBeTruthy()
+    expect(metricsResults['file-coupling'].status).toBeTruthy()
 
-    const fileCouplingResult = metricsResults['file-coupling']['result']
+    const fileCouplingResult = metricsResults['file-coupling'].result
 
     expect(fileCouplingResult).toStrictEqual(
       {
         [`${codePath}/app.ts`]: {
-          'fanOut': [
+          fanOut: [
             `${codePath}/utils/index.ts`
           ],
-          'fanIn': [
+          fanIn: [
             `${codePath}/utils/index.ts`
           ]
         },
         [`${codePath}/utils/index.ts`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         }
       }
     )
@@ -108,19 +108,19 @@ describe('File Coupling Metric', function () {
     const codePath = path.resolve(__dirname, '../test-src/file-coupling/example-3')
     const metricsResults = await calculateMetrics({ codePath })
     expect(metricsResults).toHaveProperty('file-coupling')
-    expect(metricsResults['file-coupling']['status']).toBeTruthy()
+    expect(metricsResults['file-coupling'].status).toBeTruthy()
 
-    const fileCouplingResult = metricsResults['file-coupling']['result']
+    const fileCouplingResult = metricsResults['file-coupling'].result
 
     expect(fileCouplingResult).toStrictEqual(
       {
         [`${codePath}/JS/badImports.js`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         },
         [`${codePath}/TS/badImports.ts`]: {
-          'fanOut': [],
-          'fanIn': []
+          fanOut: [],
+          fanIn: []
         }
       }
     )

@@ -53,216 +53,216 @@ describe('Functions Coupling Metric', () => {
     const functionCouplingResult = metricsResults['function-coupling'].result
 
     expect(functionCouplingResult[jsFile]).toEqual({
-      'foo': {
-        'type': 'FunctionDeclaration',
-        'id': {
-          'type': 'Identifier',
-          'name': 'foo'
+      foo: {
+        type: 'FunctionDeclaration',
+        id: {
+          type: 'Identifier',
+          name: 'foo'
         },
-        'generator': false,
-        'async': false,
-        'params': [],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        generator: false,
+        async: false,
+        params: [],
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'add'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'add'
                 },
-                'arguments': [
+                arguments: [
                   {
-                    'type': 'NumericLiteral',
-                    'value': 1
+                    type: 'NumericLiteral',
+                    value: 1
                   },
                   {
-                    'type': 'NumericLiteral',
-                    'value': 2
+                    type: 'NumericLiteral',
+                    value: 2
                   }
                 ]
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'foo'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'foo'
               }
             }
           ]
         },
         'fan-out': {
-          'add': 1
+          add: 1
         },
         'fan-in': {
-          'bar': 1
+          bar: 1
         }
       },
-      'bar': {
-        'type': 'FunctionExpression',
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+      bar: {
+        type: 'FunctionExpression',
+        id: null,
+        generator: false,
+        async: false,
+        params: [],
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'foo'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'foo'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'bar'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'bar'
               }
             }
           ]
         },
         'fan-out': {
-          'foo': 1
+          foo: 1
         },
         'fan-in': {
-          'qux': 1
+          qux: 1
         }
       },
-      'qux': {
-        'type': 'FunctionExpression',
-        'id': {
-          'type': 'Identifier',
-          'name': 'quxNamed'
+      qux: {
+        type: 'FunctionExpression',
+        id: {
+          type: 'Identifier',
+          name: 'quxNamed'
         },
-        'generator': false,
-        'async': false,
-        'params': [],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        generator: false,
+        async: false,
+        params: [],
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'bar'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'bar'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'qux'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'qux'
               }
             }
           ]
         },
         'fan-out': {
-          'bar': 1
+          bar: 1
         },
         'fan-in': {
-          'baz': 1
+          baz: 1
         }
       },
-      'baz': {
-        'type': 'FunctionExpression',
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+      baz: {
+        type: 'FunctionExpression',
+        id: null,
+        generator: false,
+        async: false,
+        params: [],
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'qux'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'qux'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'baz'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'baz'
               }
             }
           ]
         },
         'fan-out': {
-          'qux': 1
+          qux: 1
         },
         'fan-in': {
-          'add': 1
+          add: 1
         }
       },
-      'add': {
-        'type': 'ArrowFunctionExpression',
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [
+      add: {
+        type: 'ArrowFunctionExpression',
+        id: null,
+        generator: false,
+        async: false,
+        params: [
           {
-            'type': 'Identifier',
-            'name': 'a'
+            type: 'Identifier',
+            name: 'a'
           },
           {
-            'type': 'Identifier',
-            'name': 'b'
+            type: 'Identifier',
+            name: 'b'
           }
         ],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'baz'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'baz'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'BinaryExpression',
-                'left': {
-                  'type': 'Identifier',
-                  'name': 'a'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
                 },
-                'operator': '+',
-                'right': {
-                  'type': 'Identifier',
-                  'name': 'b'
+                operator: '+',
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
                 }
               }
             }
           ]
         },
         'fan-in': {
-          'foo': 1
+          foo: 1
         },
         'fan-out': {
-          'baz': 1
+          baz: 1
         }
       }
     })
@@ -274,258 +274,258 @@ describe('Functions Coupling Metric', () => {
     const functionCouplingResult = metricsResults['function-coupling'].result
 
     expect(functionCouplingResult[tsFile]).toEqual({
-      'foo': {
-        'type': 'FunctionDeclaration',
-        'id': {
-          'type': 'Identifier',
-          'name': 'foo'
+      foo: {
+        type: 'FunctionDeclaration',
+        id: {
+          type: 'Identifier',
+          name: 'foo'
         },
-        'generator': false,
-        'async': false,
-        'params': [],
-        'returnType': {
-          'type': 'TSTypeAnnotation',
-          'typeAnnotation': {
-            'type': 'TSStringKeyword'
+        generator: false,
+        async: false,
+        params: [],
+        returnType: {
+          type: 'TSTypeAnnotation',
+          typeAnnotation: {
+            type: 'TSStringKeyword'
           }
         },
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'add'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'add'
                 },
-                'arguments': [
+                arguments: [
                   {
-                    'type': 'NumericLiteral',
-                    'value': 1
+                    type: 'NumericLiteral',
+                    value: 1
                   },
                   {
-                    'type': 'NumericLiteral',
-                    'value': 2
+                    type: 'NumericLiteral',
+                    value: 2
                   }
                 ]
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'foo'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'foo'
               }
             }
           ]
         },
         'fan-out': {
-          'add': 1
+          add: 1
         },
         'fan-in': {
-          'bar': 1
+          bar: 1
         }
       },
-      'bar': {
-        'type': 'FunctionExpression',
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [],
-        'returnType': {
-          'type': 'TSTypeAnnotation',
-          'typeAnnotation': {
-            'type': 'TSStringKeyword'
+      bar: {
+        type: 'FunctionExpression',
+        id: null,
+        generator: false,
+        async: false,
+        params: [],
+        returnType: {
+          type: 'TSTypeAnnotation',
+          typeAnnotation: {
+            type: 'TSStringKeyword'
           }
         },
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'foo'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'foo'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'bar'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'bar'
               }
             }
           ]
         },
         'fan-out': {
-          'foo': 1
+          foo: 1
         },
         'fan-in': {
-          'qux': 1
+          qux: 1
         }
       },
-      'qux': {
-        'type': 'FunctionExpression',
-        'id': {
-          'type': 'Identifier',
-          'name': 'quxNamed'
+      qux: {
+        type: 'FunctionExpression',
+        id: {
+          type: 'Identifier',
+          name: 'quxNamed'
         },
-        'generator': false,
-        'async': false,
-        'params': [],
-        'returnType': {
-          'type': 'TSTypeAnnotation',
-          'typeAnnotation': {
-            'type': 'TSStringKeyword'
+        generator: false,
+        async: false,
+        params: [],
+        returnType: {
+          type: 'TSTypeAnnotation',
+          typeAnnotation: {
+            type: 'TSStringKeyword'
           }
         },
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'bar'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'bar'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'qux'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'qux'
               }
             }
           ]
         },
         'fan-out': {
-          'bar': 1
+          bar: 1
         },
         'fan-in': {
-          'baz': 1
+          baz: 1
         }
       },
-      'baz': {
-        'type': 'FunctionExpression',
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [],
-        'returnType': {
-          'type': 'TSTypeAnnotation',
-          'typeAnnotation': {
-            'type': 'TSStringKeyword'
+      baz: {
+        type: 'FunctionExpression',
+        id: null,
+        generator: false,
+        async: false,
+        params: [],
+        returnType: {
+          type: 'TSTypeAnnotation',
+          typeAnnotation: {
+            type: 'TSStringKeyword'
           }
         },
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'qux'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'qux'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'StringLiteral',
-                'value': 'baz'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'StringLiteral',
+                value: 'baz'
               }
             }
           ]
         },
         'fan-out': {
-          'qux': 1
+          qux: 1
         },
         'fan-in': {
-          'add': 1
+          add: 1
         }
       },
-      'add': {
-        'type': 'ArrowFunctionExpression',
-        'returnType': {
-          'type': 'TSTypeAnnotation',
-          'typeAnnotation': {
-            'type': 'TSNumberKeyword'
+      add: {
+        type: 'ArrowFunctionExpression',
+        returnType: {
+          type: 'TSTypeAnnotation',
+          typeAnnotation: {
+            type: 'TSNumberKeyword'
           }
         },
-        'id': null,
-        'generator': false,
-        'async': false,
-        'params': [
+        id: null,
+        generator: false,
+        async: false,
+        params: [
           {
-            'type': 'Identifier',
-            'name': 'a',
-            'typeAnnotation': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSNumberKeyword'
+            type: 'Identifier',
+            name: 'a',
+            typeAnnotation: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSNumberKeyword'
               }
             }
           },
           {
-            'type': 'Identifier',
-            'name': 'b',
-            'typeAnnotation': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSNumberKeyword'
+            type: 'Identifier',
+            name: 'b',
+            typeAnnotation: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSNumberKeyword'
               }
             }
           }
         ],
-        'body': {
-          'type': 'BlockStatement',
-          'body': [
+        body: {
+          type: 'BlockStatement',
+          body: [
             {
-              'type': 'ExpressionStatement',
-              'expression': {
-                'type': 'CallExpression',
-                'callee': {
-                  'type': 'Identifier',
-                  'name': 'baz'
+              type: 'ExpressionStatement',
+              expression: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'Identifier',
+                  name: 'baz'
                 },
-                'arguments': []
+                arguments: []
               }
             },
             {
-              'type': 'ReturnStatement',
-              'argument': {
-                'type': 'BinaryExpression',
-                'left': {
-                  'type': 'Identifier',
-                  'name': 'a'
+              type: 'ReturnStatement',
+              argument: {
+                type: 'BinaryExpression',
+                left: {
+                  type: 'Identifier',
+                  name: 'a'
                 },
-                'operator': '+',
-                'right': {
-                  'type': 'Identifier',
-                  'name': 'b'
+                operator: '+',
+                right: {
+                  type: 'Identifier',
+                  name: 'b'
                 }
               }
             }
           ]
         },
         'fan-in': {
-          'foo': 1
+          foo: 1
         },
         'fan-out': {
-          'baz': 1
+          baz: 1
         }
       }
     })
@@ -538,412 +538,412 @@ describe('Functions Coupling Metric', () => {
 
     expect(functionCouplingResult).toEqual({
       [`${codePath}/JS/fileA.js`]: {
-        'call1': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'call1'
+        call1: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'call1'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun1'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun1'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun1'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun1'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun1': 2
+            fun1: 2
           }
         },
-        'call2': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+        call2: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun2'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun2'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun2'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun2'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun2': 2
+            fun2: 2
           }
         },
-        'call3': {
-          'type': 'ArrowFunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+        call3: {
+          type: 'ArrowFunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun3'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun3'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun3'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun3'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun3': 2
+            fun3: 2
           }
         }
       },
       [`${codePath}/JS/subdir/fileB.js`]: {
-        'fun1': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'fun1'
+        fun1: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'fun1'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 1
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 1
                 }
               }
             ]
           },
           'fan-in': {
-            'call1': 2
+            call1: 2
           }
         },
-        'fun2': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+        fun2: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 2
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 2
                 }
               }
             ]
           },
           'fan-in': {
-            'call2': 2
+            call2: 2
           }
         },
-        'fun3': {
-          'type': 'ArrowFunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+        fun3: {
+          type: 'ArrowFunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 3
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 3
                 }
               }
             ]
           },
           'fan-in': {
-            'call3': 2
+            call3: 2
           }
         }
       },
       [`${codePath}/TS/fileA.ts`]: {
-        'call1': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'call1'
+        call1: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'call1'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSVoidKeyword'
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSVoidKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun1'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun1'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun1'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun1'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun1': 2
+            fun1: 2
           }
         },
-        'call2': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSVoidKeyword'
+        call2: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSVoidKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun2'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun2'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun2'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun2'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun2': 2
+            fun2: 2
           }
         },
-        'call3': {
-          'type': 'ArrowFunctionExpression',
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSVoidKeyword'
+        call3: {
+          type: 'ArrowFunctionExpression',
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSVoidKeyword'
             }
           },
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun3'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun3'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               },
               {
-                'type': 'ExpressionStatement',
-                'expression': {
-                  'type': 'CallExpression',
-                  'callee': {
-                    'type': 'Identifier',
-                    'name': 'fun3'
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'Identifier',
+                    name: 'fun3'
                   },
-                  'arguments': []
+                  arguments: []
                 }
               }
             ]
           },
           'fan-out': {
-            'fun3': 2
+            fun3: 2
           }
         }
       },
       [`${codePath}/TS/subdir/fileB.ts`]: {
-        'fun1': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'fun1'
+        fun1: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'fun1'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSNumberKeyword'
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSNumberKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 1
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 1
                 }
               }
             ]
           },
           'fan-in': {
-            'call1': 2
+            call1: 2
           }
         },
-        'fun2': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSNumberKeyword'
+        fun2: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSNumberKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 2
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 2
                 }
               }
             ]
           },
           'fan-in': {
-            'call2': 2
+            call2: 2
           }
         },
-        'fun3': {
-          'type': 'ArrowFunctionExpression',
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSNumberKeyword'
+        fun3: {
+          type: 'ArrowFunctionExpression',
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSNumberKeyword'
             }
           },
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'NumericLiteral',
-                  'value': 3
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'NumericLiteral',
+                  value: 3
                 }
               }
             ]
           },
           'fan-in': {
-            'call3': 2
+            call3: 2
           }
         }
       }
@@ -957,94 +957,94 @@ describe('Functions Coupling Metric', () => {
 
     expect(functionCouplingResult).toEqual({
       [`${codePath}/invalidCases.js`]: {
-        "invalid1": {
-          "type": "FunctionDeclaration",
-          "id": {
-            "type": "Identifier",
-            "name": "invalid1"
+        invalid1: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'invalid1'
           },
-          "generator": false,
-          "async": false,
-          "params": [],
-          "body": {
-            "type": "BlockStatement",
-            "body": [
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                "type": "ExpressionStatement",
-                "expression": {
-                  "type": "CallExpression",
-                  "callee": {
-                    "type": "FunctionExpression",
-                    "id": null,
-                    "generator": false,
-                    "async": false,
-                    "params": [],
-                    "body": {
-                      "type": "BlockStatement",
-                      "body": []
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'FunctionExpression',
+                    id: null,
+                    generator: false,
+                    async: false,
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
                     }
                   },
-                  "arguments": []
+                  arguments: []
                 }
               }
             ]
           }
         },
-        "invalid2": {
-          "type": "FunctionExpression",
-          "id": null,
-          "generator": false,
-          "async": false,
-          "params": [],
-          "body": {
-            "type": "BlockStatement",
-            "body": [
+        invalid2: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                "type": "ExpressionStatement",
-                "expression": {
-                  "type": "CallExpression",
-                  "callee": {
-                    "type": "FunctionExpression",
-                    "id": null,
-                    "generator": false,
-                    "async": false,
-                    "params": [],
-                    "body": {
-                      "type": "BlockStatement",
-                      "body": []
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'FunctionExpression',
+                    id: null,
+                    generator: false,
+                    async: false,
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
                     }
                   },
-                  "arguments": []
+                  arguments: []
                 }
               }
             ]
           }
         },
-        "invalid3": {
-          "type": "ArrowFunctionExpression",
-          "id": null,
-          "generator": false,
-          "async": false,
-          "params": [],
-          "body": {
-            "type": "BlockStatement",
-            "body": [
+        invalid3: {
+          type: 'ArrowFunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                "type": "ExpressionStatement",
-                "expression": {
-                  "type": "CallExpression",
-                  "callee": {
-                    "type": "FunctionExpression",
-                    "id": null,
-                    "generator": false,
-                    "async": false,
-                    "params": [],
-                    "body": {
-                      "type": "BlockStatement",
-                      "body": []
+                type: 'ExpressionStatement',
+                expression: {
+                  type: 'CallExpression',
+                  callee: {
+                    type: 'FunctionExpression',
+                    id: null,
+                    generator: false,
+                    async: false,
+                    params: [],
+                    body: {
+                      type: 'BlockStatement',
+                      body: []
                     }
                   },
-                  "arguments": []
+                  arguments: []
                 }
               }
             ]

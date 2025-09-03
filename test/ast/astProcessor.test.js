@@ -27,11 +27,16 @@ describe('astProcessor.js', () => {
     const invalidFilePath = path.join(tempDir, invalidFileName)
     const invalidCodeContent = 'func {}'
 
+    const strangeFileName = 'strange.js'
+    const strangeFilePath = path.join(tempDir, strangeFileName)
+    const strangeCode = '[, name] = [1, 2];'
+
     beforeAll(() => {
       // Create a temporary valid JS file
       fs.writeFileSync(validFilePath, codeContent, FILE_ENCODING)
       fs.writeFileSync(anotherValidFilePath, codeContent, FILE_ENCODING)
       fs.writeFileSync(invalidFilePath, invalidCodeContent, FILE_ENCODING)
+      fs.writeFileSync(strangeFilePath, strangeCode, FILE_ENCODING)
     })
 
     afterAll(() => {
@@ -46,6 +51,10 @@ describe('astProcessor.js', () => {
 
       if (fs.existsSync(invalidFilePath)) {
         fs.unlinkSync(invalidFilePath)
+      }
+
+      if (fs.existsSync(strangeFilePath)) {
+        fs.unlinkSync(strangeFilePath)
       }
     })
 
@@ -144,6 +153,15 @@ describe('astProcessor.js', () => {
       ]
       const results = await constructASTs(files)
       expect(results).toEqual([])
+    })
+
+    it('should cover cleanAST branch with null node from AST', async () => {
+      const results = await constructASTs([
+        { filePath: strangeFilePath, fileName: strangeFileName }
+      ])
+
+      expect(results).toHaveLength(1)
+      expect(results[0].program.filePath).toBe(strangeFilePath)
     })
   })
 })

@@ -49,8 +49,7 @@ const visitors = {
               if (deepPath.node.callee.type === 'Identifier' &&
                 deepPath.parentPath.node.type === 'AssignmentExpression' &&
                 deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                deepPath.parentPath.node.left.object.type ===
-                'ThisExpression' &&
+                deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                 deepPath.parentPath.node.left.property.type === 'Identifier'
               ) {
                 state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -74,8 +73,7 @@ const visitors = {
                 if (deepPath.node.callee.type === 'Identifier' &&
                   deepPath.parentPath.node.type === 'AssignmentExpression' &&
                   deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                  deepPath.parentPath.node.left.object.type ===
-                  'ThisExpression' &&
+                  deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                   deepPath.parentPath.node.left.property.type === 'Identifier'
                 ) {
                   state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -140,8 +138,7 @@ const visitors = {
                 if (deepPath.node.callee.type === 'Identifier' &&
                   deepPath.parentPath.node.type === 'AssignmentExpression' &&
                   deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                  deepPath.parentPath.node.left.object.type ===
-                  'ThisExpression' &&
+                  deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                   deepPath.parentPath.node.left.property.type === 'Identifier'
                 ) {
                   state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -198,8 +195,7 @@ const visitors = {
               if (deepPath.node.callee.type === 'Identifier' &&
                 deepPath.parentPath.node.type === 'AssignmentExpression' &&
                 deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                deepPath.parentPath.node.left.object.type ===
-                'ThisExpression' &&
+                deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                 deepPath.parentPath.node.left.property.type === 'Identifier'
               ) {
                 state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -223,8 +219,7 @@ const visitors = {
                 if (deepPath.node.callee.type === 'Identifier' &&
                   deepPath.parentPath.node.type === 'AssignmentExpression' &&
                   deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                  deepPath.parentPath.node.left.object.type ===
-                  'ThisExpression' &&
+                  deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                   deepPath.parentPath.node.left.property.type === 'Identifier'
                 ) {
                   state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -262,8 +257,7 @@ const visitors = {
               if (deepPath.node.callee.type === 'Identifier' &&
                 deepPath.parentPath.node.type === 'AssignmentExpression' &&
                 deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                deepPath.parentPath.node.left.object.type ===
-                'ThisExpression' &&
+                deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                 deepPath.parentPath.node.left.property.type === 'Identifier'
               ) {
                 state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -287,8 +281,7 @@ const visitors = {
                 if (deepPath.node.callee.type === 'Identifier' &&
                   deepPath.parentPath.node.type === 'AssignmentExpression' &&
                   deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                  deepPath.parentPath.node.left.object.type ===
-                  'ThisExpression' &&
+                  deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                   deepPath.parentPath.node.left.property.type === 'Identifier'
                 ) {
                   state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -327,8 +320,7 @@ const visitors = {
               if (deepPath.node.callee.type === 'Identifier' &&
                 deepPath.parentPath.node.type === 'AssignmentExpression' &&
                 deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                deepPath.parentPath.node.left.object.type ===
-                'ThisExpression' &&
+                deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                 deepPath.parentPath.node.left.property.type === 'Identifier'
               ) {
                 state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -352,8 +344,7 @@ const visitors = {
                 if (deepPath.node.callee.type === 'Identifier' &&
                   deepPath.parentPath.node.type === 'AssignmentExpression' &&
                   deepPath.parentPath.node.left.type === 'MemberExpression' &&
-                  deepPath.parentPath.node.left.object.type ===
-                  'ThisExpression' &&
+                  deepPath.parentPath.node.left.object.type === 'ThisExpression' &&
                   deepPath.parentPath.node.left.property.type === 'Identifier'
                 ) {
                   state.result[state.currentFile][className][`this.${deepPath.parentPath.node.left.property.name}`] = deepPath.node.callee.name
@@ -375,8 +366,8 @@ const visitors = {
 }
 
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+  delete state.dependencies
 
   state.status = true
 }

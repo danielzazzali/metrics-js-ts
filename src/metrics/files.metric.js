@@ -21,8 +21,8 @@ const visitors = {
 function postProcessing (state) {
   delete state.currentFile
 
-  const keys = Object.keys(state.result);
-  state.result = keys.filter(k => !/^\d+$/.test(k));
+  const keys = Object.keys(state.result)
+  state.result = keys.filter(k => !/^\d+$/.test(k))
 
   state.status = true
 }

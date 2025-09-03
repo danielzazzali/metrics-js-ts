@@ -33,369 +33,369 @@ describe('Classes Per File Metric', () => {
     expect(metricsResults['classes-per-file'].status).toBeTruthy()
 
     const classesPath = path.resolve(__dirname, '../test-src/classes-per-file/JS/classes.js')
-    const classesResult = metricsResults['classes-per-file']['result'][classesPath]
+    const classesResult = metricsResults['classes-per-file'].result[classesPath]
 
     // Serializing to drop metadata and hidden properties from Babel AST
     const cleanResult = JSON.parse(JSON.stringify(classesResult))
 
     expect(cleanResult).toStrictEqual(
       {
-        'Calculator': [
+        Calculator: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
-              }
-            }
-          }
-        ],
-        'AdvancedCalculator': [
-          {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
-            },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
-            }
-          },
-          {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
-            },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
-              }
-            }
-          },
-          {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
-            },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'FooClass': [
+        AdvancedCalculator: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
-              }
-            }
-          }
-        ],
-        'Logger': [
-          {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
-            },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
-            }
-          },
-          {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
-            },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
-              }
-            }
-          },
-          {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
-            },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'LiteralClassName': [
+        FooClass: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'Printer': [
+        Logger: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            }
+          }
+        ],
+        LiteralClassName: [
+          {
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
+            },
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            }
+          },
+          {
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
+            },
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            }
+          },
+          {
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
+            },
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            }
+          }
+        ],
+        Printer: [
+          {
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
+            },
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
+            }
+          },
+          {
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
+            },
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
+              }
+            }
+          },
+          {
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
+            },
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
@@ -409,69 +409,69 @@ describe('Classes Per File Metric', () => {
     expect(metricsResults['classes-per-file'].status).toBeTruthy()
 
     const defaultClassPath = path.resolve(__dirname, '../test-src/classes-per-file/JS/defaultClass.js')
-    const defaultClassResult = metricsResults['classes-per-file']['result'][defaultClassPath]
+    const defaultClassResult = metricsResults['classes-per-file'].result[defaultClassPath]
 
     // Serializing to drop metadata and hidden properties from Babel AST
     const cleanResult = JSON.parse(JSON.stringify(defaultClassResult))
 
     expect(cleanResult).toStrictEqual(
       {
-        'defaultClass': [
+        defaultClass: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
@@ -485,477 +485,477 @@ describe('Classes Per File Metric', () => {
     expect(metricsResults['classes-per-file'].status).toBeTruthy()
 
     const classesPath = path.resolve(__dirname, '../test-src/classes-per-file/TS/classes.ts')
-    const classesResult = metricsResults['classes-per-file']['result'][classesPath]
+    const classesResult = metricsResults['classes-per-file'].result[classesPath]
 
     // Serializing to drop metadata and hidden properties from Babel AST
     const cleanResult = JSON.parse(JSON.stringify(classesResult))
 
     expect(cleanResult).toStrictEqual(
       {
-        'Calculator': [
+        Calculator: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'AdvancedCalculator': [
+        AdvancedCalculator: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'FooClass': [
+        FooClass: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'Logger': [
+        Logger: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'Printer': [
+        Printer: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
         ],
-        'LiteralClassName': [
+        LiteralClassName: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
@@ -969,87 +969,87 @@ describe('Classes Per File Metric', () => {
     expect(metricsResults['classes-per-file'].status).toBeTruthy()
 
     const defaultClassPath = path.resolve(__dirname, '../test-src/classes-per-file/TS/defaultClass.ts')
-    const defaultClassResult = metricsResults['classes-per-file']['result'][defaultClassPath]
+    const defaultClassResult = metricsResults['classes-per-file'].result[defaultClassPath]
 
     // Serializing to drop metadata and hidden properties from Babel AST
     const cleanResult = JSON.parse(JSON.stringify(defaultClassResult))
 
     expect(cleanResult).toStrictEqual(
       {
-        'defaultClass': [
+        defaultClass: [
           {
-            'type': 'ClassMethod',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'foo'
+            type: 'ClassMethod',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'foo'
             },
-            'computed': false,
-            'kind': 'method',
-            'id': null,
-            'generator': false,
-            'async': false,
-            'params': [],
-            'returnType': {
-              'type': 'TSTypeAnnotation',
-              'typeAnnotation': {
-                'type': 'TSVoidKeyword'
+            computed: false,
+            kind: 'method',
+            id: null,
+            generator: false,
+            async: false,
+            params: [],
+            returnType: {
+              type: 'TSTypeAnnotation',
+              typeAnnotation: {
+                type: 'TSVoidKeyword'
               }
             },
-            'body': {
-              'type': 'BlockStatement',
-              'body': []
+            body: {
+              type: 'BlockStatement',
+              body: []
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'bar'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'bar'
             },
-            'computed': false,
-            'value': {
-              'type': 'ArrowFunctionExpression',
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'ArrowFunctionExpression',
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           },
           {
-            'type': 'ClassProperty',
-            'static': false,
-            'key': {
-              'type': 'Identifier',
-              'name': 'baz'
+            type: 'ClassProperty',
+            static: false,
+            key: {
+              type: 'Identifier',
+              name: 'baz'
             },
-            'computed': false,
-            'value': {
-              'type': 'FunctionExpression',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'returnType': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSVoidKeyword'
+            computed: false,
+            value: {
+              type: 'FunctionExpression',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              returnType: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSVoidKeyword'
                 }
               },
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             }
           }
@@ -1057,5 +1057,4 @@ describe('Classes Per File Metric', () => {
       }
     )
   })
-
 })

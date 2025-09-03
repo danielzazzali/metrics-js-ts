@@ -10,13 +10,14 @@ describe('fileReader.js', function () {
   describe('readDirectory', function () {
     const codePath = path.resolve(__dirname, '../test-src/ignore-test')
     const ignoreDirPath = path.resolve(__dirname, '../test-src/ignore-test/ignore-dir')
+    const metricsIgnoreFilePath = path.resolve(__dirname, '../test-src/ignore-test/.metricsignore')
     let metricsResults
 
     beforeAll(async function () {
-      metricsResults = await calculateMetrics({ codePath })
+      metricsResults = await calculateMetrics({ codePath, metricsIgnoreFilePath: metricsIgnoreFilePath })
     })
 
-    it('codePath is defined', () => {
+    it('ignoreDirPath is not present in the result', () => {
       expect(metricsResults.files).toBeDefined()
       expect(metricsResults.files[ignoreDirPath]).toBeUndefined()
     })

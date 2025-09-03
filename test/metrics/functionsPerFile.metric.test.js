@@ -33,257 +33,257 @@ describe('Functions Per File Metric', () => {
   it('Functions Per File result contains expected functions', () => {
     expect(metricsResults).toBeDefined()
     expect(metricsResults).toHaveProperty('functions-per-file')
-    expect(metricsResults['functions-per-file']['status']).toBeTruthy()
+    expect(metricsResults['functions-per-file'].status).toBeTruthy()
 
-    const functionsPerFileResult = metricsResults['functions-per-file']['result']
+    const functionsPerFileResult = metricsResults['functions-per-file'].result
 
     expect(functionsPerFileResult).toEqual({
       [`${codePath}/JS/functions.js`]: {
-        'foo': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'foo'
+        foo: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'foo'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'foo'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'foo'
                 }
               }
             ]
           }
         },
-        'bar': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+        bar: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'bar'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'bar'
                 }
               }
             ]
           }
         },
-        'qux': {
-          'type': 'FunctionExpression',
-          'id': {
-            'type': 'Identifier',
-            'name': 'quxNamed'
+        qux: {
+          type: 'FunctionExpression',
+          id: {
+            type: 'Identifier',
+            name: 'quxNamed'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'qux'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'qux'
                 }
               }
             ]
           }
         },
-        'baz': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'body': {
-            'type': 'BlockStatement',
-            'body': []
+        baz: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          body: {
+            type: 'BlockStatement',
+            body: []
           }
         },
-        'add': {
-          'type': 'ArrowFunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [
+        add: {
+          type: 'ArrowFunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [
             {
-              'type': 'Identifier',
-              'name': 'a'
+              type: 'Identifier',
+              name: 'a'
             },
             {
-              'type': 'Identifier',
-              'name': 'b'
+              type: 'Identifier',
+              name: 'b'
             }
           ],
-          'body': {
-            'type': 'BinaryExpression',
-            'left': {
-              'type': 'Identifier',
-              'name': 'a'
+          body: {
+            type: 'BinaryExpression',
+            left: {
+              type: 'Identifier',
+              name: 'a'
             },
-            'operator': '+',
-            'right': {
-              'type': 'Identifier',
-              'name': 'b'
+            operator: '+',
+            right: {
+              type: 'Identifier',
+              name: 'b'
             }
           }
         }
       },
       [`${codePath}/TS/functions.ts`]: {
-        'foo': {
-          'type': 'FunctionDeclaration',
-          'id': {
-            'type': 'Identifier',
-            'name': 'foo'
+        foo: {
+          type: 'FunctionDeclaration',
+          id: {
+            type: 'Identifier',
+            name: 'foo'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSStringKeyword'
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSStringKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'foo'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'foo'
                 }
               }
             ]
           }
         },
-        'bar': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSStringKeyword'
+        bar: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSStringKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'bar'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'bar'
                 }
               }
             ]
           }
         },
-        'qux': {
-          'type': 'FunctionExpression',
-          'id': {
-            'type': 'Identifier',
-            'name': 'quxNamed'
+        qux: {
+          type: 'FunctionExpression',
+          id: {
+            type: 'Identifier',
+            name: 'quxNamed'
           },
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSStringKeyword'
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSStringKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': [
+          body: {
+            type: 'BlockStatement',
+            body: [
               {
-                'type': 'ReturnStatement',
-                'argument': {
-                  'type': 'StringLiteral',
-                  'value': 'qux'
+                type: 'ReturnStatement',
+                argument: {
+                  type: 'StringLiteral',
+                  value: 'qux'
                 }
               }
             ]
           }
         },
-        'baz': {
-          'type': 'FunctionExpression',
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [],
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSVoidKeyword'
+        baz: {
+          type: 'FunctionExpression',
+          id: null,
+          generator: false,
+          async: false,
+          params: [],
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSVoidKeyword'
             }
           },
-          'body': {
-            'type': 'BlockStatement',
-            'body': []
+          body: {
+            type: 'BlockStatement',
+            body: []
           }
         },
-        'add': {
-          'type': 'ArrowFunctionExpression',
-          'returnType': {
-            'type': 'TSTypeAnnotation',
-            'typeAnnotation': {
-              'type': 'TSNumberKeyword'
+        add: {
+          type: 'ArrowFunctionExpression',
+          returnType: {
+            type: 'TSTypeAnnotation',
+            typeAnnotation: {
+              type: 'TSNumberKeyword'
             }
           },
-          'id': null,
-          'generator': false,
-          'async': false,
-          'params': [
+          id: null,
+          generator: false,
+          async: false,
+          params: [
             {
-              'type': 'Identifier',
-              'name': 'a',
-              'typeAnnotation': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSNumberKeyword'
+              type: 'Identifier',
+              name: 'a',
+              typeAnnotation: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSNumberKeyword'
                 }
               }
             },
             {
-              'type': 'Identifier',
-              'name': 'b',
-              'typeAnnotation': {
-                'type': 'TSTypeAnnotation',
-                'typeAnnotation': {
-                  'type': 'TSNumberKeyword'
+              type: 'Identifier',
+              name: 'b',
+              typeAnnotation: {
+                type: 'TSTypeAnnotation',
+                typeAnnotation: {
+                  type: 'TSNumberKeyword'
                 }
               }
             }
           ],
-          'body': {
-            'type': 'BinaryExpression',
-            'left': {
-              'type': 'Identifier',
-              'name': 'a'
+          body: {
+            type: 'BinaryExpression',
+            left: {
+              type: 'Identifier',
+              name: 'a'
             },
-            'operator': '+',
-            'right': {
-              'type': 'Identifier',
-              'name': 'b'
+            operator: '+',
+            right: {
+              type: 'Identifier',
+              name: 'b'
             }
           }
         }

@@ -3,7 +3,9 @@ import { parse } from '@babel/parser'
 import { BABEL_PARSER_OPTIONS, FILE_ENCODING, KEYS_TO_REMOVE, MESSAGES } from '../constants/constants.js'
 import { logger } from '../logger/logger.js'
 
-function cleanAST (node) {
+function cleanAST (node, parent) {
+  if (node === null) return
+
   if (Array.isArray(node)) {
     // If the node is an array, recursively clean each child
     for (const child of node) {
@@ -54,7 +56,7 @@ async function constructASTs (files) {
 
     if (ast === null) return
 
-    cleanAST(ast)
+    cleanAST(ast, ast)
 
     // Add metadata to AST
     ast.program.filePath = file.filePath

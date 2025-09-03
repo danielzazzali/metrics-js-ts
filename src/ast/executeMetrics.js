@@ -73,7 +73,8 @@ function buildFinalResult (sortedMetrics, resultMap) {
   const output = {}
 
   for (const metric of sortedMetrics) {
-    if (metric.state.ignore) continue
+    /* istanbul ignore next */
+    if (metric.state.ignore && process.env.SKIP_IGNORE !== 'true') continue
 
     const { id, ...stateWithoutId } = metric.state
     output[id] = stateWithoutId

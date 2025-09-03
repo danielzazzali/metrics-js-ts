@@ -21,16 +21,16 @@ describe('Files On Repository Metric', function () {
 
   it('Files on Repository metric is defined, has correct name, description and status and contains result', async () => {
     expect(metricsResults).toHaveProperty('files')
-    expect(metricsResults['files']).toHaveProperty('name', 'Files on Repository')
-    expect(metricsResults['files'].description).toBeDefined()
-    expect(metricsResults['files'].description).toContain('Collects and records all source files in the repository by their path.')
-    expect(metricsResults['files'].result).toBeDefined()
-    expect(metricsResults['files'].status).toBeTruthy()
+    expect(metricsResults.files).toHaveProperty('name', 'Files on Repository')
+    expect(metricsResults.files.description).toBeDefined()
+    expect(metricsResults.files.description).toContain('Collects and records all source files in the repository by their path.')
+    expect(metricsResults.files.result).toBeDefined()
+    expect(metricsResults.files.status).toBeTruthy()
   })
 
   it('Files on Repository result contains expected length', () => {
-    expect(metricsResults['files'].result).toBeDefined()
-    expect(metricsResults['files'].status).toBeTruthy()
+    expect(metricsResults.files.result).toBeDefined()
+    expect(metricsResults.files.status).toBeTruthy()
 
     const result = metricsResults.files.result
 
@@ -38,8 +38,8 @@ describe('Files On Repository Metric', function () {
   })
 
   it('Files on Repository result contains expected paths', () => {
-    expect(metricsResults['files'].result).toBeDefined()
-    expect(metricsResults['files'].status).toBeTruthy()
+    expect(metricsResults.files.result).toBeDefined()
+    expect(metricsResults.files.status).toBeTruthy()
 
     const result = metricsResults.files.result
 

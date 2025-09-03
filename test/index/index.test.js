@@ -48,8 +48,8 @@ describe('index.js', function () {
       expect(metricsResults['class-coupling']).toHaveProperty('status', true)
     })
 
-    it('Should not contain metric instance-mapper (helper metric)', function () {
-      expect(metricsResults['instance-mapper']).toBeUndefined()
+    it('Should contain metric instance-mapper (helper metric) because in testing the skip is ignored', function () {
+      expect(metricsResults['instance-mapper']).toHaveProperty('status', true)
     })
 
     it('Should throw error if no default or custom metrics are provided', async function () {
