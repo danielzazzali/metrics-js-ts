@@ -10,16 +10,22 @@ describe('fileReader.js', function () {
   describe('readDirectory', function () {
     const codePath = path.resolve(__dirname, '../test-src/ignore-test')
     const ignoreDirPath = path.resolve(__dirname, '../test-src/ignore-test/ignore-dir')
+    const ignoredJSFile = path.resolve(__dirname, '../test-src/ignore-test/example_ignored.js')
+    const ignoredTXTFile = path.resolve(__dirname, '../test-src/ignore-test/example_file.txt')
+
     const metricsIgnoreFilePath = path.resolve(__dirname, '../test-src/ignore-test/.metricsignore')
+
     let metricsResults
 
     beforeAll(async function () {
       metricsResults = await calculateMetrics({ codePath, metricsIgnoreFilePath: metricsIgnoreFilePath })
     })
 
-    it('ignoreDirPath is not present in the result', () => {
+    it('files and directory added to .metricsignore are not present in the result', () => {
       expect(metricsResults.files).toBeDefined()
       expect(metricsResults.files[ignoreDirPath]).toBeUndefined()
+      expect(metricsResults.files[ignoredJSFile]).toBeUndefined()
+      expect(metricsResults.files[ignoredTXTFile]).toBeUndefined()
     })
   })
 })
