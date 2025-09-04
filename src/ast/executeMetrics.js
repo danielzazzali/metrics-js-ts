@@ -44,7 +44,7 @@ function traverseASTs (metric, ASTs) {
         traverse.default(ast, visitors, null, metric.state)
       } catch (error) {
         logger.logTraverseError(
-          `${MESSAGES.ERRORS.ERROR_TRAVERSING_AST} ${metric.state.id} ${error}`
+          `${MESSAGES.ERRORS.ERROR_TRAVERSING_AST} ${metric.state.id} -> ${ast.program.filePath}: ${error}`
         )
       }
     }

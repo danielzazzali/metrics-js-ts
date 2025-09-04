@@ -18,7 +18,7 @@ describe('fileReader.js', function () {
     let metricsResults
 
     beforeAll(async function () {
-      metricsResults = await calculateMetrics({ codePath, metricsIgnoreFilePath: metricsIgnoreFilePath })
+      metricsResults = await calculateMetrics({ codePath, metricsIgnoreFilePath })
     })
 
     it('files and directory added to .metricsignore are not present in the result', () => {

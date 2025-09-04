@@ -27,7 +27,8 @@ const visitors = {
     */
     if (node.id &&
       node.id.name &&
-      parentPath.node.type === 'Program'
+      parentPath.node.type === 'Program' ||
+      parentPath.node.type === 'ExportNamedDeclaration'
     ) {
       /* Ignore:
          class SuperCalculator extends class{} {}
@@ -46,8 +47,9 @@ const visitors = {
           state.result[state.currentFile][className].push(innerPath.node)
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+             innerPath.node.value.type === 'FunctionExpression')
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
@@ -74,8 +76,9 @@ const visitors = {
           state.result[state.currentFile][className].push(innerPath.node)
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
@@ -119,8 +122,9 @@ const visitors = {
           state.result[state.currentFile][className].push(innerPath.node)
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
@@ -145,8 +149,9 @@ const visitors = {
           state.result[state.currentFile][className].push(innerPath.node)
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }
@@ -172,8 +177,9 @@ const visitors = {
           state.result[state.currentFile][className].push(innerPath.node)
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             state.result[state.currentFile][className].push(innerPath.node)
           }

@@ -3,12 +3,29 @@ const state = {
   description: 'Walks through each class method to identify instance accesses (this.prop and local variables) and map them to their constructor types',
   result: {},
   id: 'instance-mapper',
-  dependencies: ['files'],
+  dependencies: ['classes-per-file'],
   ignore: true,
   status: false
 }
 
 const visitors = {
+  // Entry point for each parsed file, load dependency
+  Program (path) {
+    state.currentFile = path.node.filePath
+    state.result[state.currentFile] = state.dependencies['classes-per-file'][state.currentFile]
+  }
+}
+
+function postProcessing (state) {
+  delete state.currentFile
+  delete state.dependencies
+
+  state.status = true
+}
+
+export { state, visitors, postProcessing }
+
+const OLDvisitors = {
   // Entry point for each parsed file, load dependency
   Program (path) {
     state.currentFile = path.node.filePath
@@ -364,12 +381,3 @@ const visitors = {
     }
   }
 }
-
-function postProcessing (state) {
-  delete state.currentFile
-  delete state.dependencies
-
-  state.status = true
-}
-
-export { state, visitors, postProcessing }

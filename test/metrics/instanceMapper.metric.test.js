@@ -12,12 +12,18 @@ describe('Instance Mapper Metric', () => {
 
   beforeEach(async () => {
     jest.resetModules()
-    metricsResults = await calculateMetrics({ codePath })
   })
 
-  it('metricsResults is defined', () => {
+  it('metricsResults is defined', async () => {
+    metricsResults = await calculateMetrics({ codePath })
     expect(metricsResults).toBeDefined()
 
-    const result = metricsResults['instance-mapper']
+    const errors = metricsResults.errors
+    // console.log(JSON.stringify(errors, null, 2))
+
+    const instanceMapperResult = metricsResults['classes-per-file']
+
+    expect(instanceMapperResult.currentFile).toBeUndefined()
+    expect(instanceMapperResult.dependencies).toBeUndefined()
   })
 })

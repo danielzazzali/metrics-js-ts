@@ -24,7 +24,7 @@ class Calculator {
 // TODO: Cada clase debe hacer le new a la clase siguiente
 
 // Valid ClassDeclaration
-class AdvancedCalculator extends Calculator {
+export class AdvancedCalculator extends Calculator {
     private Calculator: AdvancedCalculator;
     foo () {
         this.Calculator = new AdvancedCalculator()
