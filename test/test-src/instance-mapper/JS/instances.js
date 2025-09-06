@@ -1,105 +1,105 @@
 // Valid ClassDeclaration
-class Calculator {
+export class AClass {
   foo () {
-    this.fooAdvancedCalculator = new AdvancedCalculator()
-    const fooAdvCalc = new AdvancedCalculator()
-    let fooTempAdvCalc = new AdvancedCalculator()
+    this.fooBClass = new BClass()
+    const constFooBClass = new BClass()
+    let letFooBClass = new BClass()
   }
 
   bar = () => {
-    this.barAdvancedCalculator = new AdvancedCalculator()
-    const barAdvCalc = new AdvancedCalculator()
-    let barTempAdvCalc = new AdvancedCalculator()
+    this.barBClass = new BClass()
+    const constBarBClass = new BClass()
+    let letBarBClass = new BClass()
   }
   baz = function () {
-    this.bazAdvancedCalculator = new AdvancedCalculator()
-    const bazAdvCalc = new AdvancedCalculator()
-    let bazTempAdvCalc = new AdvancedCalculator()
+    this.bazBClass = new BClass()
+    const constBazBClass = new BClass()
+    let letBazBClass = new BClass()
   }
   dummy = 1
 }
 
 // Valid ClassDeclaration
-export class AdvancedCalculator extends Calculator {
+class BClass extends AClass {
   foo () {
-    this.fooAdvancedCalculator = new AdvancedCalculator()
-    const fooAdvCalc = new AdvancedCalculator()
-    let fooTempAdvCalc = new AdvancedCalculator()
+    this.fooCClass = new CClass()
+    const constFooCClass = new CClass()
+    let letFooCClass = new CClass()
   }
 
   bar = () => {
-    this.barAdvancedCalculator = new AdvancedCalculator()
-    const barAdvCalc = new AdvancedCalculator()
-    let barTempAdvCalc = new AdvancedCalculator()
+    this.barCClass = new CClass()
+    const constBarCClass = new CClass()
+    let letBarCClass = new CClass()
   }
   baz = function () {
-    this.bazAdvancedCalculator = new AdvancedCalculator()
-    const bazAdvCalc = new AdvancedCalculator()
-    let bazTempAdvCalc = new AdvancedCalculator()
+    this.bazCClass = new CClass()
+    const constBazCClass = new CClass()
+    let letBazCClass = new CClass()
   }
   dummy = 1
 }
 
 // Valid ClassDeclaration (Using identifier Foo as name of the class)
-export default class FooClass {
+export default class CClass {
   foo () {
-    this.fooAdvancedCalculator = new AdvancedCalculator()
-    const fooAdvCalc = new AdvancedCalculator()
-    let fooTempAdvCalc = new AdvancedCalculator()
+    this.fooDClass = new DClass()
+    const constFooDClass = new DClass()
+    let letFooCDClass = new DClass()
   }
 
   bar = () => {
-    this.barAdvancedCalculator = new AdvancedCalculator()
-    const barAdvCalc = new AdvancedCalculator()
-    let barTempAdvCalc = new AdvancedCalculator()
+    this.barDClass = new DClass()
+    const constBarDClass = new DClass()
+    let letBarDClass = new DClass()
   }
   baz = function () {
-    this.bazAdvancedCalculator = new AdvancedCalculator()
-    const bazAdvCalc = new AdvancedCalculator()
-    let bazTempAdvCalc = new AdvancedCalculator()
+    this.bazDClass = new DClass()
+    const constBazDClass = new DClass()
+    let letBazDClass = new DClass()
   }
   dummy = 1
 }
 
 // Valid ClassExpression
-const Logger = class {
+const DClass = class {
   foo () {
-    this.fooAdvancedCalculator = new AdvancedCalculator()
-    const fooAdvCalc = new AdvancedCalculator()
-    let fooTempAdvCalc = new AdvancedCalculator()
+    this.fooAClass = new AClass()
+    const constFooAClass = new AClass()
+    let letFooAClass = new AClass()
   }
 
   bar = () => {
-    this.barAdvancedCalculator = new AdvancedCalculator()
-    const barAdvCalc = new AdvancedCalculator()
-    let barTempAdvCalc = new AdvancedCalculator()
+    this.barAClass = new AClass()
+    const constBarAClass = new AClass()
+    let letBarAClass = new AClass()
   }
   baz = function () {
-    this.bazAdvancedCalculator = new AdvancedCalculator()
-    const bazAdvCalc = new AdvancedCalculator()
-    let bazTempAdvCalc = new AdvancedCalculator()
+    this.bazAClass = new AClass()
+    const constBazAClass = new AClass()
+    let letBazAClass = new AClass()
   }
   dummy = 1
 }
 
 // Valid ClassExpression
-const myCollection = {
-  Printer: class {
+const myObject = {
+  EClass: class {
     foo () {
-      this.fooAdvancedCalculator = new AdvancedCalculator()
-      const fooAdvCalc = new AdvancedCalculator()
-      let fooTempAdvCalc = new AdvancedCalculator()
+      this.fooAClass = new AClass()
+      const constFooAClass = new AClass()
+      let letFooAClass = new AClass()
     }
 
     bar = () => {
-      this.barAdvancedCalculator = new AdvancedCalculator()
-      const barAdvCalc = new AdvancedCalculator()
-      let barTempAdvCalc = new AdvancedCalculator()
+      this.barAClass = new AClass()
+      const constBarAClass = new AClass()
+      let letBarAClass = new AClass()
     }
     baz = function () {
-      this.bazAdvancedCalculator = new AdvancedCalculator()
-      const bazAdvCalc = new AdvancedCalculator()
-      let bazTempAdvCalc = new AdvancedCalculator()
+      this.bazAClass = new AClass()
+      const constBazAClass = new AClass()
+      let letBazAClass = new AClass()
     }
     dummy = 1
   }
@@ -109,35 +109,34 @@ const myCollection = {
 const object = {
   ['LiteralClassName']: class {
     foo () {
-      this.fooAdvancedCalculator = new AdvancedCalculator()
-      const fooAdvCalc = new AdvancedCalculator()
-      let fooTempAdvCalc = new AdvancedCalculator()
+      this.fooAClass = new AClass()
+      const constFooAClass = new AClass()
+      let letFooAClass = new AClass()
     }
 
     bar = () => {
-      this.barAdvancedCalculator = new AdvancedCalculator()
-      const barAdvCalc = new AdvancedCalculator()
-      let barTempAdvCalc = new AdvancedCalculator()
+      this.barAClass = new AClass()
+      const constBarAClass = new AClass()
+      let letBarAClass = new AClass()
     }
     baz = function () {
-      this.bazAdvancedCalculator = new AdvancedCalculator()
-      const bazAdvCalc = new AdvancedCalculator()
-      let bazTempAdvCalc = new AdvancedCalculator()
+      this.bazAClass = new AClass()
+      const constBazAClass = new AClass()
+      let letBazAClass = new AClass()
     }
     dummy = 1
   }
 };
 
+// Invalid ClassDeclaration
+(() => { class NotCounted1 {} })()
 
 // Invalid ClassDeclaration
-(() => { class NotCounted {} })()
-
-// Invalid ClassDeclaration
-class SuperCalculator extends class {} {}
+class NotCounted2 extends class {} {}
 
 // Invalid ClassExpression
-const SuperCalc = class Hello extends class {} {};
+const NotCounted4 = class NotCounted3 extends class {} {};
 
 // Invalid ClassExpression
-(() => { const Ignore = class IgnoredClass extends class {} {} })()
+(() => { const NotCounted6 = class NotCounted5 extends class {} {} })()
 

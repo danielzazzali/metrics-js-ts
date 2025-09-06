@@ -3,7 +3,6 @@ const state = {
   description: 'Walks through each class method to identify instance accesses (this.prop and local variables) and map them to their constructor types',
   result: {},
   id: 'instance-mapper',
-  dependencies: ['classes-per-file'],
   ignore: true,
   status: false
 }
@@ -12,24 +11,7 @@ const visitors = {
   // Entry point for each parsed file, load dependency
   Program (path) {
     state.currentFile = path.node.filePath
-    state.result[state.currentFile] = state.dependencies['classes-per-file'][state.currentFile]
-  }
-}
-
-function postProcessing (state) {
-  delete state.currentFile
-  delete state.dependencies
-
-  state.status = true
-}
-
-export { state, visitors, postProcessing }
-
-const OLDvisitors = {
-  // Entry point for each parsed file, load dependency
-  Program (path) {
-    state.currentFile = path.node.filePath
-    state.result[state.currentFile] = state.dependencies.files[state.currentFile]
+    state.result[state.currentFile] = {}
   },
 
   ClassDeclaration (path) {
@@ -45,10 +27,11 @@ const OLDvisitors = {
     */
     if (node.id &&
       node.id.name &&
-      parentPath.node.type === 'Program'
+      parentPath.node.type === 'Program' ||
+      parentPath.node.type === 'ExportNamedDeclaration'
     ) {
       /* Ignore:
-         class SuperCalculator extends class {}
+         class SuperCalculator extends class{} {}
       */
       if (node.superClass &&
         node.superClass.type === 'ClassExpression'
@@ -82,8 +65,9 @@ const OLDvisitors = {
           })
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             innerPath.traverse({
               NewExpression (deepPath) {
@@ -121,7 +105,7 @@ const OLDvisitors = {
         ? path.node.id.name
         : state.currentFile.split('/').pop().replace(/\.(js|ts)$/, '')
 
-      state.result[state.currentFile][className] = []
+      state.result[state.currentFile][className] = {}
 
       path.traverse({
         ClassMethod (innerPath) {
@@ -147,8 +131,9 @@ const OLDvisitors = {
           })
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             innerPath.traverse({
               NewExpression (deepPath) {
@@ -203,7 +188,7 @@ const OLDvisitors = {
       }
 
       const className = parentPath.node.id.name
-      state.result[state.currentFile][className] = []
+      state.result[state.currentFile][className] = {}
 
       path.traverse({
         ClassMethod (innerPath) {
@@ -228,8 +213,9 @@ const OLDvisitors = {
           })
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             innerPath.traverse({
               NewExpression (deepPath) {
@@ -265,7 +251,7 @@ const OLDvisitors = {
       parentPath.node.key.type === 'StringLiteral'
     ) {
       const className = parentPath.node.key.value
-      state.result[state.currentFile][className] = []
+      state.result[state.currentFile][className] = {}
 
       path.traverse({
         ClassMethod (innerPath) {
@@ -290,8 +276,9 @@ const OLDvisitors = {
           })
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             innerPath.traverse({
               NewExpression (deepPath) {
@@ -328,7 +315,7 @@ const OLDvisitors = {
       parentPath.node.computed === false
     ) {
       const className = parentPath.node.key.name
-      state.result[state.currentFile][className] = []
+      state.result[state.currentFile][className] = {}
 
       path.traverse({
         ClassMethod (innerPath) {
@@ -353,8 +340,9 @@ const OLDvisitors = {
           })
         },
         ClassProperty (innerPath) {
-          if (innerPath.node.value.type === 'ArrowFunctionExpression' ||
-            innerPath.node.value.type === 'FunctionExpression'
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
           ) {
             innerPath.traverse({
               NewExpression (deepPath) {
@@ -381,3 +369,12 @@ const OLDvisitors = {
     }
   }
 }
+
+function postProcessing (state) {
+  delete state.currentFile
+  delete state.dependencies
+
+  state.status = true
+}
+
+export { state, visitors, postProcessing }
