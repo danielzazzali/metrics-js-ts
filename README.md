@@ -1,6 +1,6 @@
 # Metrics-JS-TS
 
-This library is designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code
+Library designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code
 files, generates Abstract Syntax Trees (ASTs), and applies different modular metrics to analyze code structure,
 maintainability, and quality.
 
@@ -72,10 +72,9 @@ The library includes several built-in metrics:
 * File Coupling: Measures file-level coupling by computing each file’s fan-in (dependent files) and fan-out (dependencies)
 * Functions Per File: Records all named functions in each source file, mapping function names to their AST node
 * Function Coupling: Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions
-* Classes Per File: Analyzes each source file to identify and record all top-level classes defined.
-* Methods Per File: Counts the number of methods in each file.
-* Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan Out) and the number of
-  classes that call a class method (Fan In).
+* Classes Per File: Analyzes each source file to identify and record all top-level classes defined
+* Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan-Out) and the number of
+  methods that call a class method (Fan-In)
 
 --- 
 
@@ -84,7 +83,7 @@ The library includes several built-in metrics:
 To add custom metrics, create a new module in the custom metrics directory and export the following:
 
 * `state`: The initial state of the metric.
-* `visitors`: An array of grouped visitors to traverse the AST, from first to last in execution order.
+* `visitors`: An object of grouped visitors to traverse the AST and do calculations.
 * `postProcessing` (optional): A function to perform post-processing on the collected data.
 
 Example:

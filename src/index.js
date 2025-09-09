@@ -33,12 +33,4 @@ async function calculateMetrics ({
   return await executeMetrics(metricObjects, ASTs)
 }
 
-// const codePath = "/home/daniel/Workspace/metrics-js-ts/test/test-src/function-coupling"
-//
-// const metricsResults = await calculateMetrics({ codePath })
-
-// const result = metricsResults["function-coupling"].result
-//
-// console.log(JSON.stringify(result, null, 2))
-
 export { calculateMetrics }

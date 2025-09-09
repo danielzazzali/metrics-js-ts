@@ -27,10 +27,11 @@ const visitors = {
     */
     if (node.id &&
       node.id.name &&
-      parentPath.node.type === 'Program'
+      parentPath.node.type === 'Program' ||
+      parentPath.node.type === 'ExportNamedDeclaration'
     ) {
       /* Ignore:
-         class SuperCalculator extends class {}
+         class SuperCalculator extends class{} {}
       */
       if (node.superClass &&
         node.superClass.type === 'ClassExpression'
@@ -47,23 +48,24 @@ const visitors = {
               /* Example:
               new ClassF();
 
-              Count the call to 'constructor' method (_constructor)
+              Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
               */
               let callerMethod = innerPath.node.key.name
-              const calleeClass = deepPath.node.callee.name
-              const calleeMethod = '_constructor'
 
-              let count = false
+              const calleeClass = deepPath.node.callee.name
+              const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
+              let found = false;
 
-              for (const [filePath, classes] of Object.entries(state.result)) {
+              // Search the callee method position
+              for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                 // If the target class exists in this file
                 if (classes[calleeClass]) {
                   // Check each method node in that class
                   for (const methodNode of classes[calleeClass]) {
                     if (methodNode.kind === 'constructor') {
-                      count = true
+                      found = true
                       calleeFilepath = filePath
                       break
                     }
@@ -74,29 +76,19 @@ const visitors = {
               }
 
               let callerMethodIndex = 0
+              for (const methodNode of state.result[state.currentFile][callerClass]) {
+                if (callerMethod === 'constructor') {
+                  // _constructor to avoid constructor default property of objects
+                  callerMethod = '_constructor'
+                  break
+                }
 
-              if (callerMethod === 'constructor') {
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  if (methodNode.kind === 'constructor') {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              } else {
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
+                const possible = methodNode.key?.name;
+                if (callerMethod === possible) break
+                callerMethodIndex++
               }
 
-              if (callerMethod === 'constructor') callerMethod = '_constructor'
-
-              if (count) {
+              if (found && calleeFilepath) {
                 if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                   state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                 }
@@ -126,6 +118,7 @@ const visitors = {
                 state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
               }
             },
+
             CallExpression (deepPath) {
               /* Example:
               ClassF.foo()
@@ -136,6 +129,7 @@ const visitors = {
                 deepPath.node.callee.property.type === 'Identifier'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
                 if (calleeClass === undefined) {
@@ -144,12 +138,11 @@ const visitors = {
 
                 let calleeMethod = deepPath.node.callee.property.name
 
-                let count = false
+                let found = false
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -157,7 +150,7 @@ const visitors = {
                       const possibleCalleeMethod = methodNode.key &&
                         methodNode.key.name
                       if (calleeMethod === possibleCalleeMethod) {
-                        count = true
+                        found = true
                         calleeFilepath = filePath
                         break
                       }
@@ -179,12 +172,10 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
                 if (callerMethod ===
                   'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (found && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -213,8 +204,6 @@ const visitors = {
 
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
-
-                return
               }
 
               /* Example:
@@ -228,6 +217,7 @@ const visitors = {
                 deepPath.node.callee.object.object.type === 'ThisExpression'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
                 let calleeMethod = deepPath.node.callee.property.name
 
@@ -235,8 +225,7 @@ const visitors = {
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -266,12 +255,9 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
+                if (callerMethod === 'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (count && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -303,6 +289,253 @@ const visitors = {
               }
             }
           })
+        },
+        ClassProperty (innerPath) {
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
+          ) {
+            innerPath.traverse({
+              NewExpression (deepPath) {
+                /* Example:
+                new ClassF();
+
+                Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
+                */
+                let callerMethod = innerPath.node.key.name
+
+                const calleeClass = deepPath.node.callee.name
+                const calleeMethod = '_constructor' // Because we are in a NewExpression
+                let calleeMethodIndex = 0
+                let calleeFilepath = ''
+                let found = false;
+
+                // Search the callee method position
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                  // If the target class exists in this file
+                  if (classes[calleeClass]) {
+                    // Check each method node in that class
+                    for (const methodNode of classes[calleeClass]) {
+                      if (methodNode.kind === 'constructor') {
+                        found = true
+                        calleeFilepath = filePath
+                        break
+                      }
+                      calleeMethodIndex++
+                    }
+                    break
+                  }
+                }
+
+                let callerMethodIndex = 0
+
+                // Search method node
+                for (const methodNode of state.result[state.currentFile][callerClass]) {
+                  const possibleCallerMethod = methodNode.key && methodNode.key.name
+                  if (callerMethod === possibleCallerMethod) {
+                    break
+                  }
+                  callerMethodIndex++
+                }
+
+                if (found && calleeFilepath) {
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                  }
+
+                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                  }
+
+                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                }
+              },
+
+              CallExpression (deepPath) {
+                /* Example:
+                ClassF.foo()
+                myCar.start(); (Constant/Variable instance call)
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.type === 'Identifier' &&
+                  deepPath.node.callee.property.type === 'Identifier'
+                ) {
+                  let callerMethod = innerPath.node.key.name
+
+                  let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
+
+                  if (calleeClass === undefined) {
+                    calleeClass = deepPath.node.callee.object.name
+                  }
+
+                  let calleeMethod = deepPath.node.callee.property.name
+
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
+
+                  for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
+                      break
+                    }
+                  }
+
+                  let callerMethodIndex = 0
+
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key &&
+                      methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
+                      break
+                    }
+                    callerMethodIndex++
+                  }
+
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                  }
+
+                }
+
+                /* Example:
+                this.car.start()
+
+                This case counts property instances
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.property.type === 'Identifier' &&
+                  deepPath.node.callee.object.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.object.type === 'ThisExpression'
+                ) {
+                  let callerMethod = innerPath.node.key.name
+
+                  const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
+                  let calleeMethod = deepPath.node.callee.property.name
+
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
+
+                  for (const [filePath, classes] of Object.entries(state.result)) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
+                      break
+                    }
+                  }
+
+                  let callerMethodIndex = 0
+
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key && methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
+                      break
+                    }
+                    callerMethodIndex++
+                  }
+
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+
+                  }
+                }
+              }
+            })
+          }
         }
       })
     }
@@ -324,23 +557,24 @@ const visitors = {
               /* Example:
               new ClassF();
 
-              Count the call to 'constructor' method (_constructor)
+              Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
               */
               let callerMethod = innerPath.node.key.name
-              const calleeClass = deepPath.node.callee.name
-              const calleeMethod = '_constructor'
 
-              let count = false
+              const calleeClass = deepPath.node.callee.name
+              const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
+              let found = false;
 
-              for (const [filePath, classes] of Object.entries(state.result)) {
+              // Search the callee method position
+              for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                 // If the target class exists in this file
                 if (classes[calleeClass]) {
                   // Check each method node in that class
                   for (const methodNode of classes[calleeClass]) {
                     if (methodNode.kind === 'constructor') {
-                      count = true
+                      found = true
                       calleeFilepath = filePath
                       break
                     }
@@ -351,29 +585,19 @@ const visitors = {
               }
 
               let callerMethodIndex = 0
+              for (const methodNode of state.result[state.currentFile][callerClass]) {
+                if (callerMethod === 'constructor') {
+                  // _constructor to avoid constructor default property of objects
+                  callerMethod = '_constructor'
+                  break
+                }
 
-              if (callerMethod === 'constructor') {
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  if (methodNode.kind === 'constructor') {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              } else {
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
+                const possible = methodNode.key?.name;
+                if (callerMethod === possible) break
+                callerMethodIndex++
               }
 
-              if (callerMethod === 'constructor') callerMethod = '_constructor'
-
-              if (count) {
+              if (found && calleeFilepath) {
                 if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                   state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                 }
@@ -403,6 +627,7 @@ const visitors = {
                 state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
               }
             },
+
             CallExpression (deepPath) {
               /* Example:
               ClassF.foo()
@@ -413,6 +638,7 @@ const visitors = {
                 deepPath.node.callee.property.type === 'Identifier'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
                 if (calleeClass === undefined) {
@@ -421,12 +647,11 @@ const visitors = {
 
                 let calleeMethod = deepPath.node.callee.property.name
 
-                let count = false
+                let found = false
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -434,7 +659,7 @@ const visitors = {
                       const possibleCalleeMethod = methodNode.key &&
                         methodNode.key.name
                       if (calleeMethod === possibleCalleeMethod) {
-                        count = true
+                        found = true
                         calleeFilepath = filePath
                         break
                       }
@@ -456,12 +681,10 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
                 if (callerMethod ===
                   'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (found && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -490,8 +713,6 @@ const visitors = {
 
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
-
-                return
               }
 
               /* Example:
@@ -505,6 +726,7 @@ const visitors = {
                 deepPath.node.callee.object.object.type === 'ThisExpression'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
                 let calleeMethod = deepPath.node.callee.property.name
 
@@ -512,8 +734,7 @@ const visitors = {
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -543,12 +764,9 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
+                if (callerMethod === 'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (count && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -580,6 +798,253 @@ const visitors = {
               }
             }
           })
+        },
+        ClassProperty (innerPath) {
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
+          ) {
+            innerPath.traverse({
+              NewExpression (deepPath) {
+                /* Example:
+                new ClassF();
+
+                Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
+                */
+                let callerMethod = innerPath.node.key.name
+
+                const calleeClass = deepPath.node.callee.name
+                const calleeMethod = '_constructor' // Because we are in a NewExpression
+                let calleeMethodIndex = 0
+                let calleeFilepath = ''
+                let found = false;
+
+                // Search the callee method position
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                  // If the target class exists in this file
+                  if (classes[calleeClass]) {
+                    // Check each method node in that class
+                    for (const methodNode of classes[calleeClass]) {
+                      if (methodNode.kind === 'constructor') {
+                        found = true
+                        calleeFilepath = filePath
+                        break
+                      }
+                      calleeMethodIndex++
+                    }
+                    break
+                  }
+                }
+
+                let callerMethodIndex = 0
+
+                // Search method node
+                for (const methodNode of state.result[state.currentFile][callerClass]) {
+                  const possibleCallerMethod = methodNode.key && methodNode.key.name
+                  if (callerMethod === possibleCallerMethod) {
+                    break
+                  }
+                  callerMethodIndex++
+                }
+
+                if (found && calleeFilepath) {
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                  }
+
+                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                  }
+
+                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                }
+              },
+
+              CallExpression (deepPath) {
+                /* Example:
+                ClassF.foo()
+                myCar.start(); (Constant/Variable instance call)
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.type === 'Identifier' &&
+                  deepPath.node.callee.property.type === 'Identifier'
+                ) {
+                  let callerMethod = innerPath.node.key.name
+
+                  let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
+
+                  if (calleeClass === undefined) {
+                    calleeClass = deepPath.node.callee.object.name
+                  }
+
+                  let calleeMethod = deepPath.node.callee.property.name
+
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
+
+                  for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
+                      break
+                    }
+                  }
+
+                  let callerMethodIndex = 0
+
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key &&
+                      methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
+                      break
+                    }
+                    callerMethodIndex++
+                  }
+
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                  }
+
+                }
+
+                /* Example:
+                this.car.start()
+
+                This case counts property instances
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.property.type === 'Identifier' &&
+                  deepPath.node.callee.object.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.object.type === 'ThisExpression'
+                ) {
+                  let callerMethod = innerPath.node.key.name
+
+                  const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
+                  let calleeMethod = deepPath.node.callee.property.name
+
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
+
+                  for (const [filePath, classes] of Object.entries(state.result)) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
+                      break
+                    }
+                  }
+
+                  let callerMethodIndex = 0
+
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key && methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
+                      break
+                    }
+                    callerMethodIndex++
+                  }
+
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+
+                  }
+                }
+              }
+            })
+          }
         }
       })
     }
@@ -621,23 +1086,24 @@ const visitors = {
               /* Example:
               new ClassF();
 
-              Count the call to 'constructor' method (_constructor)
+              Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
               */
               let callerMethod = innerPath.node.key.name
-              const calleeClass = deepPath.node.callee.name
-              const calleeMethod = '_constructor'
 
-              let count = false
+              const calleeClass = deepPath.node.callee.name
+              const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
+              let found = false;
 
-              for (const [filePath, classes] of Object.entries(state.result)) {
+              // Search the callee method position
+              for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                 // If the target class exists in this file
                 if (classes[calleeClass]) {
                   // Check each method node in that class
                   for (const methodNode of classes[calleeClass]) {
                     if (methodNode.kind === 'constructor') {
-                      count = true
+                      found = true
                       calleeFilepath = filePath
                       break
                     }
@@ -648,29 +1114,19 @@ const visitors = {
               }
 
               let callerMethodIndex = 0
+              for (const methodNode of state.result[state.currentFile][callerClass]) {
+                if (callerMethod === 'constructor') {
+                  // _constructor to avoid constructor default property of objects
+                  callerMethod = '_constructor'
+                  break
+                }
 
-              if (callerMethod === 'constructor') {
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  if (methodNode.kind === 'constructor') {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              } else {
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
+                const possible = methodNode.key?.name;
+                if (callerMethod === possible) break
+                callerMethodIndex++
               }
 
-              if (callerMethod === 'constructor') callerMethod = '_constructor'
-
-              if (count) {
+              if (found && calleeFilepath) {
                 if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                   state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                 }
@@ -700,6 +1156,7 @@ const visitors = {
                 state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
               }
             },
+
             CallExpression (deepPath) {
               /* Example:
               ClassF.foo()
@@ -710,6 +1167,7 @@ const visitors = {
                 deepPath.node.callee.property.type === 'Identifier'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
                 if (calleeClass === undefined) {
@@ -718,12 +1176,11 @@ const visitors = {
 
                 let calleeMethod = deepPath.node.callee.property.name
 
-                let count = false
+                let found = false
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -731,7 +1188,7 @@ const visitors = {
                       const possibleCalleeMethod = methodNode.key &&
                         methodNode.key.name
                       if (calleeMethod === possibleCalleeMethod) {
-                        count = true
+                        found = true
                         calleeFilepath = filePath
                         break
                       }
@@ -753,12 +1210,10 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
                 if (callerMethod ===
                   'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (found && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -787,8 +1242,6 @@ const visitors = {
 
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                 }
-
-                return
               }
 
               /* Example:
@@ -802,6 +1255,7 @@ const visitors = {
                 deepPath.node.callee.object.object.type === 'ThisExpression'
               ) {
                 let callerMethod = innerPath.node.key.name
+
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
                 let calleeMethod = deepPath.node.callee.property.name
 
@@ -809,8 +1263,7 @@ const visitors = {
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
 
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
                   // If the target class exists in this file
                   if (classes[calleeClass]) {
                     // Check each method node in that class
@@ -840,12 +1293,9 @@ const visitors = {
                   callerMethodIndex++
                 }
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
+                if (callerMethod === 'constructor') callerMethod = '_constructor'
 
-                if (count) {
+                if (count && calleeFilepath) {
                   if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
                     state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
@@ -877,561 +1327,253 @@ const visitors = {
               }
             }
           })
-        }
-      })
+        },
+        ClassProperty (innerPath) {
+          if (innerPath.node.value &&
+            (innerPath.node.value.type === 'ArrowFunctionExpression' ||
+              innerPath.node.value.type === 'FunctionExpression')
+          ) {
+            innerPath.traverse({
+              NewExpression (deepPath) {
+                /* Example:
+                new ClassF();
 
-      return
-    }
+                Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
+                */
+                let callerMethod = innerPath.node.key.name
 
-    /* Examples:
-       { ['LiteralClassName']: class {} }
-    */
-    if (parentPath.node.type === 'ObjectProperty' &&
-      parentPath.node.key &&
-      parentPath.node.key.type === 'StringLiteral'
-    ) {
-      const callerClass = parentPath.node.key.value
+                const calleeClass = deepPath.node.callee.name
+                const calleeMethod = '_constructor' // Because we are in a NewExpression
+                let calleeMethodIndex = 0
+                let calleeFilepath = ''
+                let found = false;
 
-      path.traverse({
-        ClassMethod (innerPath) {
-          innerPath.traverse({
-            NewExpression (deepPath) {
-              /* Example:
-              new ClassF();
+                // Search the callee method position
+                for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                  // If the target class exists in this file
+                  if (classes[calleeClass]) {
+                    // Check each method node in that class
+                    for (const methodNode of classes[calleeClass]) {
+                      if (methodNode.kind === 'constructor') {
+                        found = true
+                        calleeFilepath = filePath
+                        break
+                      }
+                      calleeMethodIndex++
+                    }
+                    break
+                  }
+                }
 
-              Count the call to 'constructor' method (_constructor)
-              */
-              let callerMethod = innerPath.node.key.name
-              const calleeClass = deepPath.node.callee.name
-              const calleeMethod = '_constructor'
+                let callerMethodIndex = 0
 
-              let count = false
-              let calleeMethodIndex = 0
-              let calleeFilepath = ''
+                // Search method node
+                for (const methodNode of state.result[state.currentFile][callerClass]) {
+                  const possibleCallerMethod = methodNode.key && methodNode.key.name
+                  if (callerMethod === possibleCallerMethod) {
+                    break
+                  }
+                  callerMethodIndex++
+                }
 
-              for (const [filePath, classes] of Object.entries(state.result)) {
-                // If the target class exists in this file
-                if (classes[calleeClass]) {
-                  // Check each method node in that class
-                  for (const methodNode of classes[calleeClass]) {
-                    if (methodNode.kind === 'constructor') {
-                      count = true
-                      calleeFilepath = filePath
+                if (found && calleeFilepath) {
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                  }
+
+                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                  }
+
+                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                  }
+
+                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                  }
+
+                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                }
+              },
+
+              CallExpression (deepPath) {
+                /* Example:
+                ClassF.foo()
+                myCar.start(); (Constant/Variable instance call)
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.type === 'Identifier' &&
+                  deepPath.node.callee.property.type === 'Identifier'
+                ) {
+                  let callerMethod = innerPath.node.key.name
+
+                  let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
+
+                  if (calleeClass === undefined) {
+                    calleeClass = deepPath.node.callee.object.name
+                  }
+
+                  let calleeMethod = deepPath.node.callee.property.name
+
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
+
+                  for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
                       break
                     }
-                    calleeMethodIndex++
-                  }
-                  break
-                }
-              }
-
-              let callerMethodIndex = 0
-
-              if (callerMethod === 'constructor') {
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  if (methodNode.kind === 'constructor') {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              } else {
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              }
-
-              if (callerMethod === 'constructor') callerMethod = '_constructor'
-
-              if (count) {
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
-                }
-
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                }
-
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                }
-
-                state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                }
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
-                }
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
-                }
-
-                state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-              }
-            },
-            CallExpression (deepPath) {
-              /* Example:
-              ClassF.foo()
-              myCar.start(); (Constant/Variable instance call)
-              */
-              if (deepPath.node.callee.type === 'MemberExpression' &&
-                deepPath.node.callee.object.type === 'Identifier' &&
-                deepPath.node.callee.property.type === 'Identifier'
-              ) {
-                let callerMethod = innerPath.node.key.name
-                let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
-
-                if (calleeClass === undefined) {
-                  calleeClass = deepPath.node.callee.object.name
-                }
-
-                let calleeMethod = deepPath.node.callee.property.name
-
-                let count = false
-                let calleeMethodIndex = 0
-                let calleeFilepath = ''
-
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
-                  // If the target class exists in this file
-                  if (classes[calleeClass]) {
-                    // Check each method node in that class
-                    for (const methodNode of classes[calleeClass]) {
-                      const possibleCalleeMethod = methodNode.key &&
-                        methodNode.key.name
-                      if (calleeMethod === possibleCalleeMethod) {
-                        count = true
-                        calleeFilepath = filePath
-                        break
-                      }
-                      calleeMethodIndex++
-                    }
-                    break
-                  }
-                }
-
-                let callerMethodIndex = 0
-
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
-
-                if (count) {
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                   }
 
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                  }
+                  let callerMethodIndex = 0
 
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                  }
-
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
-                  }
-
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-                }
-
-                return
-              }
-
-              /* Example:
-              this.car.start()
-
-              This case counts property instances
-              */
-              if (deepPath.node.callee.type === 'MemberExpression' &&
-                deepPath.node.callee.property.type === 'Identifier' &&
-                deepPath.node.callee.object.type === 'MemberExpression' &&
-                deepPath.node.callee.object.object.type === 'ThisExpression'
-              ) {
-                let callerMethod = innerPath.node.key.name
-                const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                let calleeMethod = deepPath.node.callee.property.name
-
-                let count = false
-                let calleeMethodIndex = 0
-                let calleeFilepath = ''
-
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
-                  // If the target class exists in this file
-                  if (classes[calleeClass]) {
-                    // Check each method node in that class
-                    for (const methodNode of classes[calleeClass]) {
-                      const possibleCalleeMethod = methodNode.key &&
-                        methodNode.key.name
-                      if (calleeMethod === possibleCalleeMethod) {
-                        count = true
-                        calleeFilepath = filePath
-                        break
-                      }
-                      calleeMethodIndex++
-                    }
-                    break
-                  }
-                }
-
-                let callerMethodIndex = 0
-
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
-
-                if (count) {
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
-                  }
-
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                  }
-
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                  }
-
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
-                  }
-
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-                }
-              }
-            }
-          })
-        }
-      })
-    }
-
-    /* Examples:
-       { Printer: class {} }
-    */
-    if (parentPath.node.type === 'ObjectProperty' &&
-      parentPath.node.key &&
-      parentPath.node.key.type === 'Identifier' &&
-      parentPath.node.computed === false
-    ) {
-      const callerClass = parentPath.node.key.name
-
-      path.traverse({
-        ClassMethod (innerPath) {
-          innerPath.traverse({
-            NewExpression (deepPath) {
-              /* Example:
-              new ClassF();
-
-              Count the call to 'constructor' method (_constructor)
-              */
-              let callerMethod = innerPath.node.key.name
-              const calleeClass = deepPath.node.callee.name
-              const calleeMethod = '_constructor'
-
-              let count = false
-              let calleeMethodIndex = 0
-              let calleeFilepath = ''
-
-              for (const [filePath, classes] of Object.entries(state.result)) {
-                // If the target class exists in this file
-                if (classes[calleeClass]) {
-                  // Check each method node in that class
-                  for (const methodNode of classes[calleeClass]) {
-                    if (methodNode.kind === 'constructor') {
-                      count = true
-                      calleeFilepath = filePath
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key &&
+                      methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
                       break
                     }
-                    calleeMethodIndex++
+                    callerMethodIndex++
                   }
-                  break
-                }
-              }
 
-              let callerMethodIndex = 0
-
-              if (callerMethod === 'constructor') {
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  if (methodNode.kind === 'constructor') {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              } else {
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-              }
-
-              if (callerMethod === 'constructor') callerMethod = '_constructor'
-
-              if (count) {
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
-                }
-
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                }
-
-                if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                }
-
-                state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                }
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
-                }
-
-                if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
-                }
-
-                state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-              }
-            },
-            CallExpression (deepPath) {
-              /* Example:
-              ClassF.foo()
-              myCar.start(); (Constant/Variable instance call)
-              */
-              if (deepPath.node.callee.type === 'MemberExpression' &&
-                deepPath.node.callee.object.type === 'Identifier' &&
-                deepPath.node.callee.property.type === 'Identifier'
-              ) {
-                let callerMethod = innerPath.node.key.name
-                let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
-
-                if (calleeClass === undefined) {
-                  calleeClass = deepPath.node.callee.object.name
-                }
-
-                let calleeMethod = deepPath.node.callee.property.name
-
-                let count = false
-                let calleeMethodIndex = 0
-                let calleeFilepath = ''
-
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
-                  // If the target class exists in this file
-                  if (classes[calleeClass]) {
-                    // Check each method node in that class
-                    for (const methodNode of classes[calleeClass]) {
-                      const possibleCalleeMethod = methodNode.key &&
-                        methodNode.key.name
-                      if (calleeMethod === possibleCalleeMethod) {
-                        count = true
-                        calleeFilepath = filePath
-                        break
-                      }
-                      calleeMethodIndex++
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
                     }
-                    break
-                  }
-                }
 
-                let callerMethodIndex = 0
-
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
-
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
-
-                if (count) {
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
-                  }
-
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                  }
-
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                  }
-
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
-                  }
-
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-                }
-
-                return
-              }
-
-              /* Example:
-              this.car.start()
-
-              This case counts property instances
-              */
-              if (deepPath.node.callee.type === 'MemberExpression' &&
-                deepPath.node.callee.property.type === 'Identifier' &&
-                deepPath.node.callee.object.type === 'MemberExpression' &&
-                deepPath.node.callee.object.object.type === 'ThisExpression'
-              ) {
-                let callerMethod = innerPath.node.key.name
-                const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                let calleeMethod = deepPath.node.callee.property.name
-
-                let count = false
-                let calleeMethodIndex = 0
-                let calleeFilepath = ''
-
-                for (const [filePath, classes] of Object.entries(
-                  state.result)) {
-                  // If the target class exists in this file
-                  if (classes[calleeClass]) {
-                    // Check each method node in that class
-                    for (const methodNode of classes[calleeClass]) {
-                      const possibleCalleeMethod = methodNode.key &&
-                        methodNode.key.name
-                      if (calleeMethod === possibleCalleeMethod) {
-                        count = true
-                        calleeFilepath = filePath
-                        break
-                      }
-                      calleeMethodIndex++
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
                     }
-                    break
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                   }
+
                 }
 
-                let callerMethodIndex = 0
+                /* Example:
+                this.car.start()
 
-                // Search method node
-                for (const methodNode of state.result[state.currentFile][callerClass]) {
-                  const possibleCallerMethod = methodNode.key &&
-                    methodNode.key.name
-                  if (callerMethod === possibleCallerMethod) {
-                    break
-                  }
-                  callerMethodIndex++
-                }
+                This case counts property instances
+                */
+                if (deepPath.node.callee.type === 'MemberExpression' &&
+                  deepPath.node.callee.property.type === 'Identifier' &&
+                  deepPath.node.callee.object.type === 'MemberExpression' &&
+                  deepPath.node.callee.object.object.type === 'ThisExpression'
+                ) {
+                  let callerMethod = innerPath.node.key.name
 
-                if (calleeMethod ===
-                  'constructor') calleeMethod = '_constructor'
-                if (callerMethod ===
-                  'constructor') callerMethod = '_constructor'
+                  const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
+                  let calleeMethod = deepPath.node.callee.property.name
 
-                if (count) {
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
-                  }
+                  let found = false
+                  let calleeMethodIndex = 0
+                  let calleeFilepath = ''
 
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
-                  }
-
-                  if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
-                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
-                  }
-
-                  state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
-                  }
-
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                  for (const [filePath, classes] of Object.entries(state.result)) {
+                    // If the target class exists in this file
+                    if (classes[calleeClass]) {
+                      // Check each method node in that class
+                      for (const methodNode of classes[calleeClass]) {
+                        const possibleCalleeMethod = methodNode.key &&
+                          methodNode.key.name
+                        if (calleeMethod === possibleCalleeMethod) {
+                          found = true
+                          calleeFilepath = filePath
+                          break
+                        }
+                        calleeMethodIndex++
+                      }
+                      break
+                    }
                   }
 
-                  if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
-                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                  let callerMethodIndex = 0
+
+                  // Search method node
+                  for (const methodNode of state.result[state.currentFile][callerClass]) {
+                    const possibleCallerMethod = methodNode.key && methodNode.key.name
+                    if (callerMethod === possibleCallerMethod) {
+                      break
+                    }
+                    callerMethodIndex++
                   }
 
-                  state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+                  if (found && calleeFilepath) {
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out']) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass] = {}
+                    }
+
+                    if (!state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]) {
+                      state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod] = 0
+                    }
+
+                    state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass] = {}
+                    }
+
+                    if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]) {
+                      state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod] = 0
+                    }
+
+                    state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
+
+                  }
                 }
               }
-            }
-          })
+            })
+          }
         }
       })
     }
@@ -1439,8 +1581,8 @@ const visitors = {
 }
 
 function postProcessing (state) {
-  if (state.currentFile) delete state.currentFile
-  if (state.dependencies) delete state.dependencies
+  delete state.currentFile
+  delete state.dependencies
 
   state.status = true
 }
