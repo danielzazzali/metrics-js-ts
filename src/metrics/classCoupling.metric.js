@@ -56,7 +56,7 @@ const visitors = {
               const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
-              let found = false;
+              let found = false
 
               // Search the callee method position
               for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
@@ -83,7 +83,7 @@ const visitors = {
                   break
                 }
 
-                const possible = methodNode.key?.name;
+                const possible = methodNode.key?.name
                 if (callerMethod === possible) break
                 callerMethodIndex++
               }
@@ -308,7 +308,7 @@ const visitors = {
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
-                let found = false;
+                let found = false
 
                 // Search the callee method position
                 for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
@@ -565,7 +565,7 @@ const visitors = {
               const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
-              let found = false;
+              let found = false
 
               // Search the callee method position
               for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
@@ -592,7 +592,7 @@ const visitors = {
                   break
                 }
 
-                const possible = methodNode.key?.name;
+                const possible = methodNode.key?.name
                 if (callerMethod === possible) break
                 callerMethodIndex++
               }
@@ -611,6 +611,11 @@ const visitors = {
                 }
 
                 state.result[state.currentFile][callerClass][callerMethodIndex]['fan-out'][calleeClass][calleeMethod]++
+
+                // TODO: Study this very special case
+                if (!state.result[calleeFilepath]) {
+                  state.result[calleeFilepath] = state.dependencies['classes-per-file'][calleeFilepath]
+                }
 
                 if (!state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in']) {
                   state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'] = {}
@@ -817,7 +822,7 @@ const visitors = {
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
-                let found = false;
+                let found = false
 
                 // Search the callee method position
                 for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
@@ -1094,7 +1099,7 @@ const visitors = {
               const calleeMethod = '_constructor' // Because we are in NewExpression
               let calleeMethodIndex = 0
               let calleeFilepath = ''
-              let found = false;
+              let found = false
 
               // Search the callee method position
               for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
@@ -1121,7 +1126,7 @@ const visitors = {
                   break
                 }
 
-                const possible = methodNode.key?.name;
+                const possible = methodNode.key?.name
                 if (callerMethod === possible) break
                 callerMethodIndex++
               }
@@ -1346,7 +1351,7 @@ const visitors = {
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
                 let calleeMethodIndex = 0
                 let calleeFilepath = ''
-                let found = false;
+                let found = false
 
                 // Search the callee method position
                 for (const [filePath, classes] of Object.entries(state.dependencies['classes-per-file'])) {
