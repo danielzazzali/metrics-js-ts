@@ -1,21 +1,29 @@
 # Metrics-JS-TS
 
-Library designed to calculate various code metrics for JavaScript and TypeScript files. It processes the code
-files, generates Abstract Syntax Trees (ASTs), and applies different modular metrics to analyze code structure,
-maintainability, and quality.
+**Metrics-JS-TS** is a lightweight and extensible library for calculating **code metrics** in JavaScript and TypeScript repositories.  
+It parses your code, generates **Abstract Syntax Trees (ASTs)**, and applies a collection of built-in or custom metrics to analyze **code structure, maintainability, and quality**.
 
 ---
 
-## Installation
+## ✨ Features
 
-To install the library, run:
+- 📦 **Built-in Metrics**: Includes a curated set of default metrics (files, functions, classes, coupling, etc.).
+- 🧩 **Custom Metrics**: Easily add your own metrics by creating modules with visitors and post-processing hooks.
+- 🔍 **AST-Powered Analysis**: Uses AST traversal to provide accurate, in-depth results.
+- 🚫 **Ignore Files**: Skip specific files or directories via a `.metricsignore` file.
+- ⚙️ **Flexible Configuration**: Choose to load built-in metrics, custom metrics, or both.
+
+---
+
+## 📦 Installation
 
 ```sh
 npm install metrics-js-ts
 ```
+
 ---
 
-## Usage
+## 🚀 Usage
 
 To use the library, import the `calculateMetrics` function and call it with the appropriate parameters:
 
@@ -32,61 +40,39 @@ const results = await calculateMetrics({
 console.log(results)
 ```
 
-### Parameters
+---
 
-- `codePath` *(string, required)*  
-  - Path to the source code to analyze.
-  - Should be a directory.
-  - The analyzer will scan it recursively.
+## ⚙️ Parameters
 
-- `customMetricsPath` *(string, optional)*  
-  - Path to a directory containing user-defined metric modules.
-  - Modules in this folder are loaded in addition to (or instead of) the built-in metrics.
-  - Each custom module must export the expected metric structure (`state`, `visitors`, optional `postProcessing`).
-  - If `customMetricsPath` is omitted and `useDefaultMetrics` is `false`, the loader will throw an error (since no metrics are available).
+| Parameter                | Type      | Required | Default | Description                                                                                     |
+|--------------------------|-----------|----------|---------|-------------------------------------------------------------------------------------------------|
+| `codePath`               | `string`  | ✅       | —       | Path to the source code directory to analyze. The analyzer will scan it recursively.           |
+| `customMetricsPath`      | `string`  | ❌       | —       | Path to a folder containing custom metric modules.                                             |
+| `useDefaultMetrics`      | `boolean` | ❌       | `true`  | Whether to load built-in metrics. Set to `false` to run only custom metrics.                   |
+| `metricsIgnoreFilePath`  | `string`  | ❌       | —       | Path to a `.metricsignore` file (one path per line) to skip files or directories.              |
 
-- `useDefaultMetrics` *(boolean, optional, default: `true`)*  
-  - Determines whether the built-in metrics provided by `metrics-js-ts` should be loaded.
-  - Set to `true` to include them (default).
-  - Set to `false` if you want to run only custom metrics.
+### Behavior Matrix
 
-- `metricsIgnoreFilePath` *(string, optional)*  
-  - Path to a `.metricsignore` file used to exclude files and directories from analysis.
-  - The file should contain one entry per line.
-  - Entries are evaluated relative to `codePath`.
+| `useDefaultMetrics` | `customMetricsPath`         | Metrics Loaded                 |
+|---------------------|----------------------------|-------------------------------|
+| `true`              | _(not provided)_          | Built-in metrics only         |
+| `true`              | ✅ Provided               | Built-in + custom metrics     |
+| `false`             | ✅ Provided               | Custom metrics only           |
+| `false`             | _(not provided)_          | ❌ Throws error (no metrics)  |
 
-### Behavior Summary
+---
 
-- `useDefaultMetrics: true` + no `customMetricsPath` → runs only built-in metrics.
-- `useDefaultMetrics: true` + `customMetricsPath` → runs both built-in and custom metrics.
-- `useDefaultMetrics: false` + `customMetricsPath` → runs only custom metrics.
-- `useDefaultMetrics: false` + no `customMetricsPath` → throws an error (no metrics to load).
+## 🛠️ Creating Custom Metrics
 
---- 
+To add your own metrics:
 
-## Metrics
+1. Create a new module in your custom metrics directory.
+2. Export the following:
+    - `state`: Initial state of the metric.
+    - `visitors`: AST visitors to collect data.
+    - `postProcessing` *(optional)*: A function to finalize results.
 
-The library includes several built-in metrics:
-
-* Files on Repository: Collects and records all source files in the repository by their path
-* File Coupling: Measures file-level coupling by computing each file’s fan-in (dependent files) and fan-out (dependencies)
-* Functions Per File: Records all named functions in each source file, mapping function names to their AST node
-* Function Coupling: Measures function-level coupling by recording Fan-In and Fan-Out relationships between functions
-* Classes Per File: Analyzes each source file to identify and record all top-level classes defined
-* Fan In Fan Out Per Class Method: Counts the number of classes that a class method calls (Fan-Out) and the number of
-  methods that call a class method (Fan-In)
-
---- 
-
-## Creating Custom Metrics
-
-To add custom metrics, create a new module in the custom metrics directory and export the following:
-
-* `state`: The initial state of the metric.
-* `visitors`: An object of grouped visitors to traverse the AST and do calculations.
-* `postProcessing` (optional): A function to perform post-processing on the collected data.
-
-Example:
+**Example:**
 
 ```js
 const state = {
@@ -96,23 +82,40 @@ const state = {
   id: 'custom-metric-unique-id',
   dependencies: ['result-a', 'result-b'],
   status: false
-  // Define state properties here
 }
 
-const visitors =
-  {
-    // Define visitors here
-    // Program(path) { doSomething(path.node) }
-    // ClassDeclaration(path) { doSomethingElse(path.node) }
-  }
+const visitors = {
+  // Example visitors:
+  // Program(path) { doSomething(path.node) ... }
+  // ClassDeclaration(path) { doSomethingElse(path.node) ... }
+}
 
-function postProcessing (state) {
-  // Perform post-processing here
+function postProcessing(state) {
+  // Clean up or finalize the metric
   if (state.currentFile) delete state.currentFile
   if (state.dependencies) delete state.dependencies
-
   state.status = true
 }
 
 export { state, visitors, postProcessing }
 ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Feel free to open issues or submit pull requests to:
+
+- Add new metrics
+- Improve documentation
+- Fix bugs
+
+> Developed on **Linux** with **Node.js 22.14.0 LTS**.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](./LICENSE)  
+Copyright (c) 2025 Daniel Zazzali
