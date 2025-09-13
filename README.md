@@ -110,4 +110,4 @@ Feel free to open issues or submit pull requests to:
 
 ## 📜 License
 
-MIT License © 2025 Daniel Zazzali
+MIT License © 2024-present Daniel Zazzali
