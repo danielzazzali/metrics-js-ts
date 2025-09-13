@@ -3,7 +3,6 @@
 **Metrics-JS-TS** is a lightweight and extensible library for calculating **code metrics** in JavaScript and TypeScript repositories.  
 It parses your code, generates **Abstract Syntax Trees (ASTs)**, and applies a collection of built-in or custom metrics to analyze **code structure, maintainability, and quality**.
 
----
 
 ## ✨ Features
 
@@ -13,7 +12,6 @@ It parses your code, generates **Abstract Syntax Trees (ASTs)**, and applies a c
 - 🚫 **Ignore Files**: Skip specific files or directories via a `.metricsignore` file.
 - ⚙️ **Flexible Configuration**: Choose to load built-in metrics, custom metrics, or both.
 
----
 
 ## 📦 Installation
 
@@ -21,7 +19,6 @@ It parses your code, generates **Abstract Syntax Trees (ASTs)**, and applies a c
 npm install metrics-js-ts
 ```
 
----
 
 ## 🚀 Usage
 
@@ -40,7 +37,6 @@ const results = await calculateMetrics({
 console.log(results)
 ```
 
----
 
 ## ⚙️ Parameters
 
@@ -60,7 +56,6 @@ console.log(results)
 | `false`             | ✅ Provided               | Custom metrics only           |
 | `false`             | _(not provided)_          | ❌ Throws error (no metrics)  |
 
----
 
 ## 🛠️ Creating Custom Metrics
 
@@ -100,7 +95,6 @@ function postProcessing(state) {
 export { state, visitors, postProcessing }
 ```
 
----
 
 ## 🤝 Contributing
 
@@ -113,9 +107,7 @@ Feel free to open issues or submit pull requests to:
 
 > Developed on **Linux** with **Node.js 22.14.0 LTS**.
 
----
 
 ## 📜 License
 
-This project is licensed under the [MIT License](./LICENSE)  
-Copyright (c) 2025 Daniel Zazzali
+MIT License © 2025 Daniel Zazzali
