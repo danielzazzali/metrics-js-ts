@@ -3,6 +3,20 @@ import { MESSAGES, METRICS_PATH, REGEX_METRICS_ID } from '../constants/constants
 import path from 'path'
 import { logger } from '../logger/logger.js'
 
+/**
+ * Loads metric files from default and/or custom paths.
+ *
+ * @param {boolean} useDefaultMetrics - Whether to include metrics from the default metrics directory.
+ * @param {string} [customMetricsPath] - Optional path to additional custom metrics.
+ * @param {string} __dirname - Directory of the current module.
+ * @returns {Promise<Array<{filePath: string, fileName: string}>>}
+ * List of metric file objects with absolute paths and names.
+ *
+ * @throws Will throw an error if no metrics are provided and `useDefaultMetrics` is false.
+ *
+ * @example
+ * const files = await loadMetricFiles(true, '/project/customMetrics', __dirname);
+ */
 async function loadMetricFiles (
   useDefaultMetrics, customMetricsPath, __dirname) {
   let metricFiles = []
@@ -24,6 +38,18 @@ async function loadMetricFiles (
   return metricFiles
 }
 
+/**
+ * Imports a metric file and validates its structure.
+ *
+ * @param {{filePath: string}} file - Metric file object.
+ * @returns {Promise<{state: Object, visitors: Object, postProcessing?: Function}>}
+ * Metric object containing state, visitors, and optional postProcessing function.
+ *
+ * @throws Will throw an error if the file lacks required exports or has an invalid/missing `state.id`.
+ *
+ * @example
+ * const metric = await importMetric({ filePath: '/project/metrics/metric1.js' });
+ */
 async function importMetric (file) {
   const { state, visitors, postProcessing } = await import(file.filePath)
 
@@ -45,6 +71,14 @@ async function importMetric (file) {
   return { state, visitors, postProcessing }
 }
 
+/**
+ * Loads and validates metric objects from a list of metric files.
+ *
+ * @param {Array<{filePath: string, fileName: string}>} metricFiles - Metric file objects to import.
+ * @returns {Promise<Array<{state: Object, visitors: Object, postProcessing?: Function}>>}
+ * Array of validated metric objects.
+ *
+ */
 async function loadMetricObjects (metricFiles) {
   const metricsObjects = []
 

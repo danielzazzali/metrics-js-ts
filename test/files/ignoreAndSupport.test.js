@@ -4,6 +4,7 @@ import path from 'path'
 import os from 'os'
 import { getIgnored, isSupported } from '../../src/files/ignoreAndSupport.js'
 import { logger } from '../../src/logger/logger.js'
+import { LINE_BREAK } from '../../src/constants/constants.js'
 
 describe('ignoreAndSupport.js', () => {
   let tempDir
@@ -32,7 +33,7 @@ describe('ignoreAndSupport.js', () => {
         '',
         'example_file.txt',
         'example_ignored.js'
-      ].join('\n')
+      ].join(LINE_BREAK)
     )
   })
 

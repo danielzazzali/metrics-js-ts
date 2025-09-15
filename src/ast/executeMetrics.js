@@ -4,9 +4,11 @@ import { kahnSort } from '../sorting/kahnSort.js'
 import { logger } from '../logger/logger.js'
 
 /**
- * Sort metric objects and initialize result map
- * @param {Array} metricObjects
- * @returns {{ sortedMetrics: Array, resultMap: Object }}
+ * Sorts metric objects by dependency order and initializes the result map.
+ *
+ * @param {Array<Object>} metricObjects - Array of metric definitions.
+ * @returns {{ sortedMetrics: Array<Object>, resultMap: Object }}
+ * Sorted metrics and an empty result map.
  */
 function sortAndInit (metricObjects) {
   const sortedMetrics = kahnSort(metricObjects)
@@ -15,9 +17,11 @@ function sortAndInit (metricObjects) {
 }
 
 /**
- * Resolve dependencies for a single metric
- * @param {Object} metric
- * @param {Object} resultMap
+ * Resolves dependencies for a single metric by replacing dependency IDs
+ * with deep copies of the corresponding metric results.
+ *
+ * @param {Object} metric - The current metric object.
+ * @param {Object} resultMap - Map of metric results by ID.
  */
 function resolveDependencies (metric, resultMap) {
   if (!metric.state.dependencies) return
@@ -31,9 +35,11 @@ function resolveDependencies (metric, resultMap) {
 }
 
 /**
- * Traverse all ASTs with metric visitors
- * @param {Object} metric
- * @param {Array} ASTs
+ * Traverses all ASTs with the given metric's visitors.
+ * Logs errors if traversal fails for any AST.
+ *
+ * @param {Object} metric - Metric containing visitors and state.
+ * @param {Array<Object>} ASTs - List of ASTs to traverse.
  */
 function traverseASTs (metric, ASTs) {
   const visitorsArray = [metric.visitors]
@@ -52,9 +58,10 @@ function traverseASTs (metric, ASTs) {
 }
 
 /**
- * Execute post-processing (if exists) and store the result
- * @param {Object} metric
- * @param {Object} resultMap
+ * Executes optional post-processing on a metric and stores the final result.
+ *
+ * @param {Object} metric - Metric to process.
+ * @param {Object} resultMap - Map of metric results by ID.
  */
 function postProcessAndStore (metric, resultMap) {
   if (metric.postProcessing) {
@@ -64,10 +71,11 @@ function postProcessAndStore (metric, resultMap) {
 }
 
 /**
- * Build the final index object
- * @param {Array} sortedMetrics
- * @param {Object} resultMap
- * @returns {Object}
+ * Builds the final output object containing all metrics' results and errors.
+ *
+ * @param {Array<Object>} sortedMetrics - List of processed metrics.
+ * @param {Object} resultMap - Map of metric results by ID.
+ * @returns {Object} Object containing all metrics' results and error logs.
  */
 function buildFinalResult (sortedMetrics, resultMap) {
   const output = {}
@@ -91,12 +99,15 @@ function buildFinalResult (sortedMetrics, resultMap) {
 }
 
 /**
- * Executes a series of metrics against provided ASTs.
- * Maintains original interface and behavior.
+ * Runs all metrics against provided ASTs:
+ * - Sorts metrics by dependency order.
+ * - Resolves dependencies for each metric.
+ * - Traverses ASTs with metric visitors.
+ * - Runs post-processing and compiles results.
  *
- * @param {Array} metricObjects - List of metric definitions
- * @param {Array} ASTs          - List of parsed ASTs to traverse
- * @returns {Promise<Object>}   - Final result map including errors
+ * @param {Array<Object>} metricObjects - List of metric definitions.
+ * @param {Array<Object>} ASTs - List of parsed ASTs to analyze.
+ * @returns {Promise<Object>} Final result object with metrics and error logs.
  */
 async function executeMetrics (metricObjects, ASTs) {
   const { sortedMetrics, resultMap } = sortAndInit(metricObjects)

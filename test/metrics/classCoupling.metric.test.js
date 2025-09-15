@@ -43,914 +43,914 @@ describe('Class Coupling Metric', function () {
     expect(results).toEqual(
       {
         [`${jsDir}/ACDeclaredWithMethods.js`]: {
-          'A': [
+          A: [
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a1'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a1'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'B': {
-                  '_constructor': 1
+                B: {
+                  _constructor: 1
                 }
               },
               'fan-in': {
-                'B': {
-                  'b1': 1,
-                  '_constructor': 1
+                B: {
+                  b1: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a2'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a2'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'VariableDeclaration',
-                    'declarations': [
+                    type: 'VariableDeclaration',
+                    declarations: [
                       {
-                        'type': 'VariableDeclarator',
-                        'id': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        type: 'VariableDeclarator',
+                        id: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'init': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'B'
+                        init: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'B'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     ],
-                    'kind': 'const'
+                    kind: 'const'
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'B': {
-                  'b2': 2,
-                  '_constructor': 2
+                B: {
+                  b2: 2,
+                  _constructor: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bbb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bbb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'B': {
-                  'b1': 2,
-                  'b2': 1,
-                  '_constructor': 1
+                B: {
+                  b1: 2,
+                  b2: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'B'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'B'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'B': {
-                  '_constructor': 2,
-                  'b3': 1
+                B: {
+                  _constructor: 2,
+                  b3: 1
                 }
               }
             }
           ],
-          'C': [
+          C: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'c'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'B': {
-                  'b3': 2
+                B: {
+                  b3: 2
                 },
-                'BDeclaredWithProperties': {
-                  'b3': 2
+                BDeclaredWithProperties: {
+                  b3: 2
                 }
               }
             }
           ]
         },
         [`${jsDir}/ACDeclaredWithProperties.js`]: {
-          'ADeclaredWithProperties': [
+          ADeclaredWithProperties: [
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a1'
               },
-              'computed': false,
-              'value': {
-                'type': 'FunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'FunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BDeclaredWithProperties'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BDeclaredWithProperties'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bb'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BDeclaredWithProperties'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BDeclaredWithProperties'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'BDeclaredWithProperties': {
-                  '_constructor': 1
+                BDeclaredWithProperties: {
+                  _constructor: 1
                 }
               },
               'fan-in': {
-                'BDeclaredWithProperties': {
-                  'b1': 2
+                BDeclaredWithProperties: {
+                  b1: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a2'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a2'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'VariableDeclaration',
-                      'declarations': [
+                      type: 'VariableDeclaration',
+                      declarations: [
                         {
-                          'type': 'VariableDeclarator',
-                          'id': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                          type: 'VariableDeclarator',
+                          id: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'init': {
-                            'type': 'NewExpression',
-                            'callee': {
-                              'type': 'Identifier',
-                              'name': 'BDeclaredWithProperties'
+                          init: {
+                            type: 'NewExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'BDeclaredWithProperties'
                             },
-                            'arguments': []
+                            arguments: []
                           }
                         }
                       ],
-                      'kind': 'const'
+                      kind: 'const'
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'BDeclaredWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'BDeclaredWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'BDeclaredWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'BDeclaredWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-in': {
-                'BDeclaredWithProperties': {
-                  'b2': 2,
-                  'b1': 1
+                BDeclaredWithProperties: {
+                  b2: 2,
+                  b1: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BDeclaredWithProperties': {
-                  'b2': 1,
-                  '_constructor': 2
+                BDeclaredWithProperties: {
+                  b2: 1,
+                  _constructor: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BDeclaredWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BDeclaredWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'BDeclaredWithProperties': {
-                  'b3': 1,
-                  'b2': 2
+                BDeclaredWithProperties: {
+                  b3: 1,
+                  b2: 2
                 }
               }
             }
           ],
-          'C': [
+          C: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'c'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'c1'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'a'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'a'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
@@ -958,44 +958,44 @@ describe('Class Coupling Metric', function () {
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'ADeclaredWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'ADeclaredWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   }
@@ -1005,916 +1005,916 @@ describe('Class Coupling Metric', function () {
           ]
         },
         [`${jsDir}/ACExpressedWithMethods.js`]: {
-          'AExpressedWithMethods': [
+          AExpressedWithMethods: [
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a1'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a1'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExpressedWithMethods': {
-                  '_constructor': 1
+                BExpressedWithMethods: {
+                  _constructor: 1
                 }
               },
               'fan-in': {
-                'BExpressedWithMethods': {
-                  'b1': 1,
-                  '_constructor': 1
+                BExpressedWithMethods: {
+                  b1: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a2'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a2'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'VariableDeclaration',
-                    'declarations': [
+                    type: 'VariableDeclaration',
+                    declarations: [
                       {
-                        'type': 'VariableDeclarator',
-                        'id': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        type: 'VariableDeclarator',
+                        id: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'init': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BExpressedWithMethods'
+                        init: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BExpressedWithMethods'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     ],
-                    'kind': 'const'
+                    kind: 'const'
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'BExpressedWithMethods': {
-                  'b2': 2,
-                  '_constructor': 2
+                BExpressedWithMethods: {
+                  b2: 2,
+                  _constructor: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bbb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bbb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'BExpressedWithMethods': {
-                  'b1': 2,
-                  'b2': 1,
-                  '_constructor': 1
+                BExpressedWithMethods: {
+                  b1: 2,
+                  b2: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'BExpressedWithMethods': {
-                  '_constructor': 2,
-                  'b3': 1
+                BExpressedWithMethods: {
+                  _constructor: 2,
+                  b3: 1
                 }
               }
             }
           ],
-          'CExpressedWithMethods': [
+          CExpressedWithMethods: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'c'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BExpressedWithMethods': {
-                  'b3': 2
+                BExpressedWithMethods: {
+                  b3: 2
                 }
               }
             }
           ]
         },
         [`${jsDir}/ACExpressedWithProperties.js`]: {
-          'AExpressedWithProperties': [
+          AExpressedWithProperties: [
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a1'
               },
-              'computed': false,
-              'value': {
-                'type': 'FunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'FunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BExpressedWithProperties'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BExpressedWithProperties'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bb'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BExpressedWithProperties'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BExpressedWithProperties'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'bb'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'bb'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'BExpressedWithProperties': {
-                  '_constructor': 1
+                BExpressedWithProperties: {
+                  _constructor: 1
                 }
               },
               'fan-in': {
-                'BExpressedWithProperties': {
-                  'b1': 2
+                BExpressedWithProperties: {
+                  b1: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a2'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a2'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'VariableDeclaration',
-                      'declarations': [
+                      type: 'VariableDeclaration',
+                      declarations: [
                         {
-                          'type': 'VariableDeclarator',
-                          'id': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                          type: 'VariableDeclarator',
+                          id: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'init': {
-                            'type': 'NewExpression',
-                            'callee': {
-                              'type': 'Identifier',
-                              'name': 'BExpressedWithProperties'
+                          init: {
+                            type: 'NewExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'BExpressedWithProperties'
                             },
-                            'arguments': []
+                            arguments: []
                           }
                         }
                       ],
-                      'kind': 'const'
+                      kind: 'const'
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'b'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'b'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'BExpressedWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'BExpressedWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'BExpressedWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'BExpressedWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'b3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'b3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-in': {
-                'BExpressedWithProperties': {
-                  'b2': 2,
-                  'b1': 1
+                BExpressedWithProperties: {
+                  b2: 2,
+                  b1: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BExpressedWithProperties': {
-                  'b2': 1,
-                  '_constructor': 2
+                BExpressedWithProperties: {
+                  b2: 1,
+                  _constructor: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'BExpressedWithProperties': {
-                  'b3': 1,
-                  'b2': 2
+                BExpressedWithProperties: {
+                  b3: 1,
+                  b2: 2
                 }
               }
             }
           ],
-          'CExpressedWithProperties': [
+          CExpressedWithProperties: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'c'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BExpressedWithProperties': {
-                  'b3': 2
+                BExpressedWithProperties: {
+                  b3: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'c1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'c1'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'a'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'a'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
@@ -1922,44 +1922,44 @@ describe('Class Coupling Metric', function () {
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExpressedWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExpressedWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   }
@@ -1969,1847 +1969,1847 @@ describe('Class Coupling Metric', function () {
           ]
         },
         [`${jsDir}/AExportDefault.js`]: {
-          'AExportDefault': [
+          AExportDefault: [
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a1'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a1'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExportDefault': {
-                  '_constructor': 3,
-                  'b1': 1
+                BExportDefault: {
+                  _constructor: 3,
+                  b1: 1
                 }
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b1': 2
+                BExportDefault: {
+                  b1: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a2'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a2'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'VariableDeclaration',
-                    'declarations': [
+                    type: 'VariableDeclaration',
+                    declarations: [
                       {
-                        'type': 'VariableDeclarator',
-                        'id': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                        type: 'VariableDeclarator',
+                        id: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'init': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'BExportDefault'
+                        init: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'BExportDefault'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     ],
-                    'kind': 'const'
+                    kind: 'const'
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'b'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'b'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExportDefault': {
-                  '_constructor': 1,
-                  'b2': 1
+                BExportDefault: {
+                  _constructor: 1,
+                  b2: 1
                 }
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b1': 1,
-                  'b2': 2
+                BExportDefault: {
+                  b1: 1,
+                  b2: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'bbb'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'bbb'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'bbb'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'bbb'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExportDefault': {
-                  'b1': 1,
-                  'b2': 2,
-                  'b3': 2
+                BExportDefault: {
+                  b1: 1,
+                  b2: 2,
+                  b3: 2
                 }
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b1': 2,
-                  'b2': 1,
-                  '_constructor': 1
+                BExportDefault: {
+                  b1: 2,
+                  b2: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExportDefault': {
-                  'b3': 1
+                BExportDefault: {
+                  b3: 1
                 }
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b2': 2,
-                  'b3': 1
+                BExportDefault: {
+                  b2: 2,
+                  b3: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a4'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a4'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'BExportDefault'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'BExportDefault'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'b4'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'b4'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'BExportDefault': {
-                  'b4': 1
+                BExportDefault: {
+                  b4: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a5'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'a5'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b5': 1
+                BExportDefault: {
+                  b5: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'a6'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'a6'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'BExportDefault': {
-                  'b6': 1
+                BExportDefault: {
+                  b6: 1
                 }
               }
             }
           ]
         },
         [`${jsDir}/BExportDefault.js`]: {
-          'BExportDefault': [
+          BExportDefault: [
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b5'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b5'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'AExportDefault'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'AExportDefault'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a5'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a5'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'AExportDefault': {
-                  'a5': 1,
-                  '_constructor': 1
+                AExportDefault: {
+                  a5: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b6'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b6'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aaa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aaa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a6'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a6'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'AExportDefault': {
-                  'a6': 1
+                AExportDefault: {
+                  a6: 1
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b1'
               },
-              'computed': false,
-              'value': {
-                'type': 'FunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'FunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'AExportDefault'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'AExportDefault'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'AssignmentExpression',
-                        'operator': '=',
-                        'left': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'AssignmentExpression',
+                        operator: '=',
+                        left: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aa'
                           }
                         },
-                        'right': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'AExportDefault'
+                        right: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'AExportDefault'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-in': {
-                'AExportDefault': {
-                  'a1': 1,
-                  '_constructor': 1
+                AExportDefault: {
+                  a1: 1,
+                  _constructor: 1
                 }
               },
               'fan-out': {
-                'AExportDefault': {
-                  '_constructor': 2,
-                  'a1': 2,
-                  'a2': 1
+                AExportDefault: {
+                  _constructor: 2,
+                  a1: 2,
+                  a2: 1
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b2'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b2'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'VariableDeclaration',
-                      'declarations': [
+                      type: 'VariableDeclaration',
+                      declarations: [
                         {
-                          'type': 'VariableDeclarator',
-                          'id': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          type: 'VariableDeclarator',
+                          id: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'init': {
-                            'type': 'NewExpression',
-                            'callee': {
-                              'type': 'Identifier',
-                              'name': 'AExportDefault'
+                          init: {
+                            type: 'NewExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'AExportDefault'
                             },
-                            'arguments': []
+                            arguments: []
                           }
                         }
                       ],
-                      'kind': 'const'
+                      kind: 'const'
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'AExportDefault'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'AExportDefault'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'AExportDefault'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'AExportDefault'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-in': {
-                'AExportDefault': {
-                  'a2': 1,
-                  '_constructor': 2
+                AExportDefault: {
+                  a2: 1,
+                  _constructor: 2
                 }
               },
               'fan-out': {
-                'AExportDefault': {
-                  '_constructor': 1,
-                  'a2': 2,
-                  'a3': 2
+                AExportDefault: {
+                  _constructor: 1,
+                  a2: 2,
+                  a3: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aaa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aaa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExportDefault'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExportDefault'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   }
                 ]
               },
               'fan-in': {
-                'AExportDefault': {
-                  'a1': 2,
-                  'a2': 1,
-                  '_constructor': 1
+                AExportDefault: {
+                  a1: 2,
+                  a2: 1,
+                  _constructor: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'AExportDefault'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'AExportDefault'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-in': {
-                'AExportDefault': {
-                  '_constructor': 2,
-                  'a3': 1
+                AExportDefault: {
+                  _constructor: 2,
+                  a3: 1
                 }
               },
               'fan-out': {
-                'AExportDefault': {
-                  'a3': 1
+                AExportDefault: {
+                  a3: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b4'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b4'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': []
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: []
               },
               'fan-in': {
-                'AExportDefault': {
-                  'a4': 1
+                AExportDefault: {
+                  a4: 1
                 }
               }
             }
           ]
         },
         [`${jsDir}/BDeclaredWithMethods.js`]: {
-          'B': [
+          B: [
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b1'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b1'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'A': {
-                  '_constructor': 3,
-                  'a1': 1
+                A: {
+                  _constructor: 3,
+                  a1: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b2'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b2'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'VariableDeclaration',
-                    'declarations': [
+                    type: 'VariableDeclaration',
+                    declarations: [
                       {
-                        'type': 'VariableDeclarator',
-                        'id': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        type: 'VariableDeclarator',
+                        id: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'init': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'A'
+                        init: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'A'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     ],
-                    'kind': 'const'
+                    kind: 'const'
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'A': {
-                  '_constructor': 1,
-                  'a2': 2
+                A: {
+                  _constructor: 1,
+                  a2: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aaa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aaa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'A': {
-                  'a1': 1,
-                  'a2': 2,
-                  'a3': 2
+                A: {
+                  a1: 1,
+                  a2: 2,
+                  a3: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'A'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'A'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'A': {
-                  'a3': 1
+                A: {
+                  a3: 1
                 },
-                'C': {
-                  'c': 2
+                C: {
+                  c: 2
                 }
               }
             }
           ]
         },
         [`${jsDir}/BDeclaredWithProperties.js`]: {
-          'BDeclaredWithProperties': [
+          BDeclaredWithProperties: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'ADeclaredWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'ADeclaredWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'C'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'C'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'ADeclaredWithProperties': {
-                  'a3': 1,
-                  '_constructor': 2
+                ADeclaredWithProperties: {
+                  a3: 1,
+                  _constructor: 2
                 },
-                'C': {
-                  'c': 2
+                C: {
+                  c: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b2'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b2'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'ADeclaredWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'ADeclaredWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'ADeclaredWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'ADeclaredWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'VariableDeclaration',
-                      'declarations': [
+                      type: 'VariableDeclaration',
+                      declarations: [
                         {
-                          'type': 'VariableDeclarator',
-                          'id': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          type: 'VariableDeclarator',
+                          id: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'init': {
-                            'type': 'NewExpression',
-                            'callee': {
-                              'type': 'Identifier',
-                              'name': 'ADeclaredWithProperties'
+                          init: {
+                            type: 'NewExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'ADeclaredWithProperties'
                             },
-                            'arguments': []
+                            arguments: []
                           }
                         }
                       ],
-                      'kind': 'const'
+                      kind: 'const'
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'ADeclaredWithProperties': {
-                  'a3': 2,
-                  '_constructor': 1,
-                  'a2': 2
+                ADeclaredWithProperties: {
+                  a3: 2,
+                  _constructor: 1,
+                  a2: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b1'
               },
-              'computed': false,
-              'value': {
-                'type': 'FunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'FunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'ADeclaredWithProperties': {
-                  'a1': 2,
-                  'a2': 1
+                ADeclaredWithProperties: {
+                  a1: 2,
+                  a2: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'ADeclaredWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'ADeclaredWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'ADeclaredWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'ADeclaredWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   }
@@ -3819,830 +3819,830 @@ describe('Class Coupling Metric', function () {
           ]
         },
         [`${jsDir}/BExpressedWithMethods.js`]: {
-          'BExpressedWithMethods': [
+          BExpressedWithMethods: [
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b1'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b1'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'AExpressedWithMethods': {
-                  '_constructor': 3,
-                  'a1': 1
+                AExpressedWithMethods: {
+                  _constructor: 3,
+                  a1: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b2'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b2'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'VariableDeclaration',
-                    'declarations': [
+                    type: 'VariableDeclaration',
+                    declarations: [
                       {
-                        'type': 'VariableDeclarator',
-                        'id': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        type: 'VariableDeclarator',
+                        id: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'init': {
-                          'type': 'NewExpression',
-                          'callee': {
-                            'type': 'Identifier',
-                            'name': 'AExpressedWithMethods'
+                        init: {
+                          type: 'NewExpression',
+                          callee: {
+                            type: 'Identifier',
+                            name: 'AExpressedWithMethods'
                           },
-                          'arguments': []
+                          arguments: []
                         }
                       }
                     ],
-                    'kind': 'const'
+                    kind: 'const'
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'a'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'AExpressedWithMethods': {
-                  '_constructor': 1,
-                  'a2': 2
+                AExpressedWithMethods: {
+                  _constructor: 1,
+                  a2: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aaa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aaa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a1'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a1'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'ThisExpression'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'aaa'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'aaa'
                           }
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a2'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a2'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'AExpressedWithMethods': {
-                  'a1': 1,
-                  'a2': 2,
-                  'a3': 2
+                AExpressedWithMethods: {
+                  a1: 1,
+                  a2: 2,
+                  a3: 2
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithMethods'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithMethods'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'AExpressedWithMethods': {
-                  'a3': 1
+                AExpressedWithMethods: {
+                  a3: 1
                 },
-                'CExpressedWithMethods': {
-                  'c': 2
+                CExpressedWithMethods: {
+                  c: 2
                 }
               }
             }
           ]
         },
         [`${jsDir}/BExpressedWithProperties.js`]: {
-          'BExpressedWithProperties': [
+          BExpressedWithProperties: [
             {
-              'type': 'ClassMethod',
-              'static': true,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b3'
+              type: 'ClassMethod',
+              static: true,
+              key: {
+                type: 'Identifier',
+                name: 'b3'
               },
-              'computed': false,
-              'kind': 'method',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'method',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a3'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a3'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'CallExpression',
-                      'callee': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'Identifier',
-                          'name': 'CExpressedWithProperties'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'CallExpression',
+                      callee: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'Identifier',
+                          name: 'CExpressedWithProperties'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'c'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'c'
                         }
                       },
-                      'arguments': []
+                      arguments: []
                     }
                   }
                 ]
               },
               'fan-out': {
-                'AExpressedWithProperties': {
-                  'a3': 1,
-                  '_constructor': 2
+                AExpressedWithProperties: {
+                  a3: 1,
+                  _constructor: 2
                 },
-                'CExpressedWithProperties': {
-                  'c': 2
+                CExpressedWithProperties: {
+                  c: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b2'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b2'
               },
-              'computed': false,
-              'value': {
-                'type': 'ArrowFunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'ArrowFunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'AExpressedWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'AExpressedWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'AExpressedWithProperties'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'AExpressedWithProperties'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a3'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a3'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'VariableDeclaration',
-                      'declarations': [
+                      type: 'VariableDeclaration',
+                      declarations: [
                         {
-                          'type': 'VariableDeclarator',
-                          'id': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                          type: 'VariableDeclarator',
+                          id: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'init': {
-                            'type': 'NewExpression',
-                            'callee': {
-                              'type': 'Identifier',
-                              'name': 'AExpressedWithProperties'
+                          init: {
+                            type: 'NewExpression',
+                            callee: {
+                              type: 'Identifier',
+                              name: 'AExpressedWithProperties'
                             },
-                            'arguments': []
+                            arguments: []
                           }
                         }
                       ],
-                      'kind': 'const'
+                      kind: 'const'
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'Identifier',
-                            'name': 'a'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'Identifier',
+                            name: 'a'
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'AExpressedWithProperties': {
-                  'a3': 2,
-                  '_constructor': 1,
-                  'a2': 2
+                AExpressedWithProperties: {
+                  a3: 2,
+                  _constructor: 1,
+                  a2: 2
                 }
               }
             },
             {
-              'type': 'ClassProperty',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'b1'
+              type: 'ClassProperty',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'b1'
               },
-              'computed': false,
-              'value': {
-                'type': 'FunctionExpression',
-                'id': null,
-                'generator': false,
-                'async': false,
-                'params': [],
-                'body': {
-                  'type': 'BlockStatement',
-                  'body': [
+              computed: false,
+              value: {
+                type: 'FunctionExpression',
+                id: null,
+                generator: false,
+                async: false,
+                params: [],
+                body: {
+                  type: 'BlockStatement',
+                  body: [
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a1'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a1'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     },
                     {
-                      'type': 'ExpressionStatement',
-                      'expression': {
-                        'type': 'CallExpression',
-                        'callee': {
-                          'type': 'MemberExpression',
-                          'object': {
-                            'type': 'MemberExpression',
-                            'object': {
-                              'type': 'ThisExpression'
+                      type: 'ExpressionStatement',
+                      expression: {
+                        type: 'CallExpression',
+                        callee: {
+                          type: 'MemberExpression',
+                          object: {
+                            type: 'MemberExpression',
+                            object: {
+                              type: 'ThisExpression'
                             },
-                            'computed': false,
-                            'property': {
-                              'type': 'Identifier',
-                              'name': 'aa'
+                            computed: false,
+                            property: {
+                              type: 'Identifier',
+                              name: 'aa'
                             }
                           },
-                          'computed': false,
-                          'property': {
-                            'type': 'Identifier',
-                            'name': 'a2'
+                          computed: false,
+                          property: {
+                            type: 'Identifier',
+                            name: 'a2'
                           }
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   ]
                 }
               },
               'fan-out': {
-                'AExpressedWithProperties': {
-                  'a1': 2,
-                  'a2': 1
+                AExpressedWithProperties: {
+                  a1: 2,
+                  a2: 1
                 }
               }
             },
             {
-              'type': 'ClassMethod',
-              'static': false,
-              'key': {
-                'type': 'Identifier',
-                'name': 'constructor'
+              type: 'ClassMethod',
+              static: false,
+              key: {
+                type: 'Identifier',
+                name: 'constructor'
               },
-              'computed': false,
-              'kind': 'constructor',
-              'id': null,
-              'generator': false,
-              'async': false,
-              'params': [],
-              'body': {
-                'type': 'BlockStatement',
-                'body': [
+              computed: false,
+              kind: 'constructor',
+              id: null,
+              generator: false,
+              async: false,
+              params: [],
+              body: {
+                type: 'BlockStatement',
+                body: [
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'a'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'a'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   },
                   {
-                    'type': 'ExpressionStatement',
-                    'expression': {
-                      'type': 'AssignmentExpression',
-                      'operator': '=',
-                      'left': {
-                        'type': 'MemberExpression',
-                        'object': {
-                          'type': 'ThisExpression'
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'AssignmentExpression',
+                      operator: '=',
+                      left: {
+                        type: 'MemberExpression',
+                        object: {
+                          type: 'ThisExpression'
                         },
-                        'computed': false,
-                        'property': {
-                          'type': 'Identifier',
-                          'name': 'aa'
+                        computed: false,
+                        property: {
+                          type: 'Identifier',
+                          name: 'aa'
                         }
                       },
-                      'right': {
-                        'type': 'NewExpression',
-                        'callee': {
-                          'type': 'Identifier',
-                          'name': 'AExpressedWithProperties'
+                      right: {
+                        type: 'NewExpression',
+                        callee: {
+                          type: 'Identifier',
+                          name: 'AExpressedWithProperties'
                         },
-                        'arguments': []
+                        arguments: []
                       }
                     }
                   }

@@ -1,16 +1,16 @@
-export const LIBRARY_NAME = 'metrics-js-ts'
-export const IGNORE_FILES_FILENAME = '.metricsignore'
-export const NODE_MODULES_DIRECTORY = 'node_modules'
-
 export const FILE_ENCODING = 'utf-8'
-
 export const JS_EXTENSION = '.js'
 export const CJS_EXTENSION = '.cjs'
 export const TS_EXTENSION = '.ts'
-
 export const LINE_BREAK = '\n'
 
 /**
+ * Default directory for metric files
+ */
+export const METRICS_PATH = 'metrics'
+
+/**
+ * Babel parser options for parsing JavaScript and TypeScript files.
  * @type {import('@babel/parser').ParserOptions}
  */
 export const BABEL_PARSER_OPTIONS = {
@@ -21,8 +21,9 @@ export const BABEL_PARSER_OPTIONS = {
   ]
 }
 
-export const METRICS_PATH = 'metrics'
-
+/**
+ * Centralized messages used for logging and error reporting.
+ */
 export const MESSAGES = {
   ERRORS: {
     ERROR_ON_FILE: 'Error on file',
@@ -45,10 +46,15 @@ export const MESSAGES = {
   }
 }
 
+/**
+ * Regular expression for validating metric IDs.
+ * IDs must match npm package naming conventions.
+ */
 export const REGEX_METRICS_ID = /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/
 
 /**
- * Keys to remove from AST nodes during cleanup.
+ * Keys to remove from AST nodes during cleanup to simplify comparison
+ * and analysis (e.g., removing location data and comments).
  * @type {string[]}
  */
 export const KEYS_TO_REMOVE = [

@@ -33,84 +33,84 @@ describe('Instance Mapper Metric', () => {
     expect(instanceMapperResult.result).toStrictEqual(
       {
         [defaultClassPath]: {
-          'defaultClass': {
+          defaultClass: {
             'this.fooDClass': 'AClass',
-            'constFooDClass': 'AClass',
-            'letFooCDClass': 'AClass',
+            constFooDClass: 'AClass',
+            letFooCDClass: 'AClass',
             'this.barDClass': 'AClass',
-            'constBarDClass': 'AClass',
-            'letBarDClass': 'AClass',
+            constBarDClass: 'AClass',
+            letBarDClass: 'AClass',
             'this.bazDClass': 'AClass',
-            'constBazDClass': 'AClass',
-            'letBazDClass': 'AClass'
+            constBazDClass: 'AClass',
+            letBazDClass: 'AClass'
           }
         },
         [instancesPath]: {
-          'AClass': {
+          AClass: {
             'this.fooBClass': 'BClass',
-            'constFooBClass': 'BClass',
-            'letFooBClass': 'BClass',
+            constFooBClass: 'BClass',
+            letFooBClass: 'BClass',
             'this.barBClass': 'BClass',
-            'constBarBClass': 'BClass',
-            'letBarBClass': 'BClass',
+            constBarBClass: 'BClass',
+            letBarBClass: 'BClass',
             'this.bazBClass': 'BClass',
-            'constBazBClass': 'BClass',
-            'letBazBClass': 'BClass'
+            constBazBClass: 'BClass',
+            letBazBClass: 'BClass'
           },
-          'BClass': {
+          BClass: {
             'this.fooCClass': 'CClass',
-            'constFooCClass': 'CClass',
-            'letFooCClass': 'CClass',
+            constFooCClass: 'CClass',
+            letFooCClass: 'CClass',
             'this.barCClass': 'CClass',
-            'constBarCClass': 'CClass',
-            'letBarCClass': 'CClass',
+            constBarCClass: 'CClass',
+            letBarCClass: 'CClass',
             'this.bazCClass': 'CClass',
-            'constBazCClass': 'CClass',
-            'letBazCClass': 'CClass'
+            constBazCClass: 'CClass',
+            letBazCClass: 'CClass'
           },
-          'CClass': {
+          CClass: {
             'this.fooDClass': 'DClass',
-            'constFooDClass': 'DClass',
-            'letFooCDClass': 'DClass',
+            constFooDClass: 'DClass',
+            letFooCDClass: 'DClass',
             'this.barDClass': 'DClass',
-            'constBarDClass': 'DClass',
-            'letBarDClass': 'DClass',
+            constBarDClass: 'DClass',
+            letBarDClass: 'DClass',
             'this.bazDClass': 'DClass',
-            'constBazDClass': 'DClass',
-            'letBazDClass': 'DClass'
+            constBazDClass: 'DClass',
+            letBazDClass: 'DClass'
           },
-          'DClass': {
+          DClass: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           },
-          'EClass': {
+          EClass: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           },
-          'LiteralClassName': {
+          LiteralClassName: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           }
         }
       }
@@ -129,84 +129,84 @@ describe('Instance Mapper Metric', () => {
     expect(instanceMapperResult.result).toStrictEqual(
       {
         [defaultClassPath]: {
-          'defaultClass': {
+          defaultClass: {
             'this.fooDClass': 'AClass',
-            'constFooDClass': 'AClass',
-            'letFooCDClass': 'AClass',
+            constFooDClass: 'AClass',
+            letFooCDClass: 'AClass',
             'this.barDClass': 'AClass',
-            'constBarDClass': 'AClass',
-            'letBarDClass': 'AClass',
+            constBarDClass: 'AClass',
+            letBarDClass: 'AClass',
             'this.bazDClass': 'AClass',
-            'constBazDClass': 'AClass',
-            'letBazDClass': 'AClass'
+            constBazDClass: 'AClass',
+            letBazDClass: 'AClass'
           }
         },
         [instancesPath]: {
-          'AClass': {
+          AClass: {
             'this.fooBClass': 'BClass',
-            'constFooBClass': 'BClass',
-            'letFooBClass': 'BClass',
+            constFooBClass: 'BClass',
+            letFooBClass: 'BClass',
             'this.barBClass': 'BClass',
-            'constBarBClass': 'BClass',
-            'letBarBClass': 'BClass',
+            constBarBClass: 'BClass',
+            letBarBClass: 'BClass',
             'this.bazBClass': 'BClass',
-            'constBazBClass': 'BClass',
-            'letBazBClass': 'BClass'
+            constBazBClass: 'BClass',
+            letBazBClass: 'BClass'
           },
-          'BClass': {
+          BClass: {
             'this.fooCClass': 'CClass',
-            'constFooCClass': 'CClass',
-            'letFooCClass': 'CClass',
+            constFooCClass: 'CClass',
+            letFooCClass: 'CClass',
             'this.barCClass': 'CClass',
-            'constBarCClass': 'CClass',
-            'letBarCClass': 'CClass',
+            constBarCClass: 'CClass',
+            letBarCClass: 'CClass',
             'this.bazCClass': 'CClass',
-            'constBazCClass': 'CClass',
-            'letBazCClass': 'CClass'
+            constBazCClass: 'CClass',
+            letBazCClass: 'CClass'
           },
-          'CClass': {
+          CClass: {
             'this.fooDClass': 'DClass',
-            'constFooDClass': 'DClass',
-            'letFooCDClass': 'DClass',
+            constFooDClass: 'DClass',
+            letFooCDClass: 'DClass',
             'this.barDClass': 'DClass',
-            'constBarDClass': 'DClass',
-            'letBarDClass': 'DClass',
+            constBarDClass: 'DClass',
+            letBarDClass: 'DClass',
             'this.bazDClass': 'DClass',
-            'constBazDClass': 'DClass',
-            'letBazDClass': 'DClass'
+            constBazDClass: 'DClass',
+            letBazDClass: 'DClass'
           },
-          'DClass': {
+          DClass: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           },
-          'EClass': {
+          EClass: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           },
-          'LiteralClassName': {
+          LiteralClassName: {
             'this.fooAClass': 'AClass',
-            'constFooAClass': 'AClass',
-            'letFooAClass': 'AClass',
+            constFooAClass: 'AClass',
+            letFooAClass: 'AClass',
             'this.barAClass': 'AClass',
-            'constBarAClass': 'AClass',
-            'letBarAClass': 'AClass',
+            constBarAClass: 'AClass',
+            letBarAClass: 'AClass',
             'this.bazAClass': 'AClass',
-            'constBazAClass': 'AClass',
-            'letBazAClass': 'AClass'
+            constBazAClass: 'AClass',
+            letBazAClass: 'AClass'
           }
         }
       }

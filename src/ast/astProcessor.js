@@ -3,7 +3,12 @@ import { parse } from '@babel/parser'
 import { BABEL_PARSER_OPTIONS, FILE_ENCODING, KEYS_TO_REMOVE, MESSAGES } from '../constants/constants.js'
 import { logger } from '../logger/logger.js'
 
-function cleanAST (node, parent) {
+/**
+ * Recursively removes specified keys (like location info) from the AST.
+ *
+ * @param {object|Array} node - The AST node or array of nodes to clean.
+ */
+function cleanAST (node) {
   if (node === null) return
 
   if (Array.isArray(node)) {
@@ -29,6 +34,12 @@ function cleanAST (node, parent) {
   }
 }
 
+/**
+ * Reads the source code from a file.
+ *
+ * @param {string} filePath - Path to the source file.
+ * @returns {Promise<string|null>} File contents or null if read fails.
+ */
 async function getSourceCode (filePath) {
   try {
     return await fs.readFile(filePath, FILE_ENCODING)
@@ -38,6 +49,12 @@ async function getSourceCode (filePath) {
   }
 }
 
+/**
+ * Parses source code into an AST.
+ *
+ * @param {string} filePath - Path to the source file.
+ * @returns {Promise<object|null>} Parsed AST or null if parsing fails.
+ */
 async function getAST (filePath) {
   const code = await getSourceCode(filePath)
   if (!code) return null
@@ -50,13 +67,19 @@ async function getAST (filePath) {
   }
 }
 
+/**
+ * Constructs cleaned ASTs for a given list of files.
+ *
+ * @param {Array<{ filePath: string }>} files - List of files to parse.
+ * @returns {Promise<Array<object>>} List of cleaned ASTs with file path metadata.
+ */
 async function constructASTs (files) {
   const astPromises = files.map(async (file) => {
     const ast = await getAST(file.filePath)
 
     if (ast === null) return
 
-    cleanAST(ast, ast)
+    cleanAST(ast)
 
     // Add metadata to AST
     ast.program.filePath = file.filePath

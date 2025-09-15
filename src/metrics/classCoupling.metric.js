@@ -136,7 +136,7 @@ const visitors = {
                   calleeClass = deepPath.node.callee.object.name
                 }
 
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let found = false
                 let calleeMethodIndex = 0
@@ -219,7 +219,7 @@ const visitors = {
                 let callerMethod = innerPath.node.key.name
 
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let count = false
                 let calleeMethodIndex = 0
@@ -302,7 +302,7 @@ const visitors = {
 
                 Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
                 */
-                let callerMethod = innerPath.node.key.name
+                const callerMethod = innerPath.node.key.name
 
                 const calleeClass = deepPath.node.callee.name
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
@@ -378,7 +378,7 @@ const visitors = {
                   deepPath.node.callee.object.type === 'Identifier' &&
                   deepPath.node.callee.property.type === 'Identifier'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
@@ -386,7 +386,7 @@ const visitors = {
                     calleeClass = deepPath.node.callee.object.name
                   }
 
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -451,7 +451,6 @@ const visitors = {
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                   }
-
                 }
 
                 /* Example:
@@ -464,10 +463,10 @@ const visitors = {
                   deepPath.node.callee.object.type === 'MemberExpression' &&
                   deepPath.node.callee.object.object.type === 'ThisExpression'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -530,7 +529,6 @@ const visitors = {
                     }
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-
                   }
                 }
               }
@@ -650,7 +648,7 @@ const visitors = {
                   calleeClass = deepPath.node.callee.object.name
                 }
 
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let found = false
                 let calleeMethodIndex = 0
@@ -733,7 +731,7 @@ const visitors = {
                 let callerMethod = innerPath.node.key.name
 
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let count = false
                 let calleeMethodIndex = 0
@@ -816,7 +814,7 @@ const visitors = {
 
                 Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
                 */
-                let callerMethod = innerPath.node.key.name
+                const callerMethod = innerPath.node.key.name
 
                 const calleeClass = deepPath.node.callee.name
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
@@ -892,7 +890,7 @@ const visitors = {
                   deepPath.node.callee.object.type === 'Identifier' &&
                   deepPath.node.callee.property.type === 'Identifier'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
@@ -900,7 +898,7 @@ const visitors = {
                     calleeClass = deepPath.node.callee.object.name
                   }
 
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -965,7 +963,6 @@ const visitors = {
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                   }
-
                 }
 
                 /* Example:
@@ -978,10 +975,10 @@ const visitors = {
                   deepPath.node.callee.object.type === 'MemberExpression' &&
                   deepPath.node.callee.object.object.type === 'ThisExpression'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -1044,7 +1041,6 @@ const visitors = {
                     }
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-
                   }
                 }
               }
@@ -1179,7 +1175,7 @@ const visitors = {
                   calleeClass = deepPath.node.callee.object.name
                 }
 
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let found = false
                 let calleeMethodIndex = 0
@@ -1262,7 +1258,7 @@ const visitors = {
                 let callerMethod = innerPath.node.key.name
 
                 const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                let calleeMethod = deepPath.node.callee.property.name
+                const calleeMethod = deepPath.node.callee.property.name
 
                 let count = false
                 let calleeMethodIndex = 0
@@ -1345,7 +1341,7 @@ const visitors = {
 
                 Fan-Out to 'constructor' method (renamed _constructor to avoid constructor default property of objects)
                 */
-                let callerMethod = innerPath.node.key.name
+                const callerMethod = innerPath.node.key.name
 
                 const calleeClass = deepPath.node.callee.name
                 const calleeMethod = '_constructor' // Because we are in a NewExpression
@@ -1421,7 +1417,7 @@ const visitors = {
                   deepPath.node.callee.object.type === 'Identifier' &&
                   deepPath.node.callee.property.type === 'Identifier'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   let calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][deepPath.node.callee.object.name]
 
@@ -1429,7 +1425,7 @@ const visitors = {
                     calleeClass = deepPath.node.callee.object.name
                   }
 
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -1494,7 +1490,6 @@ const visitors = {
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
                   }
-
                 }
 
                 /* Example:
@@ -1507,10 +1502,10 @@ const visitors = {
                   deepPath.node.callee.object.type === 'MemberExpression' &&
                   deepPath.node.callee.object.object.type === 'ThisExpression'
                 ) {
-                  let callerMethod = innerPath.node.key.name
+                  const callerMethod = innerPath.node.key.name
 
                   const calleeClass = state.dependencies['instance-mapper'][state.currentFile][callerClass][`this.${deepPath.node.callee.object.property.name}`]
-                  let calleeMethod = deepPath.node.callee.property.name
+                  const calleeMethod = deepPath.node.callee.property.name
 
                   let found = false
                   let calleeMethodIndex = 0
@@ -1573,7 +1568,6 @@ const visitors = {
                     }
 
                     state.result[calleeFilepath][calleeClass][calleeMethodIndex]['fan-in'][callerClass][callerMethod]++
-
                   }
                 }
               }
