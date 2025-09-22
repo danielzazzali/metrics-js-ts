@@ -9,8 +9,7 @@ const __dirname = path.dirname(__filename)
 describe('Class Coupling Metric', function () {
   const codePath = path.resolve(__dirname, '../test-src/class-coupling')
   const jsDir = path.resolve(__dirname, '../test-src/class-coupling/JS/')
-  // TODO: Add TS code
-  const tsDir = path.resolve(__dirname, '../test-src/class-coupling/JS/')
+  const tsDir = path.resolve(__dirname, '../test-src/class-coupling/TS/')
 
   beforeEach(() => {
     jest.resetModules()
@@ -4647,6 +4646,196 @@ describe('Class Coupling Metric', function () {
                     }
                   }
                 ]
+              }
+            }
+          ]
+        }
+      }
+    )
+  })
+
+  it('Metric result contains TS src testing file', async () => {
+    const metricsResults = await calculateMetrics({ codePath: tsDir })
+    expect(metricsResults['class-coupling'].status).toBeTruthy()
+
+    const results = metricsResults['class-coupling'].result
+
+    expect(results).toEqual(
+      {
+        [`${tsDir}/DeclaredClass.ts`]: {
+          'DeclaredClass': [
+            {
+              'type': 'ClassMethod',
+              'static': false,
+              'key': {
+                'type': 'Identifier',
+                'name': 'declaredMethod'
+              },
+              'computed': false,
+              'kind': 'method',
+              'id': null,
+              'generator': false,
+              'async': false,
+              'params': [],
+              'returnType': {
+                'type': 'TSTypeAnnotation',
+                'typeAnnotation': {
+                  'type': 'TSVoidKeyword'
+                }
+              },
+              'body': {
+                'type': 'BlockStatement',
+                'body': []
+              },
+              'fan-in': {
+                'ExpressedClass': {
+                  'expressedMethod': 2
+                }
+              }
+            }
+          ]
+        },
+        [`${tsDir}/ExpressedClass.ts`]: {
+          'ExpressedClass': [
+            {
+              'type': 'ClassMethod',
+              'static': false,
+              'key': {
+                'type': 'Identifier',
+                'name': 'constructor'
+              },
+              'computed': false,
+              'kind': 'constructor',
+              'id': null,
+              'generator': false,
+              'async': false,
+              'params': [],
+              'body': {
+                'type': 'BlockStatement',
+                'body': [
+                  {
+                    'type': 'ExpressionStatement',
+                    'expression': {
+                      'type': 'AssignmentExpression',
+                      'operator': '=',
+                      'left': {
+                        'type': 'MemberExpression',
+                        'object': {
+                          'type': 'ThisExpression'
+                        },
+                        'computed': false,
+                        'property': {
+                          'type': 'Identifier',
+                          'name': 'declaredClass'
+                        }
+                      },
+                      'right': {
+                        'type': 'NewExpression',
+                        'callee': {
+                          'type': 'Identifier',
+                          'name': 'DeclaredClass'
+                        },
+                        'arguments': []
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              'type': 'ClassMethod',
+              'static': false,
+              'key': {
+                'type': 'Identifier',
+                'name': 'expressedMethod'
+              },
+              'computed': false,
+              'kind': 'method',
+              'id': null,
+              'generator': false,
+              'async': false,
+              'params': [],
+              'returnType': {
+                'type': 'TSTypeAnnotation',
+                'typeAnnotation': {
+                  'type': 'TSVoidKeyword'
+                }
+              },
+              'body': {
+                'type': 'BlockStatement',
+                'body': [
+                  {
+                    'type': 'ExpressionStatement',
+                    'expression': {
+                      'type': 'CallExpression',
+                      'callee': {
+                        'type': 'MemberExpression',
+                        'object': {
+                          'type': 'MemberExpression',
+                          'object': {
+                            'type': 'ThisExpression'
+                          },
+                          'computed': false,
+                          'property': {
+                            'type': 'Identifier',
+                            'name': 'declaredClass'
+                          }
+                        },
+                        'computed': false,
+                        'property': {
+                          'type': 'Identifier',
+                          'name': 'declaredMethod'
+                        }
+                      },
+                      'arguments': []
+                    }
+                  },
+                  {
+                    'type': 'VariableDeclaration',
+                    'declarations': [
+                      {
+                        'type': 'VariableDeclarator',
+                        'id': {
+                          'type': 'Identifier',
+                          'name': 'dClass'
+                        },
+                        'init': {
+                          'type': 'NewExpression',
+                          'callee': {
+                            'type': 'Identifier',
+                            'name': 'DeclaredClass'
+                          },
+                          'arguments': []
+                        }
+                      }
+                    ],
+                    'kind': 'const'
+                  },
+                  {
+                    'type': 'ExpressionStatement',
+                    'expression': {
+                      'type': 'CallExpression',
+                      'callee': {
+                        'type': 'MemberExpression',
+                        'object': {
+                          'type': 'Identifier',
+                          'name': 'dClass'
+                        },
+                        'computed': false,
+                        'property': {
+                          'type': 'Identifier',
+                          'name': 'declaredMethod'
+                        }
+                      },
+                      'arguments': []
+                    }
+                  }
+                ]
+              },
+              'fan-out': {
+                'DeclaredClass': {
+                  'declaredMethod': 2
+                }
               }
             }
           ]
