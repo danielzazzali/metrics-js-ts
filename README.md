@@ -4,23 +4,23 @@
 It parses your code, generates **Abstract Syntax Trees (ASTs)**, and applies a collection of built-in or custom metrics to analyze **code structure, maintainability, and quality**.
 
 
-## ✨ Features
+## Features
 
-- 📦 **Built-in Metrics**: Includes a curated set of default metrics (files, functions, classes, coupling, etc.).
-- 🧩 **Custom Metrics**: Easily add your own metrics by creating modules with visitors and post-processing hooks.
-- 🔍 **AST-Powered Analysis**: Uses AST traversal to provide accurate, in-depth results.
-- 🚫 **Ignore Files**: Skip specific files or directories via a `.metricsignore` file.
-- ⚙️ **Flexible Configuration**: Choose to load built-in metrics, custom metrics, or both.
+- **Built-in Metrics**: Includes a curated set of default metrics (files, functions, classes, coupling, etc.).
+- **Custom Metrics**: Easily add your own metrics by creating modules with visitors and post-processing hooks.
+- **AST-Powered Analysis**: Uses AST traversal to provide accurate, in-depth results.
+- **Ignore Files**: Skip specific files or directories via a `.metricsignore` file.
+- **Flexible Configuration**: Choose to load built-in metrics, custom metrics, or both.
 
 
-## 📦 Installation
+## Installation
 
 ```sh
 npm install metrics-js-ts
 ```
 
 
-## 🚀 Usage
+## Usage
 
 To use the library, import the `calculateMetrics` function and call it with the appropriate parameters:
 
@@ -38,7 +38,7 @@ console.log(results)
 ```
 
 
-## ⚙️ Parameters
+## Parameters
 
 | Parameter                | Type      | Required | Default | Description                                                                                     |
 |--------------------------|-----------|----------|---------|-------------------------------------------------------------------------------------------------|
@@ -57,7 +57,22 @@ console.log(results)
 | `false`             | _(not provided)_          | ❌ Throws error (no metrics)  |
 
 
-## 🛠️ Creating Custom Metrics
+## Built-in Metrics
+
+The library comes with the following built-in metrics. Click each link for detailed documentation:
+
+| Metric ID            | Name                   | Description                                                            | Documentation                                             |
+| -------------------- | ---------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- |
+| `files`              | **Files**              | Identifies all source files in the repository.                         | [files.doc.md](./docs/files.doc.md)                       |
+| `functions-per-file` | **Functions Per File** | Counts all functions declared per file.                                | [functionsPerFile.doc.md](./docs/functionsPerFile.doc.md) |
+| `function-coupling`  | **Function Coupling**  | Measures **fan-in** and **fan-out** at the function level.             | [functionCoupling.doc.md](./docs/functionCoupling.doc.md) |
+| `classes-per-file`   | **Classes Per File**   | Lists all classes and their methods/properties per file.               | [classesPerFile.doc.md](./docs/classesPerFile.doc.md)     |
+| `class-coupling`     | **Class Coupling**     | Measures **fan-in** and **fan-out** between class methods.             | [classCoupling.doc.md](./docs/classCoupling.doc.md)       |
+| `file-coupling`      | **File Coupling**      | Measures **file-level dependencies** (imports/require) and dependents. | [fileCoupling.doc.md](./docs/fileCoupling.doc.md)         |
+| `instance-mapper`    | **Instance Mapper**    | Maps instances to their class types for resolving method calls.        | [instanceMapper.doc.md](./docs/instanceMapper.doc.md)     |
+
+
+## Creating Custom Metrics
 
 To add your own metrics:
 
@@ -96,7 +111,7 @@ export { state, visitors, postProcessing }
 ```
 
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!  
 Feel free to open issues or submit pull requests to:
@@ -108,6 +123,6 @@ Feel free to open issues or submit pull requests to:
 > Developed on **Linux** with **Node.js 22.14.0 LTS**.
 
 
-## 📜 License
+## License
 
 MIT License © 2024-present Daniel Zazzali
