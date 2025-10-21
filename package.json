@@ -1,6 +1,6 @@
 {
   "name": "metrics-js-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Metrics-JS-TS is a lightweight and extensible library for calculating code metrics in JavaScript and TypeScript repositories.",
   "main": "src/index.js",
   "type": "module",
