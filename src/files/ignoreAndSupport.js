@@ -30,9 +30,9 @@ async function getIgnored (ignoreMetricsFilePath) {
 
     const data = await fs.readFile(ignoreMetricsFilePath, FILE_ENCODING)
     ignoreFiles = data.split(LINE_BREAK)
-    .map(line => line.trim())
-    .filter(Boolean)
-    .map(line => path.resolve(metricsIgnoreDirectory, line))
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => path.resolve(metricsIgnoreDirectory, line))
   } catch (error) {
     logger.logFileError(`${MESSAGES.ERRORS.ERROR_READING_IGNORE_FILE} ${ignoreMetricsFilePath}: ${error.message}`)
   }

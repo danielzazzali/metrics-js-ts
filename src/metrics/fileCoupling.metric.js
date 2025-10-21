@@ -91,28 +91,33 @@ function postProcessing (state) {
 
   const processed = {}
 
-  // Initialize fanOut and empty fanIn for every file found
+  // ensure every file has an entry
   for (const filePath of Object.keys(raw)) {
-    const fanOut = raw[filePath]
-    const fanIn = []
+    processed[filePath] = { fanOut: Array.from(new Set(raw[filePath])), fanIn: [] }
+  }
 
-    for (const importSource of raw[filePath]) {
-      fanIn.push(importSource)
-    }
-
-    processed[filePath] = {
-      fanOut,
-      fanIn
+  // also create entries for files that are only imported (not top-level keys)
+  for (const filePath of Object.keys(raw)) {
+    for (const imp of raw[filePath]) {
+      if (!processed[imp]) processed[imp] = { fanOut: [], fanIn: [] }
     }
   }
 
-  // Replace state.result with processed coupling data
-  state.result = processed
+  // invert edges: for each A -> B, add A to B.fanIn
+  for (const filePath of Object.keys(processed)) {
+    for (const imp of processed[filePath].fanOut) {
+      processed[imp].fanIn.push(filePath)
+    }
+  }
 
-  // Remove internal state properties
+  // dedupe fanIn lists
+  for (const p of Object.keys(processed)) {
+    processed[p].fanIn = Array.from(new Set(processed[p].fanIn))
+  }
+
+  state.result = processed
   delete state.currentFile
   delete state.dependencies
-
   state.status = true
 }
 
