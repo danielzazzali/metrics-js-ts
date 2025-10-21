@@ -43,36 +43,38 @@ describe('File Coupling Metric', function () {
             `${codePath}/JS/subdir/subsubdir/fileC.js`,
             `${codePath}/JS/subdir/fileB.cjs`
           ],
-          fanIn: [
-            `${codePath}/JS/subdir/subsubdir/fileC.js`,
-            `${codePath}/JS/subdir/fileB.cjs`
-          ]
+          fanIn: []
         },
         [`${codePath}/JS/subdir/fileB.cjs`]: {
           fanOut: [],
-          fanIn: []
+          fanIn: [
+            `${codePath}/JS/fileA.js`
+          ]
         },
         [`${codePath}/JS/subdir/subsubdir/fileC.js`]: {
           fanOut: [],
-          fanIn: []
+          fanIn: [
+            `${codePath}/JS/fileA.js`
+          ]
         },
         [`${codePath}/TS/fileA.ts`]: {
           fanOut: [
             `${codePath}/TS/subdir/subsubdir/fileC.ts`,
             `${codePath}/TS/subdir/fileB.ts`
           ],
-          fanIn: [
-            `${codePath}/TS/subdir/subsubdir/fileC.ts`,
-            `${codePath}/TS/subdir/fileB.ts`
-          ]
+          fanIn: []
         },
         [`${codePath}/TS/subdir/fileB.ts`]: {
           fanOut: [],
-          fanIn: []
+          fanIn: [
+            `${codePath}/TS/fileA.ts`
+          ]
         },
         [`${codePath}/TS/subdir/subsubdir/fileC.ts`]: {
           fanOut: [],
-          fanIn: []
+          fanIn: [
+            `${codePath}/TS/fileA.ts`
+          ]
         }
       }
     )
@@ -92,13 +94,13 @@ describe('File Coupling Metric', function () {
           fanOut: [
             `${codePath}/utils/index.ts`
           ],
-          fanIn: [
-            `${codePath}/utils/index.ts`
-          ]
+          fanIn: []
         },
         [`${codePath}/utils/index.ts`]: {
           fanOut: [],
-          fanIn: []
+          fanIn: [
+            `${codePath}/app.ts`
+          ]
         }
       }
     )
