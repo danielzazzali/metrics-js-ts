@@ -111,6 +111,11 @@ export { state, visitors, postProcessing }
 ```
 
 
+## ASTs & visitors
+
+ASTs are Babel-style (parsed with `@babel/parser`), so metric `visitors` should expect Babel node types and visitor signatures (e.g., `Program`, `FunctionDeclaration`, `ImportDeclaration`). Traversal uses `@babel/traverse`; when in doubt, follow Babel's visitor conventions.
+
+
 ## Contributing
 
 Contributions are welcome!  
